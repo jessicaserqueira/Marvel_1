@@ -35,6 +35,4 @@ extension CharacterHomeViewController: CharacterViewable {
     public func hideLoading() {
         
     }
-    
-    
 }

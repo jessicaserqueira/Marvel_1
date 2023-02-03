@@ -9,5 +9,5 @@ import Common
 
 public protocol CharacterViewControllersFactory: DependencyFactory {
     
-    func makeCharacterViewController() -> CharacterHomeViewController
+    func makeCharacterViewController() -> CharacterHomeView
 }

@@ -9,9 +9,9 @@ import Kingfisher
 import SwiftUI
 
 @available(iOS 14.0, *)
-struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
+struct CharacterHomeListView: View {
     
-    var viewModel: ViewModel
+    var viewModel: CharacterHomeModelling
     @Binding var buttonImage: String
     @State var scrollOffset = CGPoint.zero
     

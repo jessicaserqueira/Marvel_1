@@ -21,6 +21,9 @@
 		A49F8021298BF2E00023D885 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F8020298BF2E00023D885 /* SceneDelegate.swift */; };
 		A49F8023298BF2E00023D885 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F8022298BF2E00023D885 /* ViewController.swift */; };
 		A49F8028298BF2E10023D885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49F8027298BF2E10023D885 /* Assets.xcassets */; };
+		A4D0C7D7298D7E510068D53B /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */; };
+		A4D0C7D8298D7E510068D53B /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */; };
+		A4D0C7D9298D7E510068D53B /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		A49F803B298BF40E0023D885 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 		A49F803C298BF41D0023D885 /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		A49F803D298BF4330023D885 /* AppData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppData; sourceTree = "<group>"; };
+		A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
+		A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 		A49F801D298BF2E00023D885 /* Marvel_1 */ = {
 			isa = PBXGroup;
 			children = (
+				A4D0C7D3298D7E510068D53B /* Fonts */,
 				A4093720298BFCDB00500444 /* SplashScreenView.swift */,
 				A49F801E298BF2E00023D885 /* AppDelegate.swift */,
 				A49F8020298BF2E00023D885 /* SceneDelegate.swift */,
@@ -130,6 +137,16 @@
 				A49F8038298BF3CE0023D885 /* Storage */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		A4D0C7D3298D7E510068D53B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */,
+				A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */,
+				A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +218,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4D0C7D9298D7E510068D53B /* Bangers-Regular.ttf in Resources */,
+				A4D0C7D8298D7E510068D53B /* Nunito-Regular.ttf in Resources */,
+				A4D0C7D7298D7E510068D53B /* Nunito-Medium.ttf in Resources */,
 				A49F8028298BF2E10023D885 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,8 +35,8 @@ public struct CharacterHomeCoordinator {
 
 extension CharacterHomeCoordinator {
     func showCharacter() {
-        let viewController = viewControllersFactory.makeCharacterViewController()
-        navigationController.viewControllers = [viewController]
+        let characterHomeView = viewControllersFactory.makeCharacterViewController()
+        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
     }
 }
 
@@ -48,5 +48,5 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     public func previousScreen() {
         
     }
-    
+
 }

@@ -16,13 +16,13 @@ class CharacterFactoryImplementation: CharacterViewControllersFactory {
         self.container = container
     }
     
-    func makeCharacterViewController() -> Comics.CharacterHomeViewController {
-        
+    func makeCharacterViewController() -> Comics.CharacterHomeView {
+                
         guard let viewModel = container.resolveSafe(CharacterHomeModelling.self) as? CharacterHomeViewModel else {
             preconditionFailure("CharacterHomeViewModelling is nil")
         }
         
-        let viewController = CharacterHomeViewController(viewModel: viewModel)
+        let viewController = CharacterHomeView(viewModel: viewModel)
         return viewController
     }
 }

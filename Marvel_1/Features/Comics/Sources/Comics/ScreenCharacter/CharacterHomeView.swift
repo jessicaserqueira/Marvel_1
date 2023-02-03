@@ -8,14 +8,14 @@
 import Kingfisher
 import SwiftUI
 
-public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
+public struct CharacterHomeView: View {
     
-    var viewModel: ViewModel
+    var viewModel: CharacterHomeModelling
     @State private var selection = 0
     @State private var searchTerm: String = ""
     @State private var buttonImage = "icon-favorite"
     
-    public init(viewModel: ViewModel, selection: Int = 0, searchTerm: String = "") {
+    public init(viewModel: CharacterHomeModelling, selection: Int = 0, searchTerm: String = "") {
         self.viewModel = viewModel
         self.selection = selection
         self.searchTerm = searchTerm
