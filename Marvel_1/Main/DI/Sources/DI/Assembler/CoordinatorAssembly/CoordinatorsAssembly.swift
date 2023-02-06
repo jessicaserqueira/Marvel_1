@@ -29,8 +29,6 @@ class CoordinatorsAssembly: Assembly {
         let appCoordinator = container.resolveSafe(AppCoordinator.self)
         self.appCoordinator = appCoordinator
         
-        let characterHomeViewFactory =
-        container.resolveSafe(CharacterViewControllersFactory.self)
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, delegate: appCoordinator as CharacterHomeCoordinatorDelegate, factory: characterHomeViewFactory))
+        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, delegate: appCoordinator as CharacterHomeCoordinatorDelegate))
     }
 }

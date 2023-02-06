@@ -19,8 +19,8 @@ class CharacterAssembly: Assembly {
         let characterUseCaseProtocol = container.resolveSafe(Domain.CharacterUseCaseProtocol.self)
         
         container.register(type: CharacterHomeCoordinating.self, component: characterCoordinator)
-        container.register(type: CharacterHomeModelling.self,
-                           component: CharacterHomeViewModel.init(coordinator: characterCoordinator, characterUseCase: characterUseCaseProtocol))
+        container.register(type: (any CharacterHomeModelling).self,
+                           component: CharacterHomeViewModel.init(coordinator: characterCoordinator))
         
     }
 }

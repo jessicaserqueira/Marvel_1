@@ -9,39 +9,27 @@ import SwiftUI
 import Common
 import Domain
 
-public protocol CharacterViewable: ViewLoadable {
-    
-    func show(message: String)
-}
-
 public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var data: [CharacterModel] = []
     @Published var searchTerm: String = ""
-    @Published var isLoading: Bool = false
+    @Published public var isLoading: Bool = false
     
     private var offset: Int = 0
     private var totalPages: Int = 0
     
-    private weak var view: CharacterViewable?
     private var coordinator: CharacterHomeCoordinating?
-    private let characterUseCase: CharacterUseCaseProtocol
+    private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
-    public init(coordinator: CharacterHomeCoordinating,
-                characterUseCase: CharacterUseCaseProtocol) {
+    public init(coordinator: CharacterHomeCoordinating) {
         self.characterUseCase = characterUseCase
         self.coordinator = coordinator
     }
-    
-    public func attach(_ view: CharacterViewable) {
-        self.view = view
-    }
-    
 }
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
-    
+
     public func didAppear() {
         fetchCharacter()
     }
@@ -53,7 +41,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             switch result {
             case .success(let response):
                 self.totalPages = (response.total ?? 0) / 20
-                self.data.append(contentsOf: (response.results?.compactMap { CharacterModel($0) }) ?? [])
+                self.data +=  response.results?.compactMap { CharacterModel($0) } ?? []
                 self.offset += 20
                 if self.offset < response.total ?? 0 {
                     self.fetchCharacter()
@@ -64,6 +52,16 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
                 print(error.localizedDescription)
                 self.isLoading = false
             }
+        }
+    }
+    
+    public func filterCharacters(searchTerm: String) -> [CharacterModel] {
+ 
+        if searchTerm.isEmpty {
+            return data
+        }
+        return data.filter {
+            $0.name.lowercased().contains(searchTerm.lowercased())
         }
     }
     

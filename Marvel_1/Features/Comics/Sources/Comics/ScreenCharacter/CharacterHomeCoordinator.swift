@@ -20,10 +20,8 @@ public struct CharacterHomeCoordinator {
     public var coordinatorDelegate: CharacterHomeCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
-    public let viewControllersFactory: CharacterViewControllersFactory
-    
-    public init(navigationController: UINavigationController, delegate: CharacterHomeCoordinatorDelegate, factory: CharacterViewControllersFactory) {
-        self.viewControllersFactory = factory
+
+    public init(navigationController: UINavigationController, delegate: CharacterHomeCoordinatorDelegate) {
         self.navigationController = navigationController
         self.coordinatorDelegate = delegate
     }
@@ -35,10 +33,14 @@ public struct CharacterHomeCoordinator {
 
 extension CharacterHomeCoordinator {
     func showCharacter() {
-        let viewController = viewControllersFactory.makeCharacterViewController()
-        navigationController.viewControllers = [viewController]
+        
+        let viewModel = CharacterHomeViewModel(coordinator: self)
+        
+        let characterHomeView = CharacterHomeView(viewModel: viewModel)
+        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
     }
 }
+
 
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     public func nextScreen() {
@@ -48,5 +50,4 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     public func previousScreen() {
         
     }
-    
 }

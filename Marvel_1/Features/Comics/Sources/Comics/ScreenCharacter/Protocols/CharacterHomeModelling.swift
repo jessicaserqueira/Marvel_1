@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-public protocol CharacterHomeModelling: AnyObject {
+@MainActor
+public protocol CharacterHomeModelling: ObservableObject {
     
     var data: [CharacterModel] { get }
+    var isLoading: Bool { get }
 
     func didAppear()
     func fetchCharacter()
+    func filterCharacters(searchTerm: String) -> [CharacterModel]
     func nextScreen()
     func previousScreen()
 }
