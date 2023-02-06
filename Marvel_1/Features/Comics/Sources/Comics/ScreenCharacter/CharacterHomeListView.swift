@@ -9,20 +9,24 @@ import Kingfisher
 import SwiftUI
 
 @available(iOS 14.0, *)
-struct CharacterHomeListView: View {
+struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     
-    var viewModel: CharacterHomeModelling
+    @ObservedObject var viewModel: ViewModel
     @Binding var buttonImage: String
+    @State private var searchTerm: String = ""
     @State var scrollOffset = CGPoint.zero
     
     var borderColor: Color
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
+        HStack {
+            SearchBar(searchTerm: $searchTerm, borderColor: borderColor)
+        }
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 LazyVGrid(columns: self.gridItemLayout, alignment: .center) {
-                    ForEach(self.viewModel.data, id: \.id) { i in
+                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.id) { i in
                         VStack(alignment: .center) {
                             KFImage(URL(string: "\(i.thumbnail)"))
                                 .resizable()

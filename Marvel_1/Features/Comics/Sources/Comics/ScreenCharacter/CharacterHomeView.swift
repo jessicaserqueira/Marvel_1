@@ -8,14 +8,15 @@
 import Kingfisher
 import SwiftUI
 
-public struct CharacterHomeView: View {
+public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
     
-    var viewModel: CharacterHomeModelling
+    @ObservedObject var viewModel: ViewModel
     @State private var selection = 0
     @State private var searchTerm: String = ""
     @State private var buttonImage = "icon-favorite"
+
     
-    public init(viewModel: CharacterHomeModelling, selection: Int = 0, searchTerm: String = "") {
+    public init(viewModel: ViewModel, searchTerm: String = "") {
         self.viewModel = viewModel
         self.selection = selection
         self.searchTerm = searchTerm
@@ -39,10 +40,6 @@ public struct CharacterHomeView: View {
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.leading)
                             .padding(.bottom, 10)
-                        
-                        HStack {
-                            SearchBar(searchTerm: $searchTerm, borderColor: borderColor)
-                        }
                     }
                     if #available(iOS 14.0, *) {
                         CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
@@ -50,7 +47,6 @@ public struct CharacterHomeView: View {
                     }
                 }
             }
-            
             .tabItem {
                 selection == 0 ? Image("shield-Color") : Image("shield")
                 Text(L10n.Characters.tile)
