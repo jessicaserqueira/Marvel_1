@@ -17,30 +17,32 @@ public protocol CharacterHomeCoordinatorDelegate: AnyObject {
 
 public struct CharacterHomeCoordinator {
     
+    var parent = UIViewController()
     public var coordinatorDelegate: CharacterHomeCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
-
-    public init(navigationController: UINavigationController, delegate: CharacterHomeCoordinatorDelegate) {
+    
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.coordinatorDelegate = delegate
     }
     
     public func start() {
-        showCharacter()
+        let viewModel = CharacterHomeViewModel(coordinator: self)
+        let characterHomeView = CharacterHomeView(viewModel: viewModel)
+        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: false)
+        navigationController.navigationItem.hidesBackButton = true
     }
 }
 
 extension CharacterHomeCoordinator {
-    func showCharacter() {
-        
+
+    func showScreenCharacter(_ splashVC: SplashScreenView) {
         let viewModel = CharacterHomeViewModel(coordinator: self)
-        
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
+        navigationController.navigationItem.hidesBackButton = true
     }
 }
-
 
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     public func nextScreen() {

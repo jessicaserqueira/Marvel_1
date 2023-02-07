@@ -7,12 +7,18 @@
 
 import UIKit
 import DI
+import Comics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let navigationController = UINavigationController()
+        let splashCoordinator = SplashScreenCoordinator(navigationController: navigationController)
+            splashCoordinator.start()
         return true
     }
     

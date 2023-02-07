@@ -17,7 +17,7 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
         self.container = container
     }
     
-    func makeCharacterCoordinator() -> Comics.CharacterHomeCoordinator {
-        container.resolveSafe(CharacterHomeCoordinator.self)
+    func makeCharacterCoordinator() -> Comics.SplashScreenCoordinator {
+        container.resolveSafe(SplashScreenCoordinator.self)
     }
 }
