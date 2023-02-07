@@ -33,7 +33,7 @@ public class AppCoordinator: Common.Coordinator {
 extension AppCoordinator {
     
     func showCharacterCoordinator() {
-        let coordinator = coordinatorFactory.makeCharacterCoordinator()
+        let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
     }
 }

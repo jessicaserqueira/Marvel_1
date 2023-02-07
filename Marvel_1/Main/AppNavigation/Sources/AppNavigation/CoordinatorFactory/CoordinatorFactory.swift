@@ -11,6 +11,6 @@ import Comics
 
 public protocol CoordinatorFactory: DependencyFactory {
 
-    func makeCharacterCoordinator() -> SplashScreenCoordinator
-
+    func makeSplashCoordinator() -> SplashScreenCoordinator
+    func makeCharacterCoordinator() -> CharacterHomeCoordinator
 }

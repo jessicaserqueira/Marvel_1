@@ -29,8 +29,10 @@ class CoordinatorsAssembly: Assembly {
         let appCoordinator = container.resolveSafe(AppCoordinator.self)
         self.appCoordinator = appCoordinator
         
+        // MARK: - SplashCoordinator
         container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController))
         
+        // MARK: - CharacterCoordinator
         container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController))
     }
 }
