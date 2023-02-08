@@ -72,4 +72,8 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     public func previousScreen() {
         print("Tela anterior")
     }
+    
+    public func buttonDetails() {
+        coordinator?.buttonDetails()
+    }
 }

@@ -44,11 +44,17 @@ extension CharacterHomeCoordinator {
 
 // MARK: CharacterHomeCoordinating
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
+    
     public func nextScreen() {
         
     }
     
     public func previousScreen() {
         
+    }
+    
+    public func buttonDetails() {
+        let screenDetailsView = ScreenDetailsView()
+        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
     }
 }

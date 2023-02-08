@@ -13,4 +13,5 @@ public protocol CoordinatorFactory: DependencyFactory {
 
     func makeSplashCoordinator() -> SplashScreenCoordinator
     func makeCharacterCoordinator() -> CharacterHomeCoordinator
+    func makeScreenDetailsCoordinator() -> ScreenDetailsCoordinator
 }

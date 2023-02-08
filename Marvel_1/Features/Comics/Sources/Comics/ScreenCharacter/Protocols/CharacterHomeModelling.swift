@@ -18,4 +18,5 @@ public protocol CharacterHomeModelling: ObservableObject {
     func filterCharacters(searchTerm: String) -> [CharacterModel]
     func nextScreen()
     func previousScreen()
+    func buttonDetails()
 }
