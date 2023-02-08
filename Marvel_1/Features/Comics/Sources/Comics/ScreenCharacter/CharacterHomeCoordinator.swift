@@ -30,7 +30,6 @@ public struct CharacterHomeCoordinator {
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: false)
-        navigationController.navigationItem.hidesBackButton = true
     }
 }
 
@@ -40,7 +39,6 @@ extension CharacterHomeCoordinator {
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
-        navigationController.navigationItem.hidesBackButton = true
     }
 }
 

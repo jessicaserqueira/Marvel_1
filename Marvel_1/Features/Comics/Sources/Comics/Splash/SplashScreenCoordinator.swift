@@ -21,9 +21,9 @@ public class SplashScreenCoordinator {
   }
 
   public func start() {
-      let splashVC = SplashScreenView()
-      navigationController.pushViewController(UIHostingController(rootView: splashVC), animated: true)
-            showScreenCharacter(splashVC)
+      let splashView = SplashScreenView()
+      navigationController.pushViewController(UIHostingController(rootView: splashView), animated: true)
+            showScreenCharacter(splashView)
   }
     
     func showScreenCharacter(_ splashVC: SplashScreenView) {
