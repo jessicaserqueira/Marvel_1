@@ -63,7 +63,7 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     selection == 2 ? Image("heart-Color") : Image("heart")
                     Text(L10n.Favorites.title)
                 }.tag(2)
-        }
+        }.navigationBarBackButtonHidden(true)
         .accentColor(Color.black)
         .onAppear() {
             viewModel.didAppear()

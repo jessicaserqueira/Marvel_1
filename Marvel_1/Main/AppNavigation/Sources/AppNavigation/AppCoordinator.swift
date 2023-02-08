@@ -26,15 +26,14 @@ public class AppCoordinator: Common.Coordinator {
     }
 
     public func start() {
-        showCharacterCoordinator()
+        showSplashCoordinator()
     }
 }
  
 extension AppCoordinator {
     
-    func showCharacterCoordinator() {
-        
-        let coordinator = coordinatorFactory.makeCharacterCoordinator()
+    func showSplashCoordinator() {
+        let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
     }
 }
