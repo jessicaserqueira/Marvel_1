@@ -26,7 +26,7 @@ public class SplashScreenCoordinator {
             showScreenCharacter(splashView)
   }
     
-    func showScreenCharacter(_ splashVC: SplashScreenView) {
+    func showScreenCharacter(_ splashView: SplashScreenView) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             let characterCoordinator = CharacterHomeCoordinator(navigationController: self.navigationController)
             characterCoordinator.start()
