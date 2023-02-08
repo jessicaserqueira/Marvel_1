@@ -24,11 +24,15 @@ class CoordinatorsAssembly: Assembly {
     func assemble(container: DIContainer) {
         
         let coordinatorFactory = container.resolveSafe(CoordinatorFactory.self)
-        
         container.register(type: AppCoordinator.self, component: AppCoordinator(window: window, factory: coordinatorFactory))
+        
         let appCoordinator = container.resolveSafe(AppCoordinator.self)
         self.appCoordinator = appCoordinator
         
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, delegate: appCoordinator as CharacterHomeCoordinatorDelegate))
+        // MARK: - SplashCoordinator
+        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController))
+        
+        // MARK: - CharacterCoordinator
+        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController))
     }
 }

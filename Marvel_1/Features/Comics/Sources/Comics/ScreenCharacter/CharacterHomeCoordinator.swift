@@ -20,28 +20,29 @@ public struct CharacterHomeCoordinator {
     public var coordinatorDelegate: CharacterHomeCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
-
-    public init(navigationController: UINavigationController, delegate: CharacterHomeCoordinatorDelegate) {
+    
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.coordinatorDelegate = delegate
     }
     
     public func start() {
-        showCharacter()
+        let viewModel = CharacterHomeViewModel(coordinator: self)
+        let characterHomeView = CharacterHomeView(viewModel: viewModel)
+        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: false)
     }
 }
 
+// MARK: CharacterHomeCoordinator
 extension CharacterHomeCoordinator {
-    func showCharacter() {
-        
+
+    func showScreenCharacter(_ splashView: SplashScreenView) {
         let viewModel = CharacterHomeViewModel(coordinator: self)
-        
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
     }
 }
 
-
+// MARK: CharacterHomeCoordinating
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     public func nextScreen() {
         
