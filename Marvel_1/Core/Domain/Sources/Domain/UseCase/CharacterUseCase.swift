@@ -17,7 +17,7 @@ public class CharacterUseCase {
     }
 }
 
-extension CharacterUseCase: CharacterUseCaseProtocol {
+extension CharacterUseCase: CharacterUseCaseProtocol {    
     public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<CharacterData>) {
 
         characterRepository.getCharater(offset: offset, completion: completion)
