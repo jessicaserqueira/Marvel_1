@@ -18,8 +18,8 @@
 		A45E0D3C298BF7550001DC6C /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D3B298BF7550001DC6C /* Storage */; };
 		A49F801F298BF2E00023D885 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F801E298BF2E00023D885 /* AppDelegate.swift */; };
 		A49F8021298BF2E00023D885 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F8020298BF2E00023D885 /* SceneDelegate.swift */; };
-		A49F8023298BF2E00023D885 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49F8022298BF2E00023D885 /* ViewController.swift */; };
 		A49F8028298BF2E10023D885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49F8027298BF2E10023D885 /* Assets.xcassets */; };
+		A4A3EC6A29940F9C001BE862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A3EC6929940F9C001BE862 /* ViewController.swift */; };
 		A4D0C7D7298D7E510068D53B /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */; };
 		A4D0C7D8298D7E510068D53B /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */; };
 		A4D0C7D9298D7E510068D53B /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */; };
@@ -29,7 +29,6 @@
 		A49F801B298BF2E00023D885 /* Marvel_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49F801E298BF2E00023D885 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A49F8020298BF2E00023D885 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A49F8022298BF2E00023D885 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A49F8027298BF2E10023D885 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A49F802C298BF2E10023D885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A49F8035298BF34F0023D885 /* Comics */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Comics; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		A49F803B298BF40E0023D885 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Domain; sourceTree = "<group>"; };
 		A49F803C298BF41D0023D885 /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		A49F803D298BF4330023D885 /* AppData */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppData; sourceTree = "<group>"; };
+		A4A3EC6929940F9C001BE862 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
@@ -96,10 +96,10 @@
 		A49F801D298BF2E00023D885 /* Marvel_1 */ = {
 			isa = PBXGroup;
 			children = (
+				A4A3EC6929940F9C001BE862 /* ViewController.swift */,
 				A4D0C7D3298D7E510068D53B /* Fonts */,
 				A49F801E298BF2E00023D885 /* AppDelegate.swift */,
 				A49F8020298BF2E00023D885 /* SceneDelegate.swift */,
-				A49F8022298BF2E00023D885 /* ViewController.swift */,
 				A49F8027298BF2E10023D885 /* Assets.xcassets */,
 				A49F802C298BF2E10023D885 /* Info.plist */,
 			);
@@ -229,9 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A49F8023298BF2E00023D885 /* ViewController.swift in Sources */,
 				A49F801F298BF2E00023D885 /* AppDelegate.swift in Sources */,
 				A49F8021298BF2E00023D885 /* SceneDelegate.swift in Sources */,
+				A4A3EC6A29940F9C001BE862 /* ViewController.swift in Sources */,
+				A4093721298BFCDB00500444 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     @ObservedObject var viewModel: ViewModel
     @Binding var buttonImage: String
     @State private var searchTerm: String = ""
-    @State var scrollOffset = CGPoint.zero
+    @State var isAnimating: Bool = true
     
     var borderColor: Color
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
@@ -49,6 +49,12 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                     .padding(6)
                 }
                 .padding(10)
+                .onAppear{
+                    viewModel.didAppear()
+                }
+                if viewModel.isLoading {
+                    ActivityIndicator(isAnimating: $isAnimating)
+                }
             }
         }
     }
