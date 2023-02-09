@@ -7,6 +7,6 @@
 
 import Domain
 
-public protocol ComicsLocalDataSource: AnyObject {
+public protocol HQLocalDataSource: AnyObject {
     #warning("TODO")
 }

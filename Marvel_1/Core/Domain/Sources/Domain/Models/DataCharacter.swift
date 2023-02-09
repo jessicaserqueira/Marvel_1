@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CharacterData: Codable{
+public struct DataCharacter: Codable{
     public let offset, limit, total, count: Int?
     public let results: [CharacterResponse]?
     

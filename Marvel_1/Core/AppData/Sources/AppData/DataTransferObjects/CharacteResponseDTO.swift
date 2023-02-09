@@ -8,12 +8,11 @@
 import Foundation
 import Domain
 
-public struct CharacterDTO: Codable {
+public struct CharacteResponseDTO: Codable {
     
     public let id: Int?
     public let name, resultDescription: String
     public let thumbnail: ThumbnailDTO
-
     
     init(
         id: Int?,
@@ -29,17 +28,18 @@ public struct CharacterDTO: Codable {
     }
 }
 
-extension CharacterDTO {
+extension CharacteResponseDTO {
     
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case resultDescription = "description"
         case thumbnail
+        
     }
 }
 
-extension CharacterDTO {
+extension CharacteResponseDTO {
     
     public var toDomain: CharacterResponse {
         .init(

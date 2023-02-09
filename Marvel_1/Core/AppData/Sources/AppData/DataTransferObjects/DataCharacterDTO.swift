@@ -8,16 +8,16 @@
 import Foundation
 import Domain
 
-public struct DataClassDTO: Codable {
+public struct DataCharacterDTO: Codable {
     let offset, limit, total, count: Int?
-    let results: [CharacterDTO]
+    let results: [CharacteResponserDTO]
     
     init(
         offset: Int?,
         limit: Int?,
         total: Int?,
         count: Int?,
-        results: [CharacterDTO]
+        results: [CharacteResponserDTO]
 
     ) {
         self.offset = offset
@@ -28,9 +28,9 @@ public struct DataClassDTO: Codable {
     }
 }
 
-extension DataClassDTO {
+extension DataCharacterDTO {
     
-    public var toDomain: CharacterData {
+    public var toDomain: DataCharacter {
         .init(
             offset: offset,
             limit: limit,
