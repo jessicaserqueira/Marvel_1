@@ -65,8 +65,8 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
         }
     }
     
-    public func nextScreen() {
-        print("Próxima tela")
+    public func favoriteButton() {
+        print("Favorito")
     }
     
     public func previousScreen() {
