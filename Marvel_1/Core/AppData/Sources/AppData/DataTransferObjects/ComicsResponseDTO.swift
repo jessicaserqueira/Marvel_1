@@ -25,7 +25,7 @@ public struct ComicsResponseDTO: Codable  {
     public let format: String
     public let pageCount: Int
     public let textObjectsComics: [TextObjectComicsDTO]
-    public let thumbnailComics: ThumbnailComicsDTO
+    public let thumbnailComics: ThumbnailComicsDTO?
     
     public init(
         id: Int,
@@ -43,7 +43,7 @@ public struct ComicsResponseDTO: Codable  {
         format: String,
         pageCount: Int,
         textObjectsComics: [TextObjectComicsDTO],
-        thumbnailComics: ThumbnailComicsDTO
+        thumbnailComics: ThumbnailComicsDTO?
         
     ) {
         
@@ -107,7 +107,7 @@ extension ComicsResponseDTO {
             format: format,
             pageCount: pageCount,
             textObjectsComics: textObjectsComics.map { $0.toDomain },
-            thumbnailComics: thumbnailComics.toDomain
+            thumbnailComics: thumbnailComics?.toDomain
         )
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol HQCoordinating {
+public protocol ComicsCoordinating {
     
-    #warning("TODO")
+#warning("TODO")
 }

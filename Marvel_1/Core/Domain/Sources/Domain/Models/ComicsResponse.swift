@@ -23,8 +23,8 @@ public struct ComicsResponse: Codable  {
     public let issn: String
     public let format: String
     public let pageCount: Int
-    public let textObjectsComics: [TextObjectComics]
-    public let thumbnailComics: ThumbnailComics
+    public let textObjectsComics: [TextObjectComics]?
+    public let thumbnailComics: ThumbnailComics?
     
     public init(
         id: Int,
@@ -41,8 +41,8 @@ public struct ComicsResponse: Codable  {
         issn: String,
         format: String,
         pageCount: Int,
-        textObjectsComics: [TextObjectComics],
-        thumbnailComics: ThumbnailComics
+        textObjectsComics: [TextObjectComics]?,
+        thumbnailComics: ThumbnailComics?
         
     ) {
         

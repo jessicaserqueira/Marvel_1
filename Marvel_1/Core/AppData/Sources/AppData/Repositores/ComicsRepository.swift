@@ -20,7 +20,7 @@ public class ComicsRepository {
 }
 
 extension ComicsRepository: Domain.ComicsRepository {
-    public func getComics(offset: Int, completion: @escaping Common.ResultCompletion<Domain.DataCharacter>) {
+    public func getComics(offset: Int, completion: @escaping Common.ResultCompletion<Domain.DataComics>) {
         remote.requestComics(offset: offset) {result  in
             switch result {
             case .success(let response):

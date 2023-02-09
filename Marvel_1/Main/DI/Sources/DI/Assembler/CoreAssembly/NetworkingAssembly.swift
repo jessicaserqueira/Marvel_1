@@ -15,6 +15,6 @@ class NetworkingAssembly: Assembly {
         
         container.register(type: AppData.CharacterRemoteDataSource.self,
                            component: Networking.CharacterRemoteDataSource.init(serviceManager: ServiceManager()))
-        container.register(type: AppData.ComicsRemoteDataSource.self, component:  Networking.ComicsRemoteDataSource.init())
+        container.register(type: AppData.ComicsRemoteDataSource.self, component:  Networking.ComicsRemoteDataSource.init(serviceManager: ServiceManager()))
     }
 }

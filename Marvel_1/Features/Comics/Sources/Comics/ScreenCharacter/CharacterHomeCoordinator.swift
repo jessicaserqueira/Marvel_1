@@ -34,7 +34,7 @@ public struct CharacterHomeCoordinator {
 
 // MARK: CharacterHomeCoordinator
 extension CharacterHomeCoordinator {
-
+    
     func showScreenCharacter(_ splashView: SplashScreenView) {
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)

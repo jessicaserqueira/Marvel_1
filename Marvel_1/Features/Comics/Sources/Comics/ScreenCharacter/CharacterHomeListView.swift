@@ -26,7 +26,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 LazyVGrid(columns: self.gridItemLayout, alignment: .center) {
-                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.id) { i in
+                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.uniqueId) { i in
                         VStack(alignment: .center) {
                             KFImage(URL(string: "\(i.thumbnail)"))
                                 .resizable()

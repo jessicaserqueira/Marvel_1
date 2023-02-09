@@ -9,5 +9,5 @@ import Common
 import Domain
 
 public protocol ComicsRemoteDataSource: AnyObject {
-    func requestComics(offset: Int, completion: @escaping ResultCompletion<DataCharacterDTO>)
+    func requestComics(offset: Int, completion: @escaping ResultCompletion<DataComicsDTO>)
 }
