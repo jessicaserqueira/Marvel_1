@@ -5,6 +5,7 @@
 //  Created by NMAS Amaral on 19/12/22.
 //
 
+import Common
 import Domain
 import AppData
 
@@ -14,5 +15,7 @@ public class ComicsRemoteDataSource {
 }
 
 extension ComicsRemoteDataSource: AppData.ComicsRemoteDataSource {
-    #warning("TODO")
+    public func requestComics(offset: Int, completion: @escaping Common.ResultCompletion<AppData.DataCharacterDTO>) {
+        
+    }
 }

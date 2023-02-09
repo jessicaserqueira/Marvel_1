@@ -9,6 +9,6 @@ import Foundation
 
 public protocol ComicsRepository {
     
-    func getHQ(offset: Int, completion: @escaping ResultCompletion<Data>)
+    func getComics(offset: Int, completion: @escaping ResultCompletion<DataCharacter>)
     
 }

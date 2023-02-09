@@ -12,18 +12,16 @@ import SwiftUI
 
 public class ComicsRepository {
     
-    private let local: ComicsLocalDataSource
     private let remote: ComicsRemoteDataSource
     
-    public init(local: ComicsLocalDataSource, remote: ComicsRemoteDataSource) {
-        self.local = local
+    public init(remote: ComicsRemoteDataSource) {
         self.remote = remote
     }
 }
 
-extension ComicsRepository: Domain.HQRepository {
-    public func getHQ(offset: Int, completion: @escaping Common.ResultCompletion<Domain.Data>) {
-        remote.requestHQ(offset: offset) {result  in
+extension ComicsRepository: Domain.ComicsRepository {
+    public func getComics(offset: Int, completion: @escaping Common.ResultCompletion<Domain.DataCharacter>) {
+        remote.requestComics(offset: offset) {result  in
             switch result {
             case .success(let response):
                 completion(.success(response.toDomain))

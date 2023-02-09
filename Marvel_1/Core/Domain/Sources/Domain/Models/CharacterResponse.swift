@@ -14,7 +14,6 @@ public struct CharacterResponse: Codable  {
     public let resultDescription: String
     public let thumbnail: Thumbnail?
     
-    
     public init(
         id: Int,
         name: String,
@@ -26,6 +25,5 @@ public struct CharacterResponse: Codable  {
         self.name = name
         self.resultDescription = resultDescription
         self.thumbnail = thumbnail
-        
     }
 }

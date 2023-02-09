@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+public struct TextObjectComics: Codable {
+    
+    public let type: String
+    public let language: String
+    public let text: String
+    
+    public init(type: String, language: String, text: String) {
+        self.type = type
+        self.language = language
+        self.text = text
+    }
+}
