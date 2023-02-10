@@ -43,13 +43,18 @@ public struct ScreenDetailsView: View {
                             .foregroundColor(Color.white)
                             .padding(8)
                         
-                        Text("Miranha da Marvel")
-                            .font(Font.custom("Bangers-Regular", size: 32))
-                            .frame(width: 344, height: 52)
-                            .multilineTextAlignment(.leading)
-                            .overlay(createBorder(borderColor: Color.black))
-                            .padding(-8)
+                        ZStack {
+                            Rectangle()
+                                .frame(width: 344, height: 52)
+                                .overlay(createBorder(borderColor: Color.black))
+                                .foregroundColor(Color.white)
                             
+                            Text("Miranha da Marvel")
+                                .font(Font.custom("Bangers-Regular", size: 32))
+                                .frame(width: 344, height: 52, alignment: .leading)
+                                .multilineTextAlignment(.leading)
+                                .padding(.leading, 8)
+                        }.padding(-8)
                     }
                 })
                 Spacer(minLength: 16)
