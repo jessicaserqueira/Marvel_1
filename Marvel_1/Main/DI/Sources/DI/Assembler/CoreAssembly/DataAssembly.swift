@@ -17,15 +17,15 @@ class DataAssembly: Assembly {
     func assemble(container: DIContainer) {
         
         let characterRemoteDataSource = container.resolveSafe(Networking.CharacterRemoteDataSource.self)
+        let comicsRemoteDataSource = container.resolveSafe(Networking.ComicsRemoteDataSource.self)
         let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
         
-//        let comicsLocalDataSource =
-//        container.resolveSafe(Storage.ComicsLocalDataSource.self)
-//        let comicsRemoteDataSource =
-//        container.resolveSafe(Networking.ComicsRemoteDataSource.self)
         
         //MARK: - AppData
         container.register(type: Domain.CharacterRepository.self, component: AppData.CharaterRepository(remote: characterRemoteDataSource))
+        
+        container.register(type: Domain.ComicsRepository.self, component: AppData.ComicsRepository(remote: comicsRemoteDataSource))
+        
         container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))
     }
 }

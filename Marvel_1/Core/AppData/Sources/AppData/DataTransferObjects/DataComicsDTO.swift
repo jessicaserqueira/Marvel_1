@@ -2,22 +2,22 @@
 //  File.swift
 //  
 //
-//  Created by Jessica Serqueira on 06/12/22.
+//  Created by Jessica Serqueira on 09/02/23.
 //
 
 import Foundation
 import Domain
 
-public struct DataClassDTO: Codable {
+public struct DataComicsDTO: Codable {
     let offset, limit, total, count: Int?
-    let results: [CharacterDTO]
+    let results: [ComicsResponseDTO]
     
     init(
         offset: Int?,
         limit: Int?,
         total: Int?,
         count: Int?,
-        results: [CharacterDTO]
+        results: [ComicsResponseDTO]
 
     ) {
         self.offset = offset
@@ -28,9 +28,9 @@ public struct DataClassDTO: Codable {
     }
 }
 
-extension DataClassDTO {
+extension DataComicsDTO {
     
-    public var toDomain: CharacterData {
+    public var toDomain: DataComics {
         .init(
             offset: offset,
             limit: limit,

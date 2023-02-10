@@ -10,6 +10,7 @@ import Foundation
 import SwiftUI
 
 public struct CharacterModel: Identifiable, Codable {
+    var uniqueId = UUID()
     private let item: CharacterResponse
 
     init(_ item: CharacterResponse) {

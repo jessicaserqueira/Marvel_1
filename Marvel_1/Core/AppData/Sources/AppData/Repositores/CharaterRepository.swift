@@ -19,7 +19,7 @@ public struct CharaterRepository {
 }
 
 extension CharaterRepository: Domain.CharacterRepository {
-    public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<Domain.CharacterData>) {
+    public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<Domain.DataCharacter>) {
         
         remote.request(offset: offset) {result  in
             switch result {

@@ -7,7 +7,8 @@
 
 
 import Foundation
+import Common
 
 public protocol ComicsUseCaseProtocol {
-    #warning("TODO")
+    func getComics(offset: Int, completion: @escaping Common.ResultCompletion<DataComics>)
 }
