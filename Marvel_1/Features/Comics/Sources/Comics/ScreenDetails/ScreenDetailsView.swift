@@ -23,6 +23,7 @@ public struct ScreenDetailsView: View {
     public var body: some View {
         NavigationView {
             VStack {
+                Spacer(minLength: 16)
                 ZStack(alignment: .top, content: {
                     Rectangle()
                         .foregroundColor(.white)
@@ -30,21 +31,25 @@ public struct ScreenDetailsView: View {
                         .scaleEffect()
                         .foregroundColor(Color.white)
                         .overlay(createBorder(borderColor: Color.black))
+                        .foregroundColor(Color.white)
+                    
                     
                     VStack {
-                        Spacer(minLength: 10)
+                        
                         Rectangle()
                             .frame(width: 344, height: 170)
                             .aspectRatio(contentMode: .fill)
                             .overlay(createBorder(borderColor: Color.black))
                             .foregroundColor(Color.white)
+                            .padding(8)
                         
                         Text("Miranha da Marvel")
                             .font(Font.custom("Bangers-Regular", size: 32))
                             .frame(width: 344, height: 52)
                             .multilineTextAlignment(.leading)
                             .overlay(createBorder(borderColor: Color.black))
-                        Spacer(minLength: 10)
+                            .padding(-8)
+                            
                     }
                 })
                 Spacer(minLength: 16)
@@ -64,7 +69,7 @@ public struct ScreenDetailsView: View {
                                         .padding(16)
                                 }
                                 .frame(maxWidth: .infinity, alignment: .center)
-                            }.frame(width: 358, height: 450)
+                            }.frame(width: 358, height: 430)
                         )
                         .overlay(createBorder(borderColor: Color.black))
                 })

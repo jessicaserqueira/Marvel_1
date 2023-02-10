@@ -22,7 +22,6 @@ public struct ScreenDetailsCoordinator {
     }
     
     public func start() {
-//        let viewModel = CharacterHomeViewModel(coordinator: self)
         let screenDetailsView = ScreenDetailsView()
         navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: false)
     }
