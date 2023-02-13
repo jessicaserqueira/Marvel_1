@@ -31,7 +31,7 @@ struct SearchBar: View {
             
         }
         .padding(12)
-        .frame(width: 342, height: 40)
+        .frame(width: 342, height: 45)
         .background(Color.black.opacity(0.2))
         .overlay(RoundedRectangle(cornerRadius: 0).stroke(borderColor, lineWidth: 2))
     }

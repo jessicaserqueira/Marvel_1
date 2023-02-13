@@ -33,19 +33,23 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     .resizable()
                     .edgesIgnoringSafeArea(.top)
                 
-                VStack{
                     VStack(alignment: .leading) {
                         Text(L10n.Characters.tile)
                             .font(Font.custom("Bangers-Regular", size: 40))
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.leading)
-                            .padding(.bottom, 10)
+                            .padding(.bottom, 20)
+                            .padding(.leading, 24)
+            
+                        VStack {
+                            if #available(iOS 14.0, *) {
+                                CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
+                                    .padding(.bottom, 1)
+                                    .padding(.top, 32)
+                            } else {}
+                        }
                     }
-                    if #available(iOS 14.0, *) {
-                        CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
-                    } else {
-                    }
-                }
+                Spacer()
             }
             .tabItem {
                 selection == 0 ? Image("shield-Color") : Image("shield")
