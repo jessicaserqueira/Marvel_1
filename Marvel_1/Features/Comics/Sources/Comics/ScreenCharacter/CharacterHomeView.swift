@@ -38,14 +38,13 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                             .font(Font.custom("Bangers-Regular", size: 40))
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.leading)
-                            .padding(.bottom, 20)
                             .padding(.leading, 24)
             
                         VStack {
                             if #available(iOS 14.0, *) {
                                 CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
                                     .padding(.bottom, 1)
-                                    .padding(.top, 32)
+                                    .padding(.top, 19)
                             } else {}
                         }
                     }

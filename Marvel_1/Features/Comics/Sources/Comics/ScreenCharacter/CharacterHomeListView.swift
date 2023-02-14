@@ -20,9 +20,10 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
-        HStack {
             SearchBar(searchTerm: $searchTerm, borderColor: borderColor)
-        }
+            .padding(.leading, 24)
+            .padding(.trailing, 24)
+
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 LazyVGrid(columns: self.gridItemLayout, alignment: .center) {
@@ -52,8 +53,9 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                     }
                     .padding(6)
                 }
-                .padding(10)
             }
         }
+            .padding(.leading, 12)
+            .padding(.trailing, 12)
     }
 }

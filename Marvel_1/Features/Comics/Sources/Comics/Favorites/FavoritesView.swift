@@ -29,14 +29,14 @@ public struct FavoritesView: View {
                 .resizable()
                 .edgesIgnoringSafeArea(.top)
             
-            VStack{
-                VStack(alignment: .leading) {
-                    Text(L10n.Favorites.title)
-                        .font(Font.custom("Bangers-Regular", size: 40))
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.leading)
-                        .padding(.bottom, 10)
-                    
+            VStack(alignment: .leading) {
+                Text(L10n.Favorites.title)
+                    .font(Font.custom("Bangers-Regular", size: 40))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 24)
+                
+                VStack {
                     HStack {
                         Button(action: {
                             // Realizar a pesquisa aqui usando o searchTerm
@@ -52,13 +52,28 @@ public struct FavoritesView: View {
                         } else {
                             
                         }
-                    }
-                    .padding(12)
-                    .frame(width: 338, height: 40)
-                    .background(Color.black.opacity(0.2))
-                    .overlay(RoundedRectangle(cornerRadius: 0).stroke(borderColor, lineWidth: 2))
-                }
-                .padding(50)
+                    }.padding(12)
+                        .frame(height: 45)
+                        .background(Color.black.opacity(0.2))
+                        .overlay(RoundedRectangle(cornerRadius: 0).stroke(borderColor, lineWidth: 2))
+                }.padding(.leading, 24)
+                    .padding(.trailing, 24)
+                    .padding(.top, 19)
+            }
+            
+            VStack {
+                Spacer()
+                Image("notFound")
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100, height: 100, alignment: .center)
+                
+                Text(L10n.NotFoundFavorite.text)
+                    .font(Font.custom("Nunito-Bold", size: 20))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .padding(.leading, 70)
+                    .padding(.trailing, 70)
+                Spacer()
             }
         }
     }
