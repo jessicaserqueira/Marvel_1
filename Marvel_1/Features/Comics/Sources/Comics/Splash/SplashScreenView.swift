@@ -16,7 +16,9 @@ struct SplashScreenView: View {
                 .edgesIgnoringSafeArea(.all)
             
             Image("backgroudSplash")
-                
+                .edgesIgnoringSafeArea(.trailing)
+                .edgesIgnoringSafeArea(.leading)
+            
             Text("Marvel \nComics")
                 .font(Font.custom("Bangers-Regular", size: 64))
                 .foregroundColor(Color.black)
