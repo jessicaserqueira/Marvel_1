@@ -58,7 +58,6 @@ public struct FavoritesView: View {
                         .overlay(RoundedRectangle(cornerRadius: 0).stroke(borderColor, lineWidth: 2))
                 }.padding(.leading, 24)
                     .padding(.trailing, 24)
-                    .padding(.top, 19)
             }
             
             VStack {

@@ -44,7 +44,6 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                             if #available(iOS 14.0, *) {
                                 CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
                                     .padding(.bottom, 1)
-                                    .padding(.top, 19)
                             } else {}
                         }
                     }
