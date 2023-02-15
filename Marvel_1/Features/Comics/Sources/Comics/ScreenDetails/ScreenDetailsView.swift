@@ -11,7 +11,8 @@ public struct ScreenDetailsView: View {
     public init() {}
     
     // MARK: - Properties
-    public var viewModel = ScreenDetailsViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    public var viewModel = ScreenDetailsModel()
     public var borderColor: Color = .black
     
     private func createBorder(borderColor: Color) -> some View {
@@ -24,7 +25,8 @@ public struct ScreenDetailsView: View {
             
             VStack {
                 Button(action: {
-                    viewModel.backScreen()
+                    self.presentationMode.wrappedValue.dismiss()
+    
                 }) {
                     Image("back")
                         .position(x:24, y: 27)
@@ -63,6 +65,6 @@ public struct ScreenDetailsView: View {
                 .multilineTextAlignment(.center)
                 .overlay(createBorder(borderColor: Color.black))
                 .padding()
-        })
+        }).navigationBarBackButtonHidden(true)
     }
 }
