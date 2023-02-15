@@ -34,5 +34,8 @@ class CoordinatorsAssembly: Assembly {
         
         // MARK: - CharacterCoordinator
         container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController))
+        
+        // MARK: - ScreenDetailsCoordinator
+        container.register(type: ScreenDetailsCoordinator.self, component: ScreenDetailsCoordinator(navigationController: appCoordinator.navigationController))
     }
 }

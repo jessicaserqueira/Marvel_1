@@ -7,10 +7,12 @@
 import Foundation
 import UIKit
 
-public class ScreenDetailsModel: ObservableObject {
+public class ScreenDetailsViewModel: ObservableObject {
     
-    public init() {
-        
+    private var coordinator: ScreenDetailsCoordinating?
+    
+    public init(coordinator: ScreenDetailsCoordinating) {
+        self.coordinator = coordinator
     }
     
     //MARK: - Properties
@@ -18,4 +20,4 @@ public class ScreenDetailsModel: ObservableObject {
 }
 
 //MARK: - ScreenHomeModelling
-extension ScreenDetailsModel: ScreenDetailsModelling {}
+extension ScreenDetailsViewModel: ScreenDetailsModelling {}
