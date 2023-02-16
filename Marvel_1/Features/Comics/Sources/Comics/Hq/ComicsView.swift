@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 public struct ComicsView: View {
     
     @ObservedObject var viewModel: ComicsViewModel
@@ -27,7 +26,6 @@ public struct ComicsView: View {
     // MARK: - Properties
     
     @State private var searchTerm: String = ""
-    @State private var buttonImage: String = "icon-favorite"
     
     public var body: some View {
         ZStack(alignment: .top) {

@@ -30,12 +30,22 @@ class CoordinatorsAssembly: Assembly {
         self.appCoordinator = appCoordinator
         
         // MARK: - SplashCoordinator
-        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController))
+        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+        
+        // MARK: - TabBarCoordinator
+        container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController))
         
         // MARK: - CharacterCoordinator
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController))
-        
+        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+
         // MARK: - ScreenDetailsCoordinator
         container.register(type: ScreenDetailsCoordinator.self, component: ScreenDetailsCoordinator(navigationController: appCoordinator.navigationController))
+        
+        // MARK: - ComicsCoordinator
+        container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+        
+        // MARK: - FavoritesCoordinator
+        container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
     }
 }
+

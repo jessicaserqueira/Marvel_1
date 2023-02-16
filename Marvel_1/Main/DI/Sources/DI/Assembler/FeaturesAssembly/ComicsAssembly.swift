@@ -17,8 +17,6 @@ class ComicsAssembly: Assembly {
         
         let comicsCoordinator = container.resolveSafe(ComicsCoordinator.self)
         
-        let characterUseCaseProtocol = container.resolveSafe(Domain.ComicsUseCaseProtocol.self)
-        
         container.register(type: ComicsCoordinating.self, component: comicsCoordinator)
         container.register(type: (any ComicsModelling).self,
                            component: ComicsViewModel.init(coordinator: comicsCoordinator))

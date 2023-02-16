@@ -13,7 +13,6 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
     @ObservedObject var viewModel: ViewModel
     @State private var buttonImage = "icon-favorite"
     @State private var searchTerm: String = ""
-    @State private var selection = 0
     
     public init(viewModel: ViewModel, searchTerm: String = "") {
         self.viewModel = viewModel
@@ -45,30 +44,5 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     }
                 Spacer()
             }
-            .tabItem {
-                selection == 0 ? Image("shield-Color") : Image("shield")
-                Text(L10n.Characters.tile)
-            }.tag(0)
-            
-//            HQView(viewModel: ComicsViewModel())
-//                .tabItem {
-//                    selection == 0 ? Image("shield-Color") : Image("shield")
-//                    Text(L10n.Characters.tile)
-//                }.tag(0)
-            
-            //     ComicsView(viewModel: ComicsViewModel(coordinator: ComicsCoordinating.self as! ComicsCoordinating))
-            //           .tabItem {
-            //          selection == 1 ? Image("hq-Color") : Image("hq")
-            //Text(L10n.Hq.title)
-            //         }.tag(1)
-            
-            FavoritesView(viewModel: FavoritesViewModel())
-                .tabItem {
-                    selection == 2 ? Image("heart-Color") : Image("heart")
-                    Text(L10n.Favorites.title)
-                }.tag(2)
-        }.navigationBarBackButtonHidden(true)
-            .accentColor(Color.black)
-        
     }
 }

@@ -236,7 +236,6 @@
 				A49F801F298BF2E00023D885 /* AppDelegate.swift in Sources */,
 				A49F8021298BF2E00023D885 /* SceneDelegate.swift in Sources */,
 				A4A3EC6A29940F9C001BE862 /* ViewController.swift in Sources */,
-				A4093721298BFCDB00500444 /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

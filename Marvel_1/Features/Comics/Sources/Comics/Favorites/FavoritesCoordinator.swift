@@ -1,8 +1,8 @@
 //
-//  File 2.swift
+//  File.swift
 //  
 //
-//  Created by Jessica Serqueira on 08/02/23.
+//  Created by Jessica Serqueira on 16/02/23.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-public class ComicsCoordinator: Coordinator{
+public class FavoritesCoordinator: Coordinator{
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
@@ -22,18 +22,18 @@ public class ComicsCoordinator: Coordinator{
     }
     
     @MainActor public func start() {
-        let viewModel = ComicsViewModel(coordinator: self)
-        let comicsView = ComicsView(viewModel: viewModel)
+        let viewModel = FavoritesViewModel(coordinator: self)
+        let favoritesView = FavoritesView(viewModel: viewModel)
         
-        let hostingController = UIHostingController(rootView: comicsView)
-        hostingController.tabBarItem.title = L10n.Hq.title
-        hostingController.tabBarItem.image = UIImage(named: "hq-Color")
-        hostingController.tabBarItem.selectedImage = UIImage(named: "hq")
+        let hostingController = UIHostingController(rootView: favoritesView)
+        hostingController.tabBarItem.title = L10n.Favorites.title
+        hostingController.tabBarItem.image = UIImage(named: "heart-Color")
+        hostingController.tabBarItem.selectedImage = UIImage(named: "heart")
         
         navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
-extension ComicsCoordinator: ComicsCoordinating {
+extension FavoritesCoordinator: FavoritesCoordinating {
     
 }

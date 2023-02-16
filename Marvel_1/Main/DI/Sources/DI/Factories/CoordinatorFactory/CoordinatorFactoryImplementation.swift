@@ -10,7 +10,6 @@ import Comics
 import AppNavigation
 
 class CoordinatorFactoryImplementation: CoordinatorFactory {
-    
     private let container: DIContainer
     
     required init(container: DIContainer) {
@@ -21,10 +20,10 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     func makeSplashCoordinator() -> Comics.SplashScreenCoordinator {
         container.resolveSafe(SplashScreenCoordinator.self)
     }
+    // MARK: - TabBarCoordinator
     
-    // MARK: - CharacterCoordinator
-    func makeCharacterCoordinator() -> Comics.CharacterHomeCoordinator {
-        container.resolveSafe(CharacterHomeCoordinator.self)
+    func makeTabBarCoordinator() -> Comics.TabBarCoordinator {
+        container.resolveSafe(TabBarCoordinator.self)
     }
     
     // MARK: - ScreenDetailsCoordinator

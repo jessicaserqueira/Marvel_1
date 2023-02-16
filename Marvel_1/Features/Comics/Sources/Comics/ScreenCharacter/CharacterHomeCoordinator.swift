@@ -10,35 +10,28 @@ import UIKit
 import Common
 import SwiftUI
 
-public protocol CharacterHomeCoordinatorDelegate: AnyObject {
+public class CharacterHomeCoordinator: Coordinator {
     
-    func showCharacter()
-}
-
-public struct CharacterHomeCoordinator {
-    
-    public var coordinatorDelegate: CharacterHomeCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
+    public var tabBarController: UITabBarController?
     
-    public init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
         self.navigationController = navigationController
+        self.tabBarController = tabBarController
     }
     
-    public func start() {
+    public func start()  {
+        
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
-        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: false)
-    }
-}
-
-// MARK: CharacterHomeCoordinator
-extension CharacterHomeCoordinator {
-    
-    func showScreenCharacter(_ splashView: SplashScreenView) {
-        let viewModel = CharacterHomeViewModel(coordinator: self)
-        let characterHomeView = CharacterHomeView(viewModel: viewModel)
-        navigationController.pushViewController(UIHostingController(rootView: characterHomeView), animated: true)
+        
+        let hostingController = UIHostingController(rootView: characterHomeView)
+        hostingController.tabBarItem.title = L10n.Characters.title
+        hostingController.tabBarItem.image = UIImage(named: "shield-Color")
+        hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
+        
+        navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
