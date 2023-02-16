@@ -25,4 +25,9 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     func makeTabBarCoordinator() -> Comics.TabBarCoordinator {
         container.resolveSafe(TabBarCoordinator.self)
     }
+    
+    // MARK: - ScreenDetailsCoordinator
+    func makeScreenDetailsCoordinator() -> Comics.ScreenDetailsCoordinator {
+        container.resolveSafe(ScreenDetailsCoordinator.self)
+    }
 }

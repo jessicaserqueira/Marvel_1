@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		743AF86B299CFB5D00F82417 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 743AF86A299CFB5D00F82417 /* Nunito-Bold.ttf */; };
 		A45E0D2C298BF7550001DC6C /* AppData in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2B298BF7550001DC6C /* AppData */; };
 		A45E0D2E298BF7550001DC6C /* AppNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2D298BF7550001DC6C /* AppNavigation */; };
 		A45E0D30298BF7550001DC6C /* Comics in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2F298BF7550001DC6C /* Comics */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		743AF86A299CFB5D00F82417 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		A49F801B298BF2E00023D885 /* Marvel_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49F801E298BF2E00023D885 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A49F8020298BF2E00023D885 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */,
 				A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */,
+				743AF86A299CFB5D00F82417 /* Nunito-Bold.ttf */,
 				A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */,
 			);
 			path = Fonts;
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D0C7D9298D7E510068D53B /* Bangers-Regular.ttf in Resources */,
+				743AF86B299CFB5D00F82417 /* Nunito-Bold.ttf in Resources */,
 				A4D0C7D8298D7E510068D53B /* Nunito-Regular.ttf in Resources */,
 				A4D0C7D7298D7E510068D53B /* Nunito-Medium.ttf in Resources */,
 				A49F8028298BF2E10023D885 /* Assets.xcassets in Resources */,
@@ -359,6 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PD7KXFUU8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel_1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -385,6 +390,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6PD7KXFUU8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Marvel_1/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

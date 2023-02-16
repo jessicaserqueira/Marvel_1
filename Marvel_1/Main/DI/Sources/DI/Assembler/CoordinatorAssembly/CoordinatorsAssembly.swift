@@ -34,9 +34,12 @@ class CoordinatorsAssembly: Assembly {
         
         // MARK: - TabBarCoordinator
         container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController))
-    
+        
         // MARK: - CharacterCoordinator
         container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+
+        // MARK: - ScreenDetailsCoordinator
+        container.register(type: ScreenDetailsCoordinator.self, component: ScreenDetailsCoordinator(navigationController: appCoordinator.navigationController))
         
         // MARK: - ComicsCoordinator
         container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
@@ -45,3 +48,4 @@ class CoordinatorsAssembly: Assembly {
         container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
     }
 }
+

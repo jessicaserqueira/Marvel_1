@@ -9,7 +9,7 @@ import Foundation
 
 public protocol CharacterHomeCoordinating {
     
-   func nextScreen()
-   func previousScreen()
-    
+    func nextScreen()
+    func previousScreen()
+    func buttonDetails()
 }

@@ -7,7 +7,4 @@
 
 import Foundation
 
-@MainActor
-public protocol ScreenDetailsViewModelling {
-    func backScreen()
-}
+public protocol ScreenDetailsCoordinating {}
