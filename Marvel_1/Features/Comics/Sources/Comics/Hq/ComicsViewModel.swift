@@ -1,10 +1,5 @@
 //
 //  File.swift
-<<<<<<< HEAD
-//
-=======
-//  
->>>>>>> develop
 //
 //  Created by NMAS Amaral on 09/01/23.
 //

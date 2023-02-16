@@ -1,10 +1,5 @@
 //
 //  File.swift
-<<<<<<< HEAD
-//
-=======
-//  
->>>>>>> develop
 //
 //  Created by Jessica Serqueira on 09/02/23.
 //
