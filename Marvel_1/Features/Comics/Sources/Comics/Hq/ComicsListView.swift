@@ -28,6 +28,8 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
     var body: some View {
         HStack {
             SearchBar(searchTerm: $searchTerm, borderColor: borderColor)
+                .padding(.leading, 24)
+                .padding(.trailing, 24)
         }
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -68,14 +70,10 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                         }
                         .padding(6)
                     }
+                    .padding(.top, 32)
                 }
-            }
-            .onAppear{
-                viewModel.didAppear()
-            }
-            if viewModel.isLoading {
-                ActivityIndicator(isAnimating: $isAnimating)
-            }
+            }.padding(.leading, 24)
+                .padding(.trailing, 24)
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by NMAS Amaral on 09/01/23.
 //
@@ -35,6 +35,7 @@ public struct FavoritesView: View {
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 24)
+                    .padding(.top, -36)
                 
                 VStack {
                     HStack {
@@ -77,4 +78,3 @@ public struct FavoritesView: View {
         }
     }
 }
-

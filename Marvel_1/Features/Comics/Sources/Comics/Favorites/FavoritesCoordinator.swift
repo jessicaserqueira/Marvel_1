@@ -27,8 +27,8 @@ public class FavoritesCoordinator: Coordinator{
         
         let hostingController = UIHostingController(rootView: favoritesView)
         hostingController.tabBarItem.title = L10n.Favorites.title
-        hostingController.tabBarItem.image = UIImage(named: "heart-Color")
-        hostingController.tabBarItem.selectedImage = UIImage(named: "heart")
+        hostingController.tabBarItem.image = UIImage(named: "heart")
+        hostingController.tabBarItem.selectedImage = UIImage(named: "heart-Color")
         
         navigationController.pushViewController(hostingController, animated: true)
     }
