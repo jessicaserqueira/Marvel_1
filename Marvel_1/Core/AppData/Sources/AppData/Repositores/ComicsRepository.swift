@@ -11,18 +11,23 @@ import Foundation
 import SwiftUI
 
 public class ComicsRepository {
-
-    private let local: ComicsLocalDataSource
+    
     private let remote: ComicsRemoteDataSource
-
-    public init(local: ComicsLocalDataSource, remote: ComicsRemoteDataSource) {
-        self.local = local
+    
+    public init(remote: ComicsRemoteDataSource) {
         self.remote = remote
     }
 }
 
-extension ComicsRepository: Domain.CharacterRepository {
-    public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<Domain.CharacterData>) {
-
+extension ComicsRepository: Domain.ComicsRepository {
+    public func getComics(offset: Int, completion: @escaping Common.ResultCompletion<Domain.DataComics>) {
+        remote.requestComics(offset: offset) {result  in
+            switch result {
+            case .success(let response):
+                completion(.success(response.toDomain))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

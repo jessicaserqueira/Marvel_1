@@ -2,21 +2,21 @@
 //  File.swift
 //  
 //
-//  Created by Jessica Serqueira on 06/12/22.
+//  Created by Jessica Serqueira on 09/02/23.
 //
 
 import Foundation
 
-public struct CharacterData: Codable{
+public struct DataComics: Codable{
     public let offset, limit, total, count: Int?
-    public let results: [CharacterResponse]?
+    public let results: [ComicsResponse]?
     
     public init(
         offset: Int?,
         limit: Int?,
         total: Int?,
         count: Int?,
-        results: [CharacterResponse]?
+        results: [ComicsResponse]?
     ) {
         self.offset = offset
         self.limit = limit

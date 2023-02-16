@@ -28,7 +28,7 @@ struct SearchBar: View {
             } else {
                 // Fallback on earlier versions
             }
-            
+        
         }
         .padding(12)
         .frame(height: 45)

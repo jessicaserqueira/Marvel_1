@@ -10,6 +10,6 @@ import Foundation
 
 public protocol CharacterRepository {
     
-    func getCharater(offset: Int, completion: @escaping ResultCompletion<CharacterData>)
+    func getCharater(offset: Int, completion: @escaping ResultCompletion<DataCharacter>)
     
 }

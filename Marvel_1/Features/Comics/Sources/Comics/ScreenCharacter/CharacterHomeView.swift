@@ -11,23 +11,20 @@ import SwiftUI
 public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
-    @State private var selection = 0
-    @State private var searchTerm: String = ""
     @State private var buttonImage = "icon-favorite"
-
+    @State private var searchTerm: String = ""
+    @State private var selection = 0
     
     public init(viewModel: ViewModel, searchTerm: String = "") {
         self.viewModel = viewModel
-        self.selection = selection
         self.searchTerm = searchTerm
     }
     
-    // MARK: - Properties
     public var borderColor: Color = .black
     
     public var body: some View {
-        
         TabView(selection: $selection) {
+<<<<<<< HEAD
             ZStack(alignment: .top) {
                 Image("background")
                     .resizable()
@@ -55,10 +52,36 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
             }.tag(0)
             
             HQView(viewModel: ComicsViewModel())
+=======
+            Image("background")
+                .resizable()
+                .edgesIgnoringSafeArea(.top)
+                .overlay(
+                    VStack {
+                        VStack(alignment: .leading) {
+                            Text(L10n.Characters.tile)
+                                .font(Font.custom("Bangers-Regular", size: 40))
+                                .foregroundColor(.primary)
+                                .multilineTextAlignment(.leading)
+                                .padding(.bottom, 10)
+                        }
+                        
+                        if #available(iOS 14.0, *) {
+                            CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
+                        }
+                    }
+                )
+>>>>>>> develop
                 .tabItem {
-                    selection == 1 ? Image("hq-Color") : Image("hq")
-                    Text(L10n.Hq.title)
-                }.tag(1)
+                    selection == 0 ? Image("shield-Color") : Image("shield")
+                    Text(L10n.Characters.tile)
+                }.tag(0)
+            
+            //     ComicsView(viewModel: ComicsViewModel(coordinator: ComicsCoordinating.self as! ComicsCoordinating))
+            //           .tabItem {
+            //          selection == 1 ? Image("hq-Color") : Image("hq")
+            //Text(L10n.Hq.title)
+            //         }.tag(1)
             
             FavoritesView(viewModel: FavoritesViewModel())
                 .tabItem {
@@ -66,9 +89,7 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     Text(L10n.Favorites.title)
                 }.tag(2)
         }.navigationBarBackButtonHidden(true)
-        .accentColor(Color.black)
-        .onAppear() {
-            viewModel.didAppear()
-        }
+            .accentColor(Color.black)
+        
     }
 }

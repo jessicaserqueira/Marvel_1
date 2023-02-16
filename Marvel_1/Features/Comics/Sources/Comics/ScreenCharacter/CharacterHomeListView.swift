@@ -14,7 +14,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     @ObservedObject var viewModel: ViewModel
     @Binding var buttonImage: String
     @State private var searchTerm: String = ""
-    @State var scrollOffset = CGPoint.zero
+    @State var isAnimating: Bool = true
     
     var borderColor: Color
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
@@ -27,7 +27,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 LazyVGrid(columns: self.gridItemLayout, alignment: .center) {
-                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.id) { i in
+                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.uniqueId) { i in
                         VStack(alignment: .center) {
                             Button(action: {
                                 viewModel.buttonDetails()
@@ -53,6 +53,16 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                     }
                     .padding(6)
                 }
+<<<<<<< HEAD
+=======
+                .padding(10)
+                .onAppear{
+                    viewModel.didAppear()
+                }
+                if viewModel.isLoading {
+                    ActivityIndicator(isAnimating: $isAnimating)
+                }
+>>>>>>> develop
             }
         }
             .padding(.leading, 12)
