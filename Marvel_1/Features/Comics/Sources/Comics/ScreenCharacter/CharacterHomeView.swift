@@ -54,7 +54,7 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                 Text(L10n.Characters.tile)
             }.tag(0)
             
-            HQView(viewModel: HQViewModel())
+            HQView(viewModel: ComicsViewModel())
                 .tabItem {
                     selection == 1 ? Image("hq-Color") : Image("hq")
                     Text(L10n.Hq.title)

@@ -8,9 +8,9 @@
 import SwiftUI
 
 @MainActor
-public struct HQView: View {
+public struct ComicsView: View {
     
-    @ObservedObject var viewModel: HQViewModel
+    @ObservedObject var viewModel: ComicsViewModel
     @State private var selection = 0
     
     public var borderColor: Color = .black
@@ -20,7 +20,7 @@ public struct HQView: View {
             .stroke(borderColor, lineWidth: 1.5)
     }
     
-    public init(viewModel: HQViewModel) {
+    public init(viewModel: ComicsViewModel) {
         self.viewModel = viewModel
     }
     
