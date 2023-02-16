@@ -22,27 +22,26 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
     public var borderColor: Color = .black
     
     public var body: some View {
-        TabView(selection: $selection) {
-            ZStack(alignment: .top) {
-                Image("background")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.top)
-                
-                    VStack(alignment: .leading) {
-                        Text(L10n.Characters.tile)
-                            .font(Font.custom("Bangers-Regular", size: 40))
-                            .foregroundColor(.primary)
-                            .multilineTextAlignment(.leading)
-                            .padding(.leading, 24)
+        ZStack(alignment: .top) {
+            Image("background")
+                .resizable()
+                .edgesIgnoringSafeArea(.top)
             
-                        VStack {
-                            if #available(iOS 14.0, *) {
-                                CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
-                                    .padding(.bottom, 1)
-                            } else {}
-                        }
-                    }
-                Spacer()
+            VStack(alignment: .leading) {
+                Text(L10n.Characters.title)
+                    .font(Font.custom("Bangers-Regular", size: 40))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 24)
+                
+                VStack {
+                    if #available(iOS 14.0, *) {
+                        CharacterHomeListView(viewModel: viewModel, buttonImage: $buttonImage, borderColor: borderColor)
+                            .padding(.bottom, 1)
+                    } else {}
+                }
             }
+            Spacer()
+        }
     }
 }
