@@ -11,35 +11,35 @@ import Comics
 
 public class AppCoordinator: Common.Coordinator {
     
-    public var coordinatorDelegate: CoordinatorDelegate?
-    public var childCoordinators: [Coordinator] = []
-    public var navigationController: UINavigationController
     public var window: UIWindow
+    public var navigationController: UINavigationController
+    public var tabBarController: UITabBarController
+    public var childCoordinators: [Coordinator] = []
     public let coordinatorFactory: CoordinatorFactory
     
     public init(window: UIWindow, factory: CoordinatorFactory) {
         self.window = window
         self.coordinatorFactory = factory
         self.navigationController = UINavigationController()
+        self.tabBarController = UITabBarController()
+    }
+    
+    public func start() {
         window.rootViewController = self.navigationController
         window.makeKeyAndVisible()
-    }
-
-    public func start() {
         showSplashCoordinator()
     }
 }
- 
+
 extension AppCoordinator {
     
     func showSplashCoordinator() {
         let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
     }
-}
-
-extension AppCoordinator: CharacterHomeCoordinatorDelegate {
-    public func showCharacter() {
-        
+    
+    @MainActor func showTabBarCoordinator() {
+        let coordinator = coordinatorFactory.makeTabBarCoordinator()
+        coordinator.start()
     }
 }

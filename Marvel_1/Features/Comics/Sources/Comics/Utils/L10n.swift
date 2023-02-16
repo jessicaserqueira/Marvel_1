@@ -21,7 +21,7 @@ internal enum L10n {
     ///   Marvel
     /// 
     ///   Created by NMAS Amaral on 18/01/23.
-    internal static let tile = L10n.tr("Localizable", "Characters.tile", fallback: "Personagens")
+    internal static let title = L10n.tr("Localizable", "Characters.tile", fallback: "Personagens")
   }
   internal enum Favorites {
     /// Favoritos

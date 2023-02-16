@@ -15,9 +15,9 @@ public protocol CoordinatorDelegate: class {
 public protocol Coordinator: CoordinatorDelegate {
 
     var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
 
-    func start()
+    func start() 
+    
 }
 
 public extension Coordinator {

@@ -63,3 +63,4 @@ public struct FavoritesView: View {
         }
     }
 }
+

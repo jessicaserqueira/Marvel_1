@@ -66,7 +66,8 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                                     .truncationMode(.tail)
                             }
                         }
-                    }.padding(EdgeInsets(top: 32, leading: 0, bottom: 0, trailing: 0))
+                        .padding(6)
+                    }
                 }
             }
             .onAppear{

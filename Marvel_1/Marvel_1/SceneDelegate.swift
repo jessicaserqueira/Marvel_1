@@ -8,7 +8,6 @@
 import UIKit
 import AppNavigation
 import DI
-import Comics
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

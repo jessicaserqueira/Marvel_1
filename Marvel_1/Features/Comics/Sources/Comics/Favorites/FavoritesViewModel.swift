@@ -5,20 +5,17 @@
 //  Created by NMAS Amaral on 09/01/23.
 //
 
+import Domain
+import Common
 import Foundation
 
 public class FavoritesViewModel: ObservableObject {
     
-    public init() {
-        
+    private var coordinator: FavoritesCoordinating?
+    
+    public init(coordinator: FavoritesCoordinating) {
+        self.coordinator = coordinator
     }
-    
     //MARK: - Properties
-    #warning("TODO")
-}
-
-//MARK: - FavoritesModelling
-extension FavoritesViewModel: FavoritesModelling {
-    
     #warning("TODO")
 }

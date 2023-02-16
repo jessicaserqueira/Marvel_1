@@ -9,29 +9,26 @@ import Foundation
 import UIKit
 import SwiftUI
 
-public protocol SplashScreenCoordinatorDelegate: AnyObject {
-    
-}
 
 public class SplashScreenCoordinator {
     var navigationController: UINavigationController
+    var tabBarController: UITabBarController
     
-    public init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
         self.navigationController = navigationController
+        self.tabBarController = tabBarController
     }
     
     public func start() {
         let splashView = SplashScreenView()
         navigationController.pushViewController(UIHostingController(rootView: splashView), animated: true)
-        showScreenCharacter(splashView)
+        showTabBarCoordinator()
     }
     
-    func showScreenCharacter(_ splashView: SplashScreenView) {
+    func showTabBarCoordinator() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            let characterCoordinator = CharacterHomeCoordinator(navigationController: self.navigationController)
-            characterCoordinator.start()
-            let comicsCoordinator = ComicsCoordinator(navigationController: self.navigationController)
-            comicsCoordinator.start()
+            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController)
+            tabBarcoordinator.start()
         }
     }
 }
