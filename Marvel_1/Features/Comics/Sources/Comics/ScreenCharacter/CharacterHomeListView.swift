@@ -53,8 +53,6 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                     }
                     .padding(6)
                 }
-<<<<<<< HEAD
-=======
                 .padding(10)
                 .onAppear{
                     viewModel.didAppear()
@@ -62,7 +60,6 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                 if viewModel.isLoading {
                     ActivityIndicator(isAnimating: $isAnimating)
                 }
->>>>>>> develop
             }
         }
             .padding(.leading, 12)
