@@ -30,7 +30,7 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     VStack(alignment: .leading) {
                         Text(L10n.Characters.title)
                             .font(Font.custom("Bangers-Regular", size: 40))
-                            .foregroundColor(.primary)
+                            .foregroundColor(Color.black)
                             .multilineTextAlignment(.leading)
                             .padding(.leading, 24)
                             .padding(.top, -36)

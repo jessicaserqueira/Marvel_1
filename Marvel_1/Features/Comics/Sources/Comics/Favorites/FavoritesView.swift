@@ -9,7 +9,6 @@ import SwiftUI
 
 @MainActor
 public struct FavoritesView: View {
-    
     @ObservedObject var viewModel: FavoritesViewModel
     @State private var selection = 0
     
@@ -32,7 +31,7 @@ public struct FavoritesView: View {
             VStack(alignment: .leading) {
                 Text(L10n.Favorites.title)
                     .font(Font.custom("Bangers-Regular", size: 40))
-                    .foregroundColor(.primary)
+                    .foregroundColor(Color.black)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 24)
                     .padding(.top, -36)
@@ -69,7 +68,7 @@ public struct FavoritesView: View {
                 
                 Text(L10n.NotFoundFavorite.text)
                     .font(Font.custom("Nunito-Bold", size: 20))
-                    .foregroundColor(.primary)
+                    .foregroundColor(Color.black)
                     .multilineTextAlignment(.center)
                     .padding(.leading, 70)
                     .padding(.trailing, 70)

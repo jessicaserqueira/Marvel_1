@@ -13,6 +13,7 @@ public class TabBarCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     var tabBarViewController: UITabBarController
+
     public var childCoordinators: [Coordinator] = []
     
     public init(navigationController: UINavigationController, tabBarViewController: UITabBarController) {
@@ -41,6 +42,7 @@ public class TabBarCoordinator: Coordinator {
         )
         
         tabBarViewController.tabBar.tintColor = .black
+        tabBarViewController.tabBar.backgroundColor = .white
         navigationController.setViewControllers([tabBarViewController], animated: true)
     }
     
@@ -62,7 +64,7 @@ public class TabBarCoordinator: Coordinator {
         return coordinator
     }
     
-   @MainActor private func makeFavoritesCoordinator() -> FavoritesCoordinator {
+    @MainActor private func makeFavoritesCoordinator() -> FavoritesCoordinator {
         let coordinator = FavoritesCoordinator(
             navigationController: UINavigationController(),
             tabBarController: tabBarViewController

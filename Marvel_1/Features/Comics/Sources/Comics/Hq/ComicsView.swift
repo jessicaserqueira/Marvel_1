@@ -37,7 +37,7 @@ public struct ComicsView: View {
             VStack(alignment: .leading) {
                 Text(L10n.MarvelHQ.title)
                     .font(Font.custom("Bangers-Regular", size: 40))
-                    .foregroundColor(.primary)
+                    .foregroundColor(Color.black)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 24)
                     .padding(.top, -36)
