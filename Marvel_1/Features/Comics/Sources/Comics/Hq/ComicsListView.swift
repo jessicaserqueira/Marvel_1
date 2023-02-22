@@ -61,12 +61,13 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                                             .overlay(borderStroke)
                                         Text(i.title)
                                             .font(Font.custom("Bangers-Regular", size: 12))
+                                            .foregroundColor(Color.black)
                                     }
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 8))
                                 }
                                 Text(i.textObjects.first ?? "")
                                     .font(Font.custom("Nunito-Regular", size: 12))
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(Color.black)
                                     .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                                 
                                     .lineLimit(8)
