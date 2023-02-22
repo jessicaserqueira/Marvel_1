@@ -26,6 +26,7 @@ public struct ComicsView: View {
     // MARK: - Properties
     
     @State private var searchTerm: String = ""
+    @State private var buttonImage: String = "icon-favorite"
     
     public var body: some View {
         ZStack(alignment: .top) {
@@ -38,15 +39,16 @@ public struct ComicsView: View {
                     .font(Font.custom("Bangers-Regular", size: 40))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.leading)
+                    .padding(.leading, 24)
+                    .padding(.top, -36)
                 
-                if #available(iOS 14.0, *) {
-                    ComicsListView(viewModel: viewModel)
-                        .padding(20)
-                } else {
+                VStack {
+                    if #available(iOS 14.0, *) {
+                        ComicsListView(viewModel: viewModel)
+                    } else {
+                    }
                 }
             }
-            .padding(.trailing, 24)
-            .padding(.leading, 24)
         }
     }
 }

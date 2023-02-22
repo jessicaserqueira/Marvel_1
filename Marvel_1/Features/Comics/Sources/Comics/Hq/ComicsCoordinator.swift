@@ -27,8 +27,8 @@ public class ComicsCoordinator: Coordinator{
         
         let hostingController = UIHostingController(rootView: comicsView)
         hostingController.tabBarItem.title = L10n.Hq.title
-        hostingController.tabBarItem.image = UIImage(named: "hq-Color")
-        hostingController.tabBarItem.selectedImage = UIImage(named: "hq")
+        hostingController.tabBarItem.image = UIImage(named: "hq")
+        hostingController.tabBarItem.selectedImage = UIImage(named: "hq-Color")
         
         navigationController.pushViewController(hostingController, animated: true)
     }

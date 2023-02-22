@@ -73,7 +73,6 @@ public struct ScreenDetailsView: View {
                                         .multilineTextAlignment(.center)
                                         .padding(16)
                                 }
-                                .frame(maxWidth: .infinity, alignment: .center)
                             }.frame(width: 358, height: 430)
                         )
                         .overlay(createBorder(borderColor: Color.black))

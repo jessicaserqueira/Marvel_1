@@ -48,6 +48,11 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     
     public func buttonDetails() {
         let screenDetailsView = ScreenDetailsView()
-        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
+        navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
+        
+        #warning("TODO Implementar navigation sem tabBar9")
+//        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
+//        navigationController.hidesBottomBarWhenPushed = true
+//        navigationController.tabBarController?.tabBar.isHidden = true
     }
 }
