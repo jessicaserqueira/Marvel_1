@@ -76,10 +76,17 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                         })
                     }
                     .padding(.top, 32)
-                    .padding(.top, 32)
                 }
             }.padding(.leading, 24)
                 .padding(.trailing, 24)
+                .onAppear{
+                    viewModel.didAppear()
+                }
+            if viewModel.isLoading {
+                ActivityIndicator(isAnimating: $isAnimating)
+            }
         }
     }
 }
+
+
