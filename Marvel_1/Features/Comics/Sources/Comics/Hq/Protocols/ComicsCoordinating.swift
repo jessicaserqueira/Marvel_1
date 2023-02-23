@@ -8,6 +8,5 @@
 import Foundation
 
 public protocol ComicsCoordinating {
-    
-#warning("TODO")
+    func buttonDetails()
 }

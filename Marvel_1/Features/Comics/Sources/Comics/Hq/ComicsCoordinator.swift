@@ -36,4 +36,8 @@ public class ComicsCoordinator: Coordinator{
 
 extension ComicsCoordinator: ComicsCoordinating {
     
+    public func buttonDetails() {
+        let detailsComisView = DetailsComicsView()
+        navigationController.present(UIHostingController(rootView: detailsComisView), animated: true)
+    }
 }
