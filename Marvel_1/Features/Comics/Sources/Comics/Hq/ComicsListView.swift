@@ -43,6 +43,7 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                         
                         HStack (alignment: .top, content: {
                             Button(action: {
+                                viewModel.buttonDetails()
                             }) {
                                 KFImage(URL(string: "\(i.thumbnail)"))
                                     .resizable()

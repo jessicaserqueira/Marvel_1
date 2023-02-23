@@ -9,11 +9,11 @@ import UIKit
 import Common
 import SwiftUI
 
-public protocol ScreenDetailsCoordinatorDelegate: AnyObject {}
+public protocol ScreenDetailsCharacterCoordinatorDelegate: AnyObject {}
 
-public struct ScreenDetailsCoordinator {
+public struct ScreenDetailsCharacterCoordinator {
     
-    public var coordinatorDelegate: ScreenDetailsCoordinatorDelegate?
+    public var coordinatorDelegate: ScreenDetailsCharacterCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
     
@@ -22,13 +22,13 @@ public struct ScreenDetailsCoordinator {
     }
     
     public func start() {
-        let screenDetailsView = ScreenDetailsView()
+        let screenDetailsView = ScreenDetailsCharacterView()
         navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: false)
     }
 }
 
 // MARK: ScreenDetailsCoordinator
-extension ScreenDetailsCoordinator {}
+extension ScreenDetailsCharacterCoordinator {}
 
 // MARK: ScreenDetailsCoordinating
-extension ScreenDetailsCoordinator: ScreenDetailsCoordinating {}
+extension ScreenDetailsCharacterCoordinator: ScreenDetailsCharacterCoordinating {}

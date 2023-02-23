@@ -27,7 +27,7 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     }
     
     // MARK: - ScreenDetailsCoordinator
-    func makeScreenDetailsCoordinator() -> Comics.ScreenDetailsCoordinator {
-        container.resolveSafe(ScreenDetailsCoordinator.self)
+    func makeScreenDetailsCoordinator() -> Comics.ScreenDetailsCharacterCoordinator {
+        container.resolveSafe(ScreenDetailsCharacterCoordinator.self)
     }
 }

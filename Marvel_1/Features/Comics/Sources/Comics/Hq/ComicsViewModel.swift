@@ -62,4 +62,9 @@ extension ComicsViewModel: ComicsModelling {
             $0.title.lowercased().contains(searchTerm.lowercased())
         }
     }
+    
+    public func buttonDetails() {
+        coordinator?.buttonDetails()
+    }
+    
 }
