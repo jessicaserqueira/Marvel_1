@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-public struct ScreenDetailsCharacterView: View {
+public struct DetailsCharacterView: View {
     
     public init() {}
     

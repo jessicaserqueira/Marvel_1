@@ -7,5 +7,4 @@
 
 import Foundation
 
-@MainActor
-public protocol ScreenDetailsCharacterModelling {}
+public protocol DetailsCharacterCoordinating {}
