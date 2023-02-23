@@ -17,6 +17,5 @@ public protocol CharacterHomeModelling: ObservableObject {
     func fetchCharacter()
     func filterCharacters(searchTerm: String) -> [CharacterModel]
     func favoriteButton()
-    func previousScreen()
     func buttonDetails()
 }

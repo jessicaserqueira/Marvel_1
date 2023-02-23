@@ -69,10 +69,6 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
         print("Favorito")
     }
     
-    public func previousScreen() {
-        print("Tela anterior")
-    }
-    
     public func buttonDetails() {
         coordinator?.buttonDetails()
     }
