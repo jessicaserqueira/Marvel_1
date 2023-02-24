@@ -17,7 +17,7 @@ public class DetailsComicsViewModel: ObservableObject {
     }
     
     //MARK: - Properties
-#warning("TODO")
+
 }
 
 //MARK: - ScreenHomeModelling
