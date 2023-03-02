@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-public class CharacterHomeCoordinator: Coordinator {
+public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
@@ -38,16 +38,10 @@ public class CharacterHomeCoordinator: Coordinator {
 // MARK: CharacterHomeCoordinating
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     
-    public func nextScreen() {
-        
-    }
-    
-    public func previousScreen() {
-        
-    }
-    
-    public func buttonDetails() {
-        let screenDetailsView = DetailsCharacterView()
+    public func buttonDetails(with id: Int) {
+        let viewModel = DetailsCharacterViewModel(coordinator: self)
+        let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
+        navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
         
         #warning("TODO Implementar navigation sem tabBar9")

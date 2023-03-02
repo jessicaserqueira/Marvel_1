@@ -9,5 +9,5 @@ import Foundation
 
 public protocol CharacterHomeCoordinating {
 
-    func buttonDetails()
+    func buttonDetails(with id: Int)
 }
