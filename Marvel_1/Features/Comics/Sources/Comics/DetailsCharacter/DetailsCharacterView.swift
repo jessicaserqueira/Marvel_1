@@ -39,7 +39,6 @@ public struct DetailsCharacterView<ViewModel: DetailsCharacterModelling>: View {
                             .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
                             .clipped()
                     } else {
-                        // Fallback on earlier versions
                     }
                 }
                 
