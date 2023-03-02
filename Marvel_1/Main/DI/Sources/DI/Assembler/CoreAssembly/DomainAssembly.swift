@@ -23,6 +23,9 @@ class DomainAssembly: Assembly {
         let comicsRepository = container.resolveSafe(Domain.ComicsRepository.self)
         container.register(type: Domain.ComicsUseCaseProtocol.self, component:  Domain.ComicsUseCase(comicsRepository: comicsRepository))
         
+        let detailsCharacterRepository = container.resolveSafe(Domain.DetailsCharacterRepository.self)
+        container.register(type: Domain.DetailsCharacterUseCaseProtocol.self, component:  Domain.DetailsCharacterUseCase(detailsCharacterRepository: detailsCharacterRepository))
+        
         let fetchImageRepository = container.resolveSafe(Domain.FetchImageRepository.self)
         container.register(type: Domain.FetchImageUseCaseProtocol.self, component: Domain.FetchImageUseCase(fetchImageRepository: fetchImageRepository))
     }

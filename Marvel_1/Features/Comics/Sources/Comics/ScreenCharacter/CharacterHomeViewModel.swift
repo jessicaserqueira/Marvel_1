@@ -12,8 +12,10 @@ import Domain
 public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var data: [CharacterModel] = []
+    @Published  public var selectedCharacter: CharacterModel?
     @Published var searchTerm: String = ""
     @Published public var isLoading: Bool = false
+    @State var selectedCharacterId: Int?
     
     private var offset: Int = 0
     private var totalPages: Int = 0
@@ -29,6 +31,14 @@ public class CharacterHomeViewModel: ObservableObject {
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
+    public func fetchCharacterDetails(with id: Int) {
+        
+    }
+    
+    
+    public func selectCharacter(_ character: CharacterModel) {
+        selectedCharacter = character
+    }
 
     public func didAppear() {
         fetchCharacter()
@@ -69,7 +79,9 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
         print("Favorito")
     }
     
-    public func buttonDetails() {
-        coordinator?.buttonDetails()
+    @MainActor public func buttonDetails(with id: Int) {
+        coordinator?.buttonDetails(with: id)
+        selectedCharacterId = id
+        
     }
 }

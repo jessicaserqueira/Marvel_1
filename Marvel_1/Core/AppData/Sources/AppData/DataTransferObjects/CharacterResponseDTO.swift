@@ -8,27 +8,23 @@
 import Foundation
 import Domain
 
-public struct CharacteResponseDTO: Codable {
+public struct CharacterResponseDTO: Codable {
     
     public let id: Int?
     public let name, resultDescription: String
     public let thumbnail: ThumbnailDTO
     
-    init(
-        id: Int?,
-        name: String,
-        resultDescription: String,
-        thumbnail: ThumbnailDTO
-        
-    ) {
-        self.id = id
-        self.name = name
-        self.resultDescription = resultDescription
-        self.thumbnail = thumbnail
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.resultDescription = try container.decode(String.self, forKey: .resultDescription)
+        self.thumbnail = try container.decode(ThumbnailDTO.self, forKey: .thumbnail)
     }
 }
 
-extension CharacteResponseDTO {
+extension CharacterResponseDTO {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -39,7 +35,7 @@ extension CharacteResponseDTO {
     }
 }
 
-extension CharacteResponseDTO {
+extension CharacterResponseDTO {
     
     public var toDomain: CharacterResponse {
         .init(
@@ -50,3 +46,4 @@ extension CharacteResponseDTO {
         )
     }
 }
+

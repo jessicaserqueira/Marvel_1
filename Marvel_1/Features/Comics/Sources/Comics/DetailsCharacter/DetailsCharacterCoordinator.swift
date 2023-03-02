@@ -21,8 +21,9 @@ public struct DetailsCharacterCoordinator {
         self.navigationController = navigationController
     }
     
-    public func start() {
-        let detailsCharacterView = DetailsCharacterView()
+    public func start(selectedItemId: Int) {
+        let viewModel = DetailsCharacterViewModel(coordinator: self)
+        let detailsCharacterView = DetailsCharacterView(viewModel: viewModel, selectedItemId: selectedItemId)
         navigationController.pushViewController(UIHostingController(rootView: detailsCharacterView), animated: false)
     }
 }

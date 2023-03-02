@@ -28,6 +28,10 @@ extension CharacterModel {
         item.name
     }
     
+    var resultDescription: String {
+        item.resultDescription
+    }
+    
     var thumbnail: URL {
         guard let path = item.thumbnail?.path, let ext = item.thumbnail?.ext else { return URL(fileURLWithPath: "") }
         let urlString = "\(path).\(ext)"
@@ -38,3 +42,4 @@ extension CharacterModel {
         item
     }
 }
+

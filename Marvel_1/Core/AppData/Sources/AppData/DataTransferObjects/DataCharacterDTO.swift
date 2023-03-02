@@ -10,14 +10,14 @@ import Domain
 
 public struct DataCharacterDTO: Codable {
     let offset, limit, total, count: Int?
-    let results: [CharacteResponseDTO]
+    let results: [CharacterResponseDTO]
     
     init(
         offset: Int?,
         limit: Int?,
         total: Int?,
         count: Int?,
-        results: [CharacteResponseDTO]
+        results: [CharacterResponseDTO]
 
     ) {
         self.offset = offset
