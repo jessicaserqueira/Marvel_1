@@ -10,9 +10,9 @@ import Foundation
 
 public class CharacterUseCase {
     
-    private let characterRepository: CharacterRepository
+    private let characterRepository: CharacterRepositoryProtocol
     
-    public init(characterRepository: CharacterRepository) {
+    public init(characterRepository: CharacterRepositoryProtocol) {
         self.characterRepository = characterRepository
     }
 }

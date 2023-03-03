@@ -12,4 +12,5 @@ public protocol CharacterHomeCoordinating {
     func nextScreen()
     func previousScreen()
     func buttonDetails()
+    func saveFavorites()
 }

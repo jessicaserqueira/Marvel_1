@@ -22,7 +22,7 @@ class DataAssembly: Assembly {
         
         
         //MARK: - AppData
-        container.register(type: Domain.CharacterRepository.self, component: AppData.CharaterRepository(remote: characterRemoteDataSource))
+        container.register(type: Domain.CharacterRepositoryProtocol.self, component: AppData.CharaterRepository(remote: characterRemoteDataSource))
         
         container.register(type: Domain.ComicsRepository.self, component: AppData.ComicsRepository(remote: comicsRemoteDataSource))
         

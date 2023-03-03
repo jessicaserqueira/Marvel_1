@@ -41,7 +41,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                             HStack(spacing: 10) {
                                 Text(i.name)
                                     .font(Font.custom("Bangers-Regular", size: 14))
-                                FavoriteButton(action: self.viewModel.favoriteButton, buttonImage: self.$buttonImage)
+                                FavoriteButton(action: viewModel.favoriteButton, buttonImage: self.$buttonImage)
                             }
                             .frame(width: 100, height: 30)
                             .overlay(RoundedRectangle(cornerRadius: 0).stroke(self.borderColor, lineWidth: 2))

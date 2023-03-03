@@ -61,20 +61,20 @@ public struct FavoritesView: View {
                     .padding(.trailing, 24)
             }
             
-            VStack {
-                Spacer()
-                Image("notFound")
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100, alignment: .center)
-                
-                Text(L10n.NotFoundFavorite.text)
-                    .font(Font.custom("Nunito-Bold", size: 20))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-                    .padding(.leading, 70)
-                    .padding(.trailing, 70)
-                Spacer()
-            }
+//            VStack {
+//                Spacer()
+//                Image("notFound")
+//                    .aspectRatio(contentMode: .fit)
+//                    .frame(width: 100, height: 100, alignment: .center)
+//
+//                Text(L10n.NotFoundFavorite.text)
+//                    .font(Font.custom("Nunito-Bold", size: 20))
+//                    .foregroundColor(.primary)
+//                    .multilineTextAlignment(.center)
+//                    .padding(.leading, 70)
+//                    .padding(.trailing, 70)
+//                Spacer()
+//            }
         }
     }
 }

@@ -17,7 +17,7 @@ class DomainAssembly: Assembly {
     private func assembleComics(_ container: DIContainer) {
         
         //MARK: - Domain
-        let characterRepository = container.resolveSafe(Domain.CharacterRepository.self)
+        let characterRepository = container.resolveSafe(Domain.CharacterRepositoryProtocol.self)
         container.register(type: Domain.CharacterUseCaseProtocol.self, component:  Domain.CharacterUseCase(characterRepository: characterRepository))
         
         let comicsRepository = container.resolveSafe(Domain.ComicsRepository.self)

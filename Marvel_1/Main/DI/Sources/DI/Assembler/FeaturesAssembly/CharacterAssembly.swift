@@ -19,7 +19,7 @@ class CharacterAssembly: Assembly {
         
         container.register(type: CharacterHomeCoordinating.self, component: characterCoordinator)
         container.register(type: (any CharacterHomeModelling).self,
-                           component: CharacterHomeViewModel.init(coordinator: characterCoordinator))
+                           component: CharacterHomeViewModel.init(coordinator: characterCoordinator, character: CharacterModel))
         
     }
 }

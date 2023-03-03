@@ -8,28 +8,73 @@
 import SwiftUI
 import Common
 import Domain
+import Combine
 
-public class CharacterHomeViewModel: ObservableObject {
+public class CharacterHomeViewModel: ObservableObject, Identifiable {
     
     @Published public var data: [CharacterModel] = []
     @Published var searchTerm: String = ""
     @Published public var isLoading: Bool = false
+    @Published var character: CharacterModel
+    @Published var name = ""
+    
+    public var id: Int?
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private var offset: Int = 0
     private var totalPages: Int = 0
     
+    
+    
+//    private func saveFavorite() {
+//        db.collection("Test").addDocument(data: ["title": title]) { error in
+//            if let error = error {
+//                print(error)
+//            } else {
+//                self.populateMarvel()
+//            }
+//        }
+//    }
+    
+//    private func populateMarvel() {
+//
+//        db.collection("marvel").getDocuments { (snapshot, error) in
+//
+//            if let snapshot = snapshot {
+//
+//                self.marvel = snapshot.documents.map { doc in
+//                    return ["title": doc.data()["title"] as! String,
+//                            "documentId": doc.documentID
+//                    ]
+//                }
+//
+//            }
+//
+//        }
+//
+//    }
+    
     private var coordinator: CharacterHomeCoordinating?
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
-    public init(coordinator: CharacterHomeCoordinating) {
+    public init(coordinator: CharacterHomeCoordinating, character: CharacterModel) {
+        self.character = character
         self.characterUseCase = characterUseCase
         self.coordinator = coordinator
+        
+        $character
+            .compactMap { character in
+                character.id
+            }
+            .assign(to: \.id, on: self)
+            .store(in: &cancellables)
     }
 }
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
-
+    
     public func didAppear() {
         fetchCharacter()
     }
@@ -56,7 +101,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     }
     
     public func filterCharacters(searchTerm: String) -> [CharacterModel] {
- 
+        
         if searchTerm.isEmpty {
             return data
         }
@@ -66,7 +111,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     }
     
     public func favoriteButton() {
-        print("Favorito")
+        coordinator?.saveFavorites()
     }
     
     public func previousScreen() {

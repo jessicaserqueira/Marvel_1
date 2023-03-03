@@ -19,7 +19,7 @@ class FavoritesAssembly: Assembly {
         
         container.register(type: FavoritesCoordinating.self, component: favoritesCoordinator)
         container.register(type: (any FavoritesModelling).self,
-                           component: FavoritesViewModel.init(coordinator: favoritesCoordinator))
+                           component: FavoritesViewModel.init())
         
     }
 }

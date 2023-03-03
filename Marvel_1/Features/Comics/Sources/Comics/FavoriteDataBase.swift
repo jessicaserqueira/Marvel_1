@@ -8,7 +8,26 @@
 import Foundation
 import FirebaseFirestore
 
+struct Item: Identifiable, Codable {
+    var id: Int
+    var title: String
+    var isFaved: Bool
+
+    static var sampleItems: [Item] {
+        var tempList = [Item]()
+        
+        for i in 1...20 {
+            let id = i
+            let title = "Title \(i)"
+            
+            tempList.append(Item(id: id, title: title, isFaved: false))
+        }
+        return tempList
+    }
+}
+
 public class FavoriteDataBase {
+    let FAV_KEY = "fav_key"
     
     public init() {
         
@@ -30,5 +49,10 @@ public class FavoriteDataBase {
                 print ("Document was succesfully created and written.")
             }
         }
+    }
+    
+    func save(items: Set<Int>) {
+        let array = Array(items)
+        UserDefaults.standard.set(array, forKey: FAV_KEY)
     }
 }

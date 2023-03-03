@@ -37,6 +37,10 @@ public class CharacterHomeCoordinator: Coordinator {
 
 // MARK: CharacterHomeCoordinating
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
+    public func saveFavorites() {
+        
+    }
+    
     
     public func nextScreen() {
         

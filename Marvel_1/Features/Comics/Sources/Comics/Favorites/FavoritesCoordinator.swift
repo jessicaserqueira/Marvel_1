@@ -22,7 +22,7 @@ public class FavoritesCoordinator: Coordinator{
     }
     
     @MainActor public func start() {
-        let viewModel = FavoritesViewModel(coordinator: self)
+        let viewModel = FavoritesViewModel()
         let favoritesView = FavoritesView(viewModel: viewModel)
         
         let hostingController = UIHostingController(rootView: favoritesView)
