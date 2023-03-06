@@ -38,8 +38,12 @@ class CoordinatorsAssembly: Assembly {
         // MARK: - CharacterCoordinator
         container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
 
-        // MARK: - ScreenDetailsCoordinator
+        // MARK: - DetailsCharacterCoordinator
         container.register(type: DetailsCharacterCoordinator.self, component: DetailsCharacterCoordinator(navigationController: appCoordinator.navigationController))
+        
+        // MARK: - DetailsComicsCoordinator
+        container.register(type: DetailsComicsCoordinator.self, component: DetailsComicsCoordinator(navigationController: appCoordinator.navigationController))
+        
         
         // MARK: - ComicsCoordinator
         container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))

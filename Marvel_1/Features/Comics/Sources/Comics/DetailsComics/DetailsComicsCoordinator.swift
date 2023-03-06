@@ -22,8 +22,9 @@ public struct DetailsComicsCoordinator {
         self.navigationController = navigationController
     }
     
-    public func start() {
-        let detailsComicsView = DetailsComicsView()
+    public func start(selectedItemId: Int) {
+        let viewModel = DetailsComicsViewModel(coordinator: self)
+        let detailsComicsView = DetailsComicsView(viewModel: viewModel, selectedItemId: selectedItemId)
         navigationController.pushViewController(UIHostingController(rootView: detailsComicsView), animated: false)
     }
 }
