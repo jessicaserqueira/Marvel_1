@@ -8,4 +8,8 @@
 import Foundation
 
 @MainActor
-public protocol DetailsComicsModelling {}
+public protocol DetailsComicsModelling: ObservableObject {
+    var data: [ComicsModel] { get }
+    
+    func fetchComicsDetails(with id: Int)
+}

@@ -19,16 +19,23 @@ class DataAssembly: Assembly {
         let characterRemoteDataSource = container.resolveSafe(Networking.CharacterRemoteDataSource.self)
         let comicsRemoteDataSource = container.resolveSafe(Networking.ComicsRemoteDataSource.self)
         let detailsCharacterRemoteDataSource = container.resolveSafe(Networking.DetailsCharacterRemoteDataSource.self)
+        let detailsComicsRemoteDataSource = container.resolveSafe(Networking.DetailsComicsRemoteDataSource.self)
         let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
         
         
-        //MARK: - AppData
+        // MARK: - Character
         container.register(type: Domain.CharacterRepository.self, component: AppData.CharaterRepository(remote: characterRemoteDataSource))
         
+        // MARK: - Comics
         container.register(type: Domain.ComicsRepository.self, component: AppData.ComicsRepository(remote: comicsRemoteDataSource))
         
-        container.register(type: Domain.DetailsCharacterRepository.self, component: AppData.DetailsCharaterRepository(remote: detailsCharacterRemoteDataSource ))
+        // MARK: - DetailsCharacter
+        container.register(type: Domain.DetailsCharacterRepository.self, component: AppData.DetailsCharaterRepository(remote: detailsCharacterRemoteDataSource))
         
+        // MARK: - DetailsComics
+        container.register(type: Domain.DetailsComicsRepository.self, component: AppData.DetailsComicsRepository(remote: detailsComicsRemoteDataSource))
+        
+        // MARK: - Image
         container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))
     }
 }

@@ -14,6 +14,7 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
     @ObservedObject var viewModel: ViewModel
     @State private var searchTerm: String = ""
     @State var isAnimating: Bool = true
+    @State var selectedComicsId: Int?
     
     private let borderColor: Color = .black
     private let comicImageWidth: CGFloat = 140
@@ -43,7 +44,8 @@ struct ComicsListView<ViewModel: ComicsModelling>: View {
                         
                         HStack (alignment: .top, content: {
                             Button(action: {
-                                viewModel.buttonDetails()
+                                viewModel.buttonDetails(with: i.id ?? 0)
+                                selectedComicsId = i.id
                             }) {
                                 KFImage(URL(string: "\(i.thumbnail)"))
                                     .resizable()

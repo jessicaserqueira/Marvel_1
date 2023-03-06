@@ -18,6 +18,7 @@ public enum MarvelService {
     case characters(offset: Int)
     case charactersDetails(id: Int)
     case comics(Offset: Int)
+    case comicsDetails(id: Int)
     
     public enum HTTPMethod {
         case get
@@ -37,7 +38,7 @@ public enum MarvelService {
     
     public var method: HTTPMethod {
         switch self {
-        case .characters, .charactersDetails, .comics:
+        case .characters, .charactersDetails, .comics, .comicsDetails:
             return .get
         }
     }
@@ -50,6 +51,8 @@ public enum MarvelService {
             return "public/characters/\(id)?"
         case .comics:
             return "public/comics?"
+        case .comicsDetails(let id):
+            return "public/comics/\(id)?"
         }
     }
     
@@ -83,7 +86,7 @@ public enum MarvelService {
         switch self {
         case .characters, .comics:
             return urlRequest
-        case .charactersDetails:
+        case .charactersDetails, .comicsDetails:
             return urlRequest
         }
     }

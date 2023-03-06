@@ -7,12 +7,14 @@
 import Domain
 import Foundation
 import Common
+import SwiftUI
 
 public class ComicsViewModel: ObservableObject {
     
     @Published public var data: [ComicsModel] = []
     @Published var searchTerm: String = ""
     @Published public var isLoading: Bool = false
+    @State var selectedComicsId: Int?
     
     private var offset: Int = 0
     private var totalPages: Int = 0
@@ -63,8 +65,9 @@ extension ComicsViewModel: ComicsModelling {
         }
     }
     
-    public func buttonDetails() {
-        coordinator?.buttonDetails()
+    public func buttonDetails(with id: Int) {
+        coordinator?.buttonDetails(with: id)
+        selectedComicsId = id
     }
     
 }
