@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol ComicsCoordinating {
-    func buttonDetails()
+    func buttonDetails(with id: Int)
 }

@@ -22,6 +22,7 @@ public class DetailsComicsViewModel: ObservableObject {
     }
 }
 
+
 //MARK: - ScreenHomeModelling
 extension DetailsComicsViewModel: DetailsComicsModelling {
     public func fetchComicsDetails(with id: Int) {

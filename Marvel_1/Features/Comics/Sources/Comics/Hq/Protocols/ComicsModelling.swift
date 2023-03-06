@@ -16,5 +16,5 @@ public protocol ComicsModelling: ObservableObject{
     func didAppear()
     func fetchComics()
     func filterComics(searchTerm: String) -> [ComicsModel]
-    func buttonDetails()
+    func buttonDetails(with id: Int)
 }

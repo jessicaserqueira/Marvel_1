@@ -29,8 +29,5 @@ public struct DetailsComicsCoordinator {
     }
 }
 
-// MARK: ScreenDetailsCoordinator
-extension DetailsComicsCoordinator {}
-
 // MARK: ScreenDetailsCoordinating
 extension DetailsComicsCoordinator: DetailsComicsCoordinating {}

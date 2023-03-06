@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-public class ComicsCoordinator: Coordinator{
+public class ComicsCoordinator: Coordinator, DetailsComicsCoordinating{
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
@@ -35,9 +35,10 @@ public class ComicsCoordinator: Coordinator{
 }
 
 extension ComicsCoordinator: ComicsCoordinating {
-    
-    public func buttonDetails() {
-        let detailsComisView = DetailsComicsView()
-        navigationController.present(UIHostingController(rootView: detailsComisView), animated: true)
+    public func buttonDetails(with id: Int) {
+        let viewModel = DetailsComicsViewModel(coordinator: self)
+        let screenDetailsView = DetailsComicsView(viewModel: viewModel, selectedItemId: id)
+        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
     }
 }

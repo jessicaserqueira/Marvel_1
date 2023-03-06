@@ -20,7 +20,7 @@ public class DetailsComicsRemoteDataSource {
 extension DetailsComicsRemoteDataSource: AppData.DetailsComicsRemoteDataSource {
     public func request(with id: Int, completion: @escaping Common.ResultCompletion<AppData.DataComicsDTO>) {
         
-        serviceManager.request(type: DataComicsDTO.self, router: .charactersDetails(id: id)) { result in
+        serviceManager.request(type: DataComicsDTO.self, router: .comicsDetails(id: id)) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

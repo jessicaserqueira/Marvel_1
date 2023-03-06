@@ -31,11 +31,7 @@ public class CharacterHomeViewModel: ObservableObject {
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
-    public func fetchCharacterDetails(with id: Int) {
-        
-    }
-    
-    
+   
     public func selectCharacter(_ character: CharacterModel) {
         selectedCharacter = character
     }
