@@ -8,6 +8,9 @@
 import SwiftUI
 import Common
 import Domain
+import Combine
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 public class CharacterHomeViewModel: ObservableObject {
     
@@ -17,8 +20,42 @@ public class CharacterHomeViewModel: ObservableObject {
     @Published public var isLoading: Bool = false
     @State var selectedCharacterId: Int?
     
+    private var cancellables = Set<AnyCancellable>()
+    @State var title = "Hoje"
+    @State var marvel: [[String: String]] = []
+    
     private var offset: Int = 0
     private var totalPages: Int = 0
+    
+    private var db = Firestore.firestore()
+    
+    private func saveFavorite() {
+            db.collection("Test").addDocument(data: ["title": title]) { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    self.populateMarvel()
+                }
+            }
+        }
+        
+        private func populateMarvel() {
+    
+            db.collection("marvel").getDocuments { (snapshot, error) in
+    
+                if let snapshot = snapshot {
+    
+                    self.marvel = snapshot.documents.map { doc in
+                        return ["title": doc.data()["title"] as! String,
+                                "documentId": doc.documentID
+                        ]
+                    }
+    
+                }
+    
+            }
+    
+        }
     
     private var coordinator: CharacterHomeCoordinating?
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
@@ -76,7 +113,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     }
     
     public func favoriteButton() {
-        print("Favorito")
+        saveFavorite()
     }
     
     @MainActor public func buttonDetails(with id: Int) {
