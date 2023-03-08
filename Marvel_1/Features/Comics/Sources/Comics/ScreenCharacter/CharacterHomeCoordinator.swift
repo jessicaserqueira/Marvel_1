@@ -27,7 +27,7 @@ public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         
         let hostingController = UIHostingController(rootView: characterHomeView)
-        hostingController.tabBarItem.title = L10n.Characters.title
+        hostingController.tabBarItem.title = L10n.Characters.Title.tile
         hostingController.tabBarItem.image = UIImage(named: "shield-Color")
         hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
         

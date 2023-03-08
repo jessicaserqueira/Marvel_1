@@ -28,7 +28,7 @@ public struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
                     .edgesIgnoringSafeArea(.top)
                 
                     VStack(alignment: .leading) {
-                        Text(L10n.Characters.title)
+                        Text(L10n.Characters.Title.tile)
                             .font(Font.custom("Bangers-Regular", size: 40))
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.leading)

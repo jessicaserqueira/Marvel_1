@@ -51,6 +51,10 @@ let package = Package(
                            .product(
                             name: "FirebaseFirestoreSwift",
                             package: "firebase-ios-sdk"
+                           ),
+                           .product(
+                            name: "FirebaseAuth",
+                            package: "firebase-ios-sdk"
                            )
             ],
             resources: [

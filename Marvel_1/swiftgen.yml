@@ -1,0 +1,7 @@
+strings:
+    inputs:
+        - Features/Comics/Sources/Comics/Resources/Localizable.strings
+    outputs:
+        templateName: structured-swift5
+        output: Features/Comics/Sources/Comics/Utils/L10n.swift
+
