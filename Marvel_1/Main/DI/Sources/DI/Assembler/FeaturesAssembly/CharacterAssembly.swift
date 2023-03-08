@@ -18,8 +18,6 @@ class CharacterAssembly: Assembly {
         let characterCoordinator = container.resolveSafe(CharacterHomeCoordinator.self)
         
         container.register(type: CharacterHomeCoordinating.self, component: characterCoordinator)
-        container.register(type: (any CharacterHomeModelling).self,
-                           component: CharacterHomeViewModel.init(coordinator: characterCoordinator))
         
     }
 }
