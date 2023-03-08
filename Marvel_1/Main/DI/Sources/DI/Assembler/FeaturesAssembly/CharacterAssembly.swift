@@ -18,6 +18,5 @@ class CharacterAssembly: Assembly {
         let characterCoordinator = container.resolveSafe(CharacterHomeCoordinator.self)
         
         container.register(type: CharacterHomeCoordinating.self, component: characterCoordinator)
-        
     }
 }
