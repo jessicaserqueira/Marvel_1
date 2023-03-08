@@ -9,12 +9,14 @@ import Domain
 import Foundation
 import SwiftUI
 
-public struct CharacterModel: Identifiable, Codable {
-    var uniqueId = UUID()
-    private let item: CharacterResponse
+public struct CharacterModel: Identifiable, Decodable {
+    
+    public let item: CharacterResponse
 
+    
     init(_ item: CharacterResponse) {
         self.item = item
+
     }
 }
 
@@ -23,7 +25,7 @@ extension CharacterModel {
     public var id: Int? {
         item.id
     }
-
+    
     var name: String {
         item.name
     }

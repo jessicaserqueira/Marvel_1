@@ -30,20 +30,19 @@ class CoordinatorsAssembly: Assembly {
         self.appCoordinator = appCoordinator
         
         // MARK: - SplashCoordinator
-        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController, container: container))
         
         // MARK: - TabBarCoordinator
-        container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController))
+        container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController, container: container))
         
         // MARK: - CharacterCoordinator
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (tabBarController: appCoordinator.tabBarController))
 
         // MARK: - DetailsCharacterCoordinator
         container.register(type: DetailsCharacterCoordinator.self, component: DetailsCharacterCoordinator(navigationController: appCoordinator.navigationController))
         
         // MARK: - DetailsComicsCoordinator
         container.register(type: DetailsComicsCoordinator.self, component: DetailsComicsCoordinator(navigationController: appCoordinator.navigationController))
-        
         
         // MARK: - ComicsCoordinator
         container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))

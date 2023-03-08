@@ -12,10 +12,12 @@ import Domain
 public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var data: [CharacterModel] = []
-    @Published  public var selectedCharacter: CharacterModel?
+    @Published public var selectedCharacter: CharacterModel?
     @Published var searchTerm: String = ""
     @Published public var isLoading: Bool = false
-    @State var selectedCharacterId: Int?
+    
+    @Published var isFavorites: [CharacterIsFavoriteModel] = []
+    
     
     private var offset: Int = 0
     private var totalPages: Int = 0
@@ -31,16 +33,16 @@ public class CharacterHomeViewModel: ObservableObject {
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
-   
-    public func selectCharacter(_ character: CharacterModel) {
+    
+    func selectCharacter(_ character: CharacterModel) {
         selectedCharacter = character
     }
-
-    public func didAppear() {
+    
+    func didAppear() {
         fetchCharacter()
     }
     
-    public func fetchCharacter() {
+    func fetchCharacter() {
         isLoading = true
         characterUseCase.getCharater(offset: offset) { [weak self] result in
             guard let self = self else { return }
@@ -48,6 +50,9 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             case .success(let response):
                 self.totalPages = (response.total ?? 0) / 20
                 self.data +=  response.results?.compactMap { CharacterModel($0) } ?? []
+                self.isFavorites += self.data.map {
+                    CharacterIsFavoriteModel(id: $0.item.id ?? .zero, isFavorite: false)
+                }
                 self.offset += 20
                 if self.offset < response.total ?? 0 {
                     self.fetchCharacter()
@@ -60,9 +65,8 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             }
         }
     }
-    
-    public func filterCharacters(searchTerm: String) -> [CharacterModel] {
- 
+    func filterCharacters(searchTerm: String) -> [CharacterModel] {
+        
         if searchTerm.isEmpty {
             return data
         }
@@ -71,13 +75,13 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
         }
     }
     
-    public func favoriteButton() {
+    func favoriteButton() {
         print("Favorito")
     }
     
     @MainActor public func buttonDetails(with id: Int) {
         coordinator?.buttonDetails(with: id)
-        selectedCharacterId = id
+        
         
     }
 }

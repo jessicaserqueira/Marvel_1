@@ -8,10 +8,12 @@
 import SwiftUI
 
 @MainActor
-public protocol CharacterHomeModelling: ObservableObject {
+ protocol CharacterHomeModelling: ObservableObject {
     
     var data: [CharacterModel] { get }
-    var isLoading: Bool { get }
+    var isFavorites: [CharacterIsFavoriteModel] { get set }
+     var searchTerm: String { get set }
+    var isLoading: Bool { get set }
     
     func didAppear()
     func fetchCharacter()
