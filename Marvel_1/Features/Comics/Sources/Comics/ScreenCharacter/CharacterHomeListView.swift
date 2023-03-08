@@ -67,7 +67,6 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                     viewModel.didAppear()
                 }
                 ActivityIndicator(isAnimating: $viewModel.isLoading)
-                
             }
         }
         .padding(.horizontal, 12)
