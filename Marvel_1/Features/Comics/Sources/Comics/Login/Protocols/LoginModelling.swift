@@ -9,6 +9,7 @@ import SwiftUI
 
 @MainActor
 public protocol LoginModelling: ObservableObject {
+    var loginModel: LoginAuthenticationModel { get set }
     
     func loginButton()
     func createAccount()

@@ -8,13 +8,12 @@
 import SwiftUI
 import Common
 import Domain
-import Firebase
+import FirebaseAuth
 
 @available(iOS 14.0, *)
 public class LoginViewModel: ObservableObject {
     private var coordinator: LoginCoordinating?
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @Published public var loginModel = LoginAuthenticationModel(email: "", password: "")
     @AppStorage("uid") var userID = String()
     
     public init(coordinator: LoginCoordinating) {
@@ -25,14 +24,15 @@ public class LoginViewModel: ObservableObject {
 @available(iOS 14.0, *)
 extension LoginViewModel: LoginModelling {
     
-    public func createAccount() {
+    @MainActor public func createAccount() {
         print("criar conta")
+        coordinator?.createAccount()
     }
     
     public func loginButton() {
         print("Entrou")
-        
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+        coordinator?.loginButton()
+        Auth.auth().signIn(withEmail: loginModel.email, password: loginModel.password) { authResult, error in
             if let error = error {
                 print(error)
                 return

@@ -78,6 +78,5 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     @MainActor public func buttonDetails(with id: Int) {
         coordinator?.buttonDetails(with: id)
         selectedCharacterId = id
-        
     }
 }

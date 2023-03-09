@@ -8,13 +8,12 @@
 import SwiftUI
 import Common
 import Domain
-import Firebase
+import FirebaseAuth
 
 @available(iOS 14.0, *)
-public class CreateAccountModel: ObservableObject {
+public class CreateAccountViewModel: ObservableObject {
     private var coordinator: CreateAccountCoordinating?
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @Published public var createAccount = CreateAccountModel(email: "", password: "")
     @AppStorage("uid") var userID = String()
     
     public init(coordinator: CreateAccountCoordinating) {
@@ -23,24 +22,31 @@ public class CreateAccountModel: ObservableObject {
 }
 
 @available(iOS 14.0, *)
-extension CreateAccountModel: CreateAccountModelling {
+extension CreateAccountViewModel: CreateAccountModelling {
     
     public func returnLoginView() {
         print("return")
+        coordinator?.returnLoginView()
     }
     
-    public func createAccount() {
+    public func buttonCreateAccount() {
+        coordinator?.buttonCreateAccount()
         print("criou conta")
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+
+        guard self.createAccount.password.count >= 6 else {
+            return
+        }
+
+        Auth.auth().createUser(withEmail: createAccount.email, password: createAccount.password) { authResult, error in
+
             if let error = error {
-                print(error)
+                debugPrint(error)
                 return
             }
+
             if let authResult = authResult {
                 print(authResult.user.uid)
-                withAnimation {
-                    self.userID = authResult.user.uid
-                }
+                self.userID = authResult.user.uid
             }
         }
     }

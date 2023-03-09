@@ -9,7 +9,8 @@ import SwiftUI
 
 @MainActor
 public protocol CreateAccountModelling: ObservableObject {
+    var createAccount: CreateAccountModel { get set }
     
     func returnLoginView()
-    func createAccount()
+    func buttonCreateAccount()
 }

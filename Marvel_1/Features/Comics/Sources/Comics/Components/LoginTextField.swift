@@ -24,7 +24,6 @@ public struct LoginTextField: View {
                 if(email.count != 0) {
                     
                     Image(systemName: email.isValidEmail() ? "checkmark" : "xmark")
-                    //                                .fontWeight(.bold)
                         .foregroundColor(email.isValidEmail() ? .green : .red)
                 }
             } else {

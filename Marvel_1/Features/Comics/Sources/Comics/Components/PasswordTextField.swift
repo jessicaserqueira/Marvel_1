@@ -15,7 +15,7 @@ public struct PasswordTextField: View {
     private func isValidPassword(_ password: String) -> Bool {
         // minimum 6 characters long
         // 1 uppercase character
-        // 1 special char
+        // 1 special character
         
         let passwordRegex = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[A-Z]).{6,}$")
         
@@ -34,7 +34,6 @@ public struct PasswordTextField: View {
                 if(password.count != 0) {
                     
                     Image(systemName: isValidPassword(password) ? "checkmark" : "xmark")
-//                            .fontWeight(.bold)
                         .foregroundColor(isValidPassword(password) ? .green : .red)
                 }
             } else {

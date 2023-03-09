@@ -15,25 +15,38 @@ public class LoginCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
+//    var tabBarController: UITabBarController
     
     public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+//        self.tabBarController = tabBarController
     }
     
-   
     public func start()  {
         
-        let viewModel = LoginViewModel(coordinator: self)
-        let loginView = LoginView(viewModel: viewModel)
+#warning("Coordinator refactor")
         
-        let hostingController = UIHostingController(rootView: loginView)
-        
-        navigationController.pushViewController(hostingController, animated: true)
+//        let viewModel = LoginViewModel(coordinator: self)
+//        let loginView = LoginView(viewModel: viewModel)
+//        
+//        let hostingController = UIHostingController(rootView: loginView)
+//        
+//        navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
-// MARK: LoginCoordinating
-@available(iOS 14.0, *)
-extension LoginCoordinator: LoginCoordinating {
-        #warning("TODO")
-}
+
+//@available(iOS 14.0, *)
+//extension LoginCoordinator: LoginCoordinating {
+//
+//    public func createAccount() {
+//
+//    }
+//
+//    public func showTabBarCoordinator() {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+//            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController)
+//            tabBarcoordinator.start()
+//        }
+//    }
+//}

@@ -36,7 +36,7 @@ public class AppCoordinator: Common.Coordinator {
 extension AppCoordinator {
     
     func showSplashCoordinator() {
-        let coordinator = coordinatorFactory.makeLoginCoordinator()
+        let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
     }
     

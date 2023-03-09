@@ -11,7 +11,7 @@ import Common
 import SwiftUI
 
 @available(iOS 14.0, *)
-public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
+public class CreateAccountCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
@@ -22,17 +22,17 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
    
     public func start()  {
-        
-        let viewModel = CreateAccountModel(coordinator: self)
-        let createView = CreateAccountView(viewModel: viewModel)
-        
-        let hostingController = UIHostingController(rootView: createView)
-        navigationController.pushViewController(hostingController, animated: true)
+        #warning("Coordinator refactor")
+//        let viewModel = CreateAccountModel(coordinator: self)
+//        let createView = CreateAccountView(viewModel: viewModel)
+//        
+//        let hostingController = UIHostingController(rootView: createView)
+//        navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
-// MARK: LoginCoordinating
-@available(iOS 14.0, *)
-extension CreateAccountCoordinator: CreateAccountCoordinating {
-        #warning("TODO")
-}
+//// MARK: LoginCoordinating
+//@available(iOS 14.0, *)
+//extension CreateAccountCoordinator: CreateAccountCoordinating {
+//        #warning("TODO")
+//}

@@ -11,8 +11,6 @@ import FirebaseAuth
 
 public struct LoginView<ViewModel: LoginModelling>: View {
     @ObservedObject var viewModel: ViewModel
-    @State var email = String()
-    @State var password = String()
     
     public init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -23,10 +21,6 @@ public struct LoginView<ViewModel: LoginModelling>: View {
     
     public var body: some View {
         ZStack {
-            
-            Image("splash")
-                .resizable()
-//                .edgesIgnoringSafeArea(.all)
             Color.white.edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -43,7 +37,7 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 Spacer()
                 
                 HStack {
-                    LoginTextField(email: $email, borderColor: .black)
+                    LoginTextField(email: $viewModel.loginModel.email, borderColor: .black)
                     
                     Spacer()
                     
@@ -53,7 +47,7 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 
                 
                 HStack {
-                    PasswordTextField(password: $password, borderColor: .black)
+                    PasswordTextField(password: $viewModel.loginModel.password, borderColor: .black)
                     
                     Spacer()
                     
@@ -95,45 +89,6 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 
             }
             
-        }
+        }.navigationBarBackButtonHidden(true)
     }
-    
-//    public var body: some View {
-//
-//        ZStack {
-//            Image("splash")
-//                .resizable()
-//                .edgesIgnoringSafeArea(.all)
-//
-//            VStack(alignment: .center, content: {
-//
-//                Text(L10n.Splash.title)
-//                    .font(Font.custom("Bangers-Regular", size: 64))
-//                    .foregroundColor(.primary)
-//                    .multilineTextAlignment(.leading)
-//                    .padding(.top, -50)
-//
-//                LoginTextField(email: $email, borderColor: borderColor)
-//                    .padding(.horizontal, 24)
-//                    .padding(.bottom, 10)
-//
-//                PasswordTextField(password: $password, borderColor: borderColor)
-//                    .padding(.horizontal, 24)
-//
-//                Button(action: {
-//                    viewModel.loginButton()
-//                }) {
-//                    Text("Entrar")
-//                            .fontWeight(.semibold)
-//                            .foregroundColor(.black)
-//                            .frame(width: 327, height: 48)
-//                            .background(Color.yellow)
-//                            .cornerRadius(10)
-//                            .padding(.top, 30)
-//                }
-//
-//            }).padding(.top, -50)
-////                .padding(.bottom, 5)
-//        }.navigationBarBackButtonHidden(true)
-//    }
 }

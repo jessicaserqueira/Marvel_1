@@ -6,6 +6,6 @@
 //
 
 public protocol LoginCoordinating {
-
-    #warning("TODO")
+    func loginButton()
+    func createAccount()
 }

@@ -69,5 +69,4 @@ extension ComicsViewModel: ComicsModelling {
         coordinator?.buttonDetails(with: id)
         selectedComicsId = id
     }
-    
 }

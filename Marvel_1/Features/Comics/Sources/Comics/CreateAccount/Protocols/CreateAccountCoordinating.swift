@@ -7,5 +7,6 @@
 
 public protocol CreateAccountCoordinating {
 
-    #warning("TODO")
+    func returnLoginView()
+    func buttonCreateAccount()
 }
