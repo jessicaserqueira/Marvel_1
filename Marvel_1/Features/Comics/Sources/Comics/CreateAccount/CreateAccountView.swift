@@ -80,10 +80,7 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
                         .padding(.horizontal)
                         .padding(.bottom, 30)
                 }
-                
-                
-            }
-            
+            }.navigationBarBackButtonHidden(true)
         }
     }
 }
