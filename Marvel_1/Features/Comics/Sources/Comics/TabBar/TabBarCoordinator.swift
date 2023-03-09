@@ -14,10 +14,12 @@ public class TabBarCoordinator: Coordinator {
     var navigationController: UINavigationController
     var tabBarViewController: UITabBarController
     public var childCoordinators: [Coordinator] = []
+    var container: DIContainer
     
-    public init(navigationController: UINavigationController, tabBarViewController: UITabBarController) {
+    public init(navigationController: UINavigationController, tabBarViewController: UITabBarController, container: DIContainer) {
         self.navigationController = navigationController
         self.tabBarViewController = tabBarViewController
+        self.container = container
     }
     
     @MainActor public func start() {
@@ -45,28 +47,19 @@ public class TabBarCoordinator: Coordinator {
     }
     
     private func makeCharacterHomeCoordinator() -> CharacterHomeCoordinator {
-        let coordinator = CharacterHomeCoordinator(
-            navigationController: UINavigationController(),
-            tabBarController: tabBarViewController
-        )
+        let coordinator = container.resolveSafe(CharacterHomeCoordinator.self)
         coordinator.start()
         return coordinator
     }
     
     @MainActor private func makeComicsCoordinator() -> ComicsCoordinator {
-        let coordinator = ComicsCoordinator(
-            navigationController: UINavigationController(),
-            tabBarController: tabBarViewController
-        )
+        let coordinator = container.resolveSafe(ComicsCoordinator.self)
         coordinator.start()
         return coordinator
     }
     
    @MainActor private func makeFavoritesCoordinator() -> FavoritesCoordinator {
-        let coordinator = FavoritesCoordinator(
-            navigationController: UINavigationController(),
-            tabBarController: tabBarViewController
-        )
+       let coordinator = container.resolveSafe(FavoritesCoordinator.self)
         coordinator.start()
         return coordinator
     }

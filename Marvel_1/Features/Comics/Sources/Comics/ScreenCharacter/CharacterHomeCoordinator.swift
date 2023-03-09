@@ -13,11 +13,10 @@ import SwiftUI
 public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating {
     
     public var childCoordinators: [Coordinator] = []
-    public var navigationController: UINavigationController
+    public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController?
     
-    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
-        self.navigationController = navigationController
+    public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
     }
     

@@ -12,38 +12,45 @@ import Kingfisher
 struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
-    @Binding var buttonImage: String
-    @State private var searchTerm: String = ""
-    @State var isAnimating: Bool = true
-    @State var selectedCharacterId: Int?
     
     var borderColor: Color
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
-        SearchBar(searchTerm: $searchTerm, borderColor: borderColor)
+        SearchBar(searchTerm: $viewModel.searchTerm, borderColor: borderColor)
             .padding(.horizontal, 24)
         
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
                 LazyVGrid(columns: self.gridItemLayout, alignment: .center) {
-                    ForEach(self.viewModel.filterCharacters(searchTerm: self.searchTerm), id: \.uniqueId) { i in
+                    ForEach(self.viewModel.filterCharacters(searchTerm: viewModel.searchTerm), id: \.id) { character in
                         VStack(alignment: .center) {
                             Button(action: {
-                                viewModel.buttonDetails(with: i.id ?? 0)
-                                selectedCharacterId = i.id
-        
+                                viewModel.buttonDetails(with: character.item.id ?? 0)
+                                
                             }) {
-                                KFImage(URL(string: "\(i.thumbnail)"))
+                                KFImage(character.thumbnail) // Use the `thumbnail` property directly from `CharacterModel`
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 100, height: 100)
                                     .overlay(RoundedRectangle(cornerRadius: 0).stroke(self.borderColor, lineWidth: 2))
+                                
                             }
                             HStack(spacing: 10) {
-                                Text(i.name)
+                                Text(character.name)
                                     .font(Font.custom("Bangers-Regular", size: 14))
-                                FavoriteButton(action: self.viewModel.favoriteButton, buttonImage: self.$buttonImage)
+                                FavoriteButton(
+                                    isFavoriteButtonActive: .init(
+                                        get:  {
+                                            viewModel.isFavorites.first(where:{ character.id == $0.id })?.isFavorite ?? false
+                                        },
+                                        set: { isFavorite in
+                                            viewModel.isFavorites = viewModel.isFavorites.map {
+                                                character.id == $0.id ? .init(id: $0.id, isFavorite: isFavorite) : $0
+                                            }
+                                        }
+                                    )
+                                )
                             }
                             .frame(width: 100, height: 30)
                             .overlay(RoundedRectangle(cornerRadius: 0).stroke(self.borderColor, lineWidth: 2))
@@ -59,9 +66,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                 .onAppear{
                     viewModel.didAppear()
                 }
-                if viewModel.isLoading {
-                    ActivityIndicator(isAnimating: $isAnimating)
-                }
+                ActivityIndicator(isAnimating: $viewModel.isLoading)
             }
         }
         .padding(.horizontal, 12)

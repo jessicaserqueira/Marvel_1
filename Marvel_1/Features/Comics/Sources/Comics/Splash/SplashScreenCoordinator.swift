@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Common
 import UIKit
 import SwiftUI
 
@@ -15,10 +16,12 @@ public class SplashScreenCoordinator: LoginCoordinating, CreateAccountCoordinati
     
     var navigationController: UINavigationController
     var tabBarController: UITabBarController
+    var container: DIContainer
     
-    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
         self.navigationController = navigationController
         self.tabBarController = tabBarController
+        self.container = container
     }
     
     public func start() {
@@ -57,7 +60,7 @@ public class SplashScreenCoordinator: LoginCoordinating, CreateAccountCoordinati
     
     public func loginButton() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController)
+            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController, container: self.container)
             tabBarcoordinator.start()
         }
     }
