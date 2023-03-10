@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol CoordinatorDelegate: class {
+public protocol CoordinatorDelegate: AnyObject {
 
     func coordinatorDidExit(_ coordinator: Coordinator)
 }
@@ -22,7 +22,7 @@ public protocol Coordinator: CoordinatorDelegate {
 
 public extension Coordinator {
 
-    public func coordinatorDidExit(_ coordinator: Coordinator) {
+    func coordinatorDidExit(_ coordinator: Coordinator) {
 
         guard let index = self.childCoordinators.firstIndex(where: { $0 === coordinator }) else { return }
         self.childCoordinators.remove(at: index)

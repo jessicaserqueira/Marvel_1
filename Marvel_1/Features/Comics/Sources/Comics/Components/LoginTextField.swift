@@ -15,7 +15,7 @@ public struct LoginTextField: View {
     public var body: some View {
         HStack {
             if #available(iOS 15.0, *) {
-                TextField("", text: $email, prompt: Text(L10n.Login.TextField.placeHolder).foregroundColor(.black))
+                TextField(L10n.Login.TextField.title, text: $email, prompt: Text(L10n.Login.TextField.placeHolder).foregroundColor(.black))
                     .keyboardType(.emailAddress)
                     .font(Font.custom("Nunito-Medium", size: 16))
                     .foregroundColor(.black)

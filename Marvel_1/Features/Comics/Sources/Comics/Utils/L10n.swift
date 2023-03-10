@@ -77,10 +77,36 @@ internal enum L10n {
       /// E-mail
       internal static let title = L10n.tr("Localizable", "Login.TextField.title", fallback: "E-mail")
     }
+    internal enum TextFieldPassword {
+      /// Digite sua senha
+      internal static let placeholder = L10n.tr("Localizable", "Login.TextFieldPassword.placeholder", fallback: "Digite sua senha")
+      /// Password
+      internal static let title = L10n.tr("Localizable", "Login.TextFieldPassword.title", fallback: "Password")
+    }
   }
   internal enum MarvelHQ {
     /// Marvel HQ
     internal static let title = L10n.tr("Localizable", "MarvelHQ.title", fallback: "Marvel HQ")
+  }
+  internal enum Modal {
+    internal enum NotficationFailCreate {
+      /// Não foi possível criar sua conta, tente mais tarde
+      internal static let subTitle = L10n.tr("Localizable", "Modal.NotficationFailCreate.subTitle", fallback: "Não foi possível criar sua conta, tente mais tarde")
+      /// Error ao criar conta
+      internal static let title = L10n.tr("Localizable", "Modal.NotficationFailCreate.title", fallback: "Error ao criar conta")
+    }
+    internal enum NotficationFailLogin {
+      /// Não foi possível realizar o login, revise os dados e tente novamente, mais tarde
+      internal static let subTitle = L10n.tr("Localizable", "Modal.NotficationFailLogin.subTitle", fallback: "Não foi possível realizar o login, revise os dados e tente novamente, mais tarde")
+      /// Falha no Login
+      internal static let title = L10n.tr("Localizable", "Modal.NotficationFailLogin.title", fallback: "Falha no Login")
+    }
+    internal enum NotficationSuccessCreate {
+      /// Prencha os campos com login e senha
+      internal static let subTitle = L10n.tr("Localizable", "Modal.NotficationSuccessCreate.subTitle", fallback: "Prencha os campos com login e senha")
+      /// Conta criada com sucesso
+      internal static let title = L10n.tr("Localizable", "Modal.NotficationSuccessCreate.title", fallback: "Conta criada com sucesso")
+    }
   }
   internal enum NotFoundFavorite {
     /// Nenhum resultado encontrado

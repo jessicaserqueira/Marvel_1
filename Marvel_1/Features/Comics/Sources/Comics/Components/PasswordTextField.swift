@@ -11,6 +11,7 @@ public struct PasswordTextField: View {
     
     @Binding var password: String
     public var borderColor: Color = .black
+    @State private var isSecureTextEntry = true
     
     private func isValidPassword(_ password: String) -> Bool {
         // minimum 6 characters long
@@ -25,21 +26,33 @@ public struct PasswordTextField: View {
     public var body: some View {
         HStack {
             if #available(iOS 15.0, *) {
-                SecureField("E-mail", text: $password, prompt: Text(L10n.Password.TextField.placeHolder).foregroundColor(.black))
-                    .keyboardType(.numbersAndPunctuation)
-                    .font(Font.custom("Nunito-Medium", size: 16))
-                    .foregroundColor(.black)
-                    .background(Color.clear)
+                if isSecureTextEntry {
+                    SecureField(L10n.Login.TextFieldPassword.title, text: $password, prompt: Text(L10n.Login.TextFieldPassword.placeholder).foregroundColor(.black))
+                        .keyboardType(.numbersAndPunctuation)
+                        .font(Font.custom("Nunito-Medium", size: 16))
+                        .foregroundColor(.black)
+                        .background(Color.clear)
+                } else {
+                    TextField(L10n.Login.TextFieldPassword.title, text: $password, prompt: Text(L10n.Login.TextFieldPassword.placeholder).foregroundColor(.black))
+                        .keyboardType(.numbersAndPunctuation)
+                        .font(Font.custom("Nunito-Medium", size: 16))
+                        .foregroundColor(.black)
+                        .background(Color.clear)
+                }
+                Button(action: {
+                    isSecureTextEntry.toggle()
+                }, label: {
+                    Image(systemName: isSecureTextEntry ? "eye.slash" : "eye")
+                        .foregroundColor(.black)
+                })
                 
                 if(password.count != 0) {
-                    
                     Image(systemName: isValidPassword(password) ? "checkmark" : "xmark")
                         .foregroundColor(isValidPassword(password) ? .green : .red)
                 }
             } else {
                 // Fallback on earlier versions
             }
-        
         }
         .padding(12)
         .frame(width: 327,height: 48)

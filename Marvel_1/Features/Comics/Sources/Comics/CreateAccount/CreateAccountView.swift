@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
     @ObservedObject var viewModel: ViewModel
+    @State private var showModal = false
     
     public init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -25,60 +26,60 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
                     Text(L10n.CreateAccount.Label.title)
                         .font(.largeTitle)
                         .bold()
-                    
                     Spacer()
                 }
                 .padding()
                 .padding(.top)
-                
                 Spacer()
-                
                 HStack {
                     LoginTextField(email: $viewModel.createAccount.email, borderColor: .black)
-                    
                     Spacer()
-                    
                 }
-                
                 .padding()
-                
-                
                 HStack {
                     PasswordTextField(password: $viewModel.createAccount.password, borderColor: .black)
-                    
                     Spacer()
-                    
                 }
                 .padding()
-                
-                
                 Button(action: {
                     viewModel.returnLoginView()
                 }) {
                     Text(L10n.CreateAccount.Ask.title)
                         .foregroundColor(.black.opacity(0.7))
                 }
-                
                 Spacer()
                 Spacer()
-                
-                
-                Button {
-                    viewModel.buttonCreateAccount()
-                } label: {
-                    Text(L10n.CreateAccount.Button.title)
-                        .foregroundColor(.white)
-                        .bold()
-                    
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                    
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.black)
-                        )
-                        .padding(.horizontal)
-                        .padding(.bottom, 30)
+                VStack {
+                    Button {
+                        viewModel.buttonCreateAccount()
+                        self.showModal = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            self.showModal = false
+                        }
+                    } label: {
+                        Text(L10n.CreateAccount.Button.title)
+                            .foregroundColor(.white)
+                            .bold()
+                        
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                        
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.black)
+                            )
+                            .padding(.horizontal)
+                            .padding(.bottom, 30)
+                    }
+                }
+                if showModal {
+                    ModalView()
+                        .frame(width: 328, height: 70)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                        .transition(.move(edge: .bottom))
+                        .animation(.spring())
+                        .padding(.bottom, 20)
                 }
             }.navigationBarBackButtonHidden(true)
         }
