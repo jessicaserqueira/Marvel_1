@@ -10,6 +10,7 @@ import Common
 import Comics
 import SwiftUI
 
+@available(iOS 14.0, *)
 public class DependencyInjector {
        
     private var window: UIWindow

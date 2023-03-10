@@ -9,6 +9,7 @@ import Common
 import Comics
 import AppNavigation
 
+@available(iOS 14.0, *)
 class CoordinatorFactoryImplementation: CoordinatorFactory {
     private let container: DIContainer
     
@@ -20,6 +21,17 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     func makeSplashCoordinator() -> Comics.SplashScreenCoordinator {
         container.resolveSafe(SplashScreenCoordinator.self)
     }
+    
+    // MARK: - LoginCoordinator
+    func makeLoginCoordinator() -> Comics.LoginCoordinator {
+        container.resolveSafe(LoginCoordinator.self)
+    }
+    
+    // MARK: CreateAccountCoordinator
+    func makeCreateAccountCoordinator() -> Comics.CreateAccountCoordinator {
+        container.resolveSafe(CreateAccountCoordinator.self)
+    }
+    
     // MARK: - TabBarCoordinator
     
     func makeTabBarCoordinator() -> Comics.TabBarCoordinator {

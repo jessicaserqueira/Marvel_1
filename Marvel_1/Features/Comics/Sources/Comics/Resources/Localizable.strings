@@ -6,8 +6,25 @@
   
 */
 
+// MARK: - SplashView
+"Splash.title" = "Marvel \nComics";
+
+// MARK: - LoginView
+"Login.TextField.placeHolder" = "Insira seu e-mail";
+"Login.TextField.title" = "E-mail";
+"Login.Button.title" = "Entrar";
+"Login.Label.title" = "Ainda não possui conta?";
+
+// MARK: - CreateAccountView
+"CreateAccount.Label.title" = "Crie sua Conta";
+"CreateAccount.Ask.title" = "Já possui conta?";
+"CreateAccount.Button.title" = "Criar";
+
+"Password.TextField.placeHolder" = "Insira sua senha";
+"Password.TextField.title" = "Senha";
+
 // MARK: - CharacterHomeView
-"Characters.tile" = "Personagens";
+"Characters.Title.tile" = "Personagens";
 "FindComic.Search.placeHolder" = "Encontre o seu quadrinho";
 "DetailsCharacter" = "Detalhes do personagem";
 

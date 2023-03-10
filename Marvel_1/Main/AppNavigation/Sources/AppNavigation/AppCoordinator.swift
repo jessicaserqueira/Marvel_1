@@ -9,6 +9,7 @@ import UIKit
 import Common
 import Comics
 
+@available(iOS 14.0, *)
 public class AppCoordinator: Common.Coordinator {
     
     public var window: UIWindow
@@ -31,6 +32,7 @@ public class AppCoordinator: Common.Coordinator {
     }
 }
 
+@available(iOS 14.0, *)
 extension AppCoordinator {
     
     func showSplashCoordinator() {
