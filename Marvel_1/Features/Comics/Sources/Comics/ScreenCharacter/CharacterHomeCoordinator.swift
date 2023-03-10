@@ -43,7 +43,7 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating {
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
         
-        #warning("TODO Implementar navigation sem tabBar9")
+        #warning("TODO Implementar navigation sem tabBar")
 //        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
 //        navigationController.hidesBottomBarWhenPushed = true
 //        navigationController.tabBarController?.tabBar.isHidden = true

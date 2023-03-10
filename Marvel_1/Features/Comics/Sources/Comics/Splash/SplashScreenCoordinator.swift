@@ -53,9 +53,11 @@ public class SplashScreenCoordinator: LoginCoordinating, CreateAccountCoordinati
     }
     
     public func buttonCreateAccount() {
-        let viewModel = LoginViewModel(coordinator: self)
-        _ = LoginView(viewModel: viewModel)
-        navigationController.popViewController(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            let viewModel = LoginViewModel(coordinator: self)
+            _ = LoginView(viewModel: viewModel)
+            self.navigationController.popViewController(animated: true)
+        }
     }
     
     public func loginButton() {

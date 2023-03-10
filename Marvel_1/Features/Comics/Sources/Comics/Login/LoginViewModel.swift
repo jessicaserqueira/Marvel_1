@@ -30,18 +30,19 @@ extension LoginViewModel: LoginModelling {
     }
     
     public func loginButton() {
-        print("Entrou")
-        coordinator?.loginButton()
         Auth.auth().signIn(withEmail: loginModel.email, password: loginModel.password) { authResult, error in
             if let error = error {
+                print("Os dados fornecidos são inválidos.")
                 print(error)
                 return
             }
             if let authResult = authResult {
+                print("Sucesso")
                 print(authResult.user.uid)
                 withAnimation {
                     self.userID = authResult.user.uid
                 }
+                self.coordinator?.loginButton()
             }
         }
     }
