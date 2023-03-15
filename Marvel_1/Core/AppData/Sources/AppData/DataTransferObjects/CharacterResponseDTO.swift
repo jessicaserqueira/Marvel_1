@@ -7,6 +7,7 @@
 
 import Foundation
 import Domain
+import SwiftUI
 
 public struct CharacterResponseDTO: Codable {
     
@@ -32,6 +33,19 @@ extension CharacterResponseDTO {
         case resultDescription = "description"
         case thumbnail
         
+    }
+}
+
+extension CharacterResponseDTO {
+    
+   public var toDictionary: [String: Any] {
+        let dict: [String: Any?] = [
+            "id": id,
+            "name": name,
+            "resultDescription": resultDescription,
+            "thumbnail": thumbnail
+        ]
+        return dict.compactMapValues { $0 }
     }
 }
 

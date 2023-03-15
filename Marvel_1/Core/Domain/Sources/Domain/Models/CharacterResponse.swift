@@ -27,3 +27,16 @@ public struct CharacterResponse: Codable  {
         self.thumbnail = thumbnail
     }
 }
+
+extension CharacterResponse {
+    
+  public  var toDictionary: [String: Any] {
+        let dict: [String: Any?] = [
+            "id": id,
+            "name": name,
+            "resultDescription": resultDescription,
+            "thumbnail": thumbnail
+        ]
+        return dict.compactMapValues { $0 }
+    }
+}

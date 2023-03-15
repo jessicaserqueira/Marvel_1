@@ -27,6 +27,7 @@ public class DependencyInjector {
             SDKAssembly(),
             StorageAssembly(),
             NetworkingAssembly(),
+            FireStorageAssembly(),
             DataAssembly(),
             DomainAssembly(),
             

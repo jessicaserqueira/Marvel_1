@@ -32,6 +32,10 @@ class DomainAssembly: Assembly {
         let detailsComicsRepository = container.resolveSafe(Domain.DetailsComicsRepository.self)
         container.register(type: Domain.DetailsComicsUseCaseProtocol.self, component:  Domain.DetailsComicsUseCase(detailsComicsRepository: detailsComicsRepository))
         
+        // MARK: - FavoritesCharacter
+        let favoritesCharacterRepository = container.resolveSafe(Domain.FavoritesCharacterRepository.self)
+        container.register(type: Domain.FavoritesCharacterUseCaseProtocol.self, component:  Domain.FavoritesCharacterUseCase(favoritesCharacterRepository: favoritesCharacterRepository))
+        
         // MARK: - Image
         let fetchImageRepository = container.resolveSafe(Domain.FetchImageRepository.self)
         container.register(type: Domain.FetchImageUseCaseProtocol.self, component: Domain.FetchImageUseCase(fetchImageRepository: fetchImageRepository))
