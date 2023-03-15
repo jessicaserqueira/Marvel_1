@@ -17,6 +17,7 @@
 		748B1DE829B65BDB001FF680 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 748B1DE729B65BDB001FF680 /* FirebaseFirestoreSwift */; };
 		748B1DEA29B65BDB001FF680 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 748B1DE929B65BDB001FF680 /* FirebaseStorage */; };
 		748B1DEC29B75CE1001FF680 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B1DEB29B75CE1001FF680 /* GoogleService-Info.plist */; };
+		A41AE28A29C1F40800B8E7FF /* FireStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A41AE28929C1F40800B8E7FF /* FireStorage */; };
 		A45E0D2C298BF7550001DC6C /* AppData in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2B298BF7550001DC6C /* AppData */; };
 		A45E0D2E298BF7550001DC6C /* AppNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2D298BF7550001DC6C /* AppNavigation */; };
 		A45E0D30298BF7550001DC6C /* Comics in Frameworks */ = {isa = PBXBuildFile; productRef = A45E0D2F298BF7550001DC6C /* Comics */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		743AF86A299CFB5D00F82417 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		748B1DEB29B75CE1001FF680 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A470243729C1F22100DABD60 /* FireStorage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FireStorage; sourceTree = "<group>"; };
 		A49F801B298BF2E00023D885 /* Marvel_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49F801E298BF2E00023D885 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A49F8020298BF2E00023D885 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				748B1DE229B65BDB001FF680 /* FirebaseDatabase in Frameworks */,
 				A45E0D36298BF7550001DC6C /* Domain in Frameworks */,
 				A45E0D34298BF7550001DC6C /* DI in Frameworks */,
+				A41AE28A29C1F40800B8E7FF /* FireStorage in Frameworks */,
 				A45E0D2E298BF7550001DC6C /* AppNavigation in Frameworks */,
 				748B1DDE29B65BDB001FF680 /* FirebaseAnalyticsSwift in Frameworks */,
 				A45E0D30298BF7550001DC6C /* Comics in Frameworks */,
@@ -147,6 +150,7 @@
 		A49F8034298BF3290023D885 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A470243729C1F22100DABD60 /* FireStorage */,
 				A49F803D298BF4330023D885 /* AppData */,
 				A49F803C298BF41D0023D885 /* Common */,
 				A49F803B298BF40E0023D885 /* Domain */,
@@ -202,6 +206,7 @@
 				748B1DE529B65BDB001FF680 /* FirebaseFirestore */,
 				748B1DE729B65BDB001FF680 /* FirebaseFirestoreSwift */,
 				748B1DE929B65BDB001FF680 /* FirebaseStorage */,
+				A41AE28929C1F40800B8E7FF /* FireStorage */,
 			);
 			productName = Marvel_1;
 			productReference = A49F801B298BF2E00023D885 /* Marvel_1.app */;
@@ -515,6 +520,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 748B1DDA29B65BDB001FF680 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		A41AE28929C1F40800B8E7FF /* FireStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FireStorage;
 		};
 		A45E0D2B298BF7550001DC6C /* AppData */ = {
 			isa = XCSwiftPackageProductDependency;
