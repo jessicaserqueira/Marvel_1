@@ -34,7 +34,7 @@ class CoordinatorsAssembly: Assembly {
         container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController, container: container))
         
         // MARK: - LoginCoordinator
-        container.register(type: LoginCoordinator.self, component: LoginCoordinator(navigationController: appCoordinator.navigationController))
+        container.register(type: LoginCoordinator.self, component: LoginCoordinator(navigationController: appCoordinator.navigationController, tabBarController: UITabBarController(), container: DIContainer()))
         
         // MARK: - CreateAccountCoordinator
         container.register(type: CreateAccountCoordinator.self, component: CreateAccountCoordinator(navigationController: appCoordinator.navigationController))
@@ -42,7 +42,7 @@ class CoordinatorsAssembly: Assembly {
         // MARK: - TabBarCoordinator
         container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController, container: container))
         
-        // MARK: - CharacterCoordinator
+        // MARK: - CharacterHomeCoordinator 
         container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator (tabBarController: appCoordinator.tabBarController))
 
         // MARK: - DetailsCharacterCoordinator

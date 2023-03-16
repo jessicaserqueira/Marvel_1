@@ -14,6 +14,7 @@ public protocol CoordinatorFactory: DependencyFactory {
     func makeSplashCoordinator() -> SplashScreenCoordinator
     func makeLoginCoordinator() -> LoginCoordinator
     func makeCreateAccountCoordinator() -> CreateAccountCoordinator
+    func makeCharacterHomeCoordinator() -> CharacterHomeCoordinator
     func makeTabBarCoordinator() -> TabBarCoordinator
     func makeScreenDetailsCoordinator() -> DetailsCharacterCoordinator
 }
