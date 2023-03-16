@@ -32,6 +32,10 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
         container.resolveSafe(CreateAccountCoordinator.self)
     }
     
+    func makeCharacterHomeCoordinator() -> Comics.CharacterHomeCoordinator {
+        container.resolveSafe(CharacterHomeCoordinator.self)
+    }
+    
     // MARK: - TabBarCoordinator
     
     func makeTabBarCoordinator() -> Comics.TabBarCoordinator {

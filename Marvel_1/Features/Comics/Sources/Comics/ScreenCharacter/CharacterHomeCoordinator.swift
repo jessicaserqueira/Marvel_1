@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating {
+public class CharacterHomeCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
@@ -38,7 +38,8 @@ public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating
 extension CharacterHomeCoordinator: CharacterHomeCoordinating {
     
     public func buttonDetails(with id: Int) {
-        let viewModel = DetailsCharacterViewModel(coordinator: self)
+        let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
+        let viewModel = DetailsCharacterViewModel(coordinator: coordinator)
         let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)

@@ -12,7 +12,7 @@ import SwiftUI
 
 public protocol DetailsComicsCoordinatorDelegate: AnyObject {}
 
-public struct DetailsComicsCoordinator {
+public struct DetailsComicsCoordinator: DetailsComicsCoordinating {
     
     public var coordinatorDelegate: DetailsComicsCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
@@ -28,6 +28,3 @@ public struct DetailsComicsCoordinator {
         navigationController.pushViewController(UIHostingController(rootView: detailsComicsView), animated: false)
     }
 }
-
-// MARK: ScreenDetailsCoordinating
-extension DetailsComicsCoordinator: DetailsComicsCoordinating {}

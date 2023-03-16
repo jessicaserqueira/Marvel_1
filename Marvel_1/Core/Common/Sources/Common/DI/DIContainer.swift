@@ -15,7 +15,7 @@ public protocol DIContainerProtocol {
 public final class DIContainer: DIContainerProtocol {
     public static let shared = DIContainer()
     
-    private init() {}
+    public init() {}
     
     public var components: [String: Any] = [:]
     

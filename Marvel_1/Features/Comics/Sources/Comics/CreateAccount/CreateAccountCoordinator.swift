@@ -11,7 +11,7 @@ import Common
 import SwiftUI
 
 @available(iOS 14.0, *)
-public class CreateAccountCoordinator: Coordinator {
+public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
@@ -20,19 +20,28 @@ public class CreateAccountCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-   
+    
     public func start()  {
-        #warning("Coordinator refactor")
-//        let viewModel = CreateAccountModel(coordinator: self)
-//        let createView = CreateAccountView(viewModel: viewModel)
-//        
-//        let hostingController = UIHostingController(rootView: createView)
-//        navigationController.pushViewController(hostingController, animated: true)
+        let viewModel = CreateAccountViewModel(coordinator: self)
+        let createAccountView = CreateAccountView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: createAccountView)
+        navigationController.pushViewController(hostingController, animated: true)
+    }
+    
+    public func returnLoginView() {
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), container: DIContainer())
+        let viewModel = LoginViewModel(coordinator: coordinator)
+        _ = LoginView(viewModel: viewModel)
+        navigationController.popViewController(animated: true)
+    }
+    
+    public func buttonCreateAccount() {
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), container: DIContainer())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            let viewModel = LoginViewModel(coordinator: coordinator)
+            _ = LoginView(viewModel: viewModel)
+            self.navigationController.popViewController(animated: true)
+        }
     }
 }
-
-//// MARK: LoginCoordinating
-//@available(iOS 14.0, *)
-//extension CreateAccountCoordinator: CreateAccountCoordinating {
-//        #warning("TODO")
-//}
+    
