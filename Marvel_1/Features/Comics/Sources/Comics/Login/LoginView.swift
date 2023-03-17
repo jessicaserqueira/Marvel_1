@@ -85,10 +85,10 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                         .padding(.horizontal)
                         .padding(.bottom, 30)
                 }
-                
-                
+                .alert(isPresented: $viewModel.formInvalid) {
+                    Alert(title: Text(viewModel.alertText), dismissButton: .default(Text("OK")))
+                }
             }
-            
         }.navigationBarBackButtonHidden(true)
     }
 }

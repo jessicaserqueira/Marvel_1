@@ -15,6 +15,8 @@ public class CreateAccountViewModel: ObservableObject {
     private var coordinator: CreateAccountCoordinating?
     @Published public var createAccount = CreateAccountModel(email: "", password: "")
     @AppStorage("uid") var userID = String()
+    @Published public var formInvalid = false
+    public var alertText = ""
     
     public init(coordinator: CreateAccountCoordinating) {
         self.coordinator = coordinator
@@ -29,18 +31,21 @@ extension CreateAccountViewModel: CreateAccountModelling {
         coordinator?.returnLoginView()
     }
     
+    public func dismissModal() {
+        coordinator?.dismissModal()
+    }
+    
+    public var validData: Bool {
+        return !createAccount.email.isEmpty
+    }
+
     public func buttonCreateAccount() {
-        coordinator?.buttonCreateAccount()
-        print("criou conta")
-
-        guard self.createAccount.password.count >= 6 else {
-            return
-        }
-
         Auth.auth().createUser(withEmail: createAccount.email, password: createAccount.password) { authResult, error in
-
-            if let error = error {
-                debugPrint(error)
+            
+            guard let user = authResult?.user, error == nil else {
+                self.formInvalid = true
+                self.alertText = error!.localizedDescription
+                print(error!)
                 return
             }
 

@@ -8,9 +8,11 @@
 import SwiftUI
 import FirebaseAuth
 
+@available(iOS 14.0, *)
 struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
     @ObservedObject var viewModel: ViewModel
     @State private var showModal = false
+    @State private var isButtonDisable = true
     
     public init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -54,6 +56,7 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
                         viewModel.buttonCreateAccount()
                         self.showModal = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            viewModel.dismissModal()
                             self.showModal = false
                         }
                     } label: {
@@ -71,7 +74,20 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
                             .padding(.horizontal)
                             .padding(.bottom, 30)
                     }
+                    .disabled(isButtonDisable)
+                    .foregroundColor(.gray)
+                    .opacity(isButtonDisable ? 0.5 : 1.0)
+                    .alert(isPresented: $viewModel.formInvalid) {
+                        Alert(title: Text(viewModel.alertText))
+                    }
                 }
+                .onChange(of: viewModel.createAccount.password) { newValue in
+                    let passwordRegex = "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[1-9])(?=.*[A-Z]).{6,}$"
+                    let isValidPassword = newValue.range(of: passwordRegex, options: .regularExpression) != nil
+                    isButtonDisable = newValue.isEmpty || !isValidPassword
+                }
+#warning("TODO - Mover essa lógica")
+                
                 if showModal {
                     ModalView()
                         .frame(width: 328, height: 70)

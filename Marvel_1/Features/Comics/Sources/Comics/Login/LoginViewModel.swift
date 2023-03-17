@@ -15,6 +15,9 @@ public class LoginViewModel: ObservableObject {
     private var coordinator: LoginCoordinating?
     @Published public var loginModel = LoginAuthenticationModel(email: "", password: "")
     @AppStorage("uid") var userID = String()
+    @Published public var formInvalid = false
+    public var alertText = ""
+    
     
     public init(coordinator: LoginCoordinating) {
         self.coordinator = coordinator
@@ -31,11 +34,14 @@ extension LoginViewModel: LoginModelling {
     
     public func loginButton() {
         Auth.auth().signIn(withEmail: loginModel.email, password: loginModel.password) { authResult, error in
-            if let error = error {
-                print("Os dados fornecidos são inválidos.")
-                print(error)
+            
+            guard let user = authResult?.user, error == nil else {
+                self.formInvalid = true
+                self.alertText = error!.localizedDescription
+                print(error!)
                 return
             }
+
             if let authResult = authResult {
                 print("Sucesso")
                 print(authResult.user.uid)
