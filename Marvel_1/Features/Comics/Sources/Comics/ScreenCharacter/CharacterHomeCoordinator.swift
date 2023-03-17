@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-public class CharacterHomeCoordinator: Coordinator {
+public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
@@ -32,10 +32,7 @@ public class CharacterHomeCoordinator: Coordinator {
         
         navigationController.pushViewController(hostingController, animated: true)
     }
-}
-
-// MARK: CharacterHomeCoordinating
-extension CharacterHomeCoordinator: CharacterHomeCoordinating {
+    
     
     public func buttonDetails(with id: Int) {
         let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
@@ -44,9 +41,9 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating {
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
         
-        #warning("TODO Implementar navigation sem tabBar")
-//        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
-//        navigationController.hidesBottomBarWhenPushed = true
-//        navigationController.tabBarController?.tabBar.isHidden = true
+#warning("TODO Implementar navigation sem tabBar")
+        //        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
+        //        navigationController.hidesBottomBarWhenPushed = true
+        //        navigationController.tabBarController?.tabBar.isHidden = true
     }
 }

@@ -31,10 +31,10 @@ class CoordinatorsAssembly: Assembly {
         self.appCoordinator = appCoordinator
         
         // MARK: - SplashCoordinator
-        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator (navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController, container: container))
+        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator(navigationController: appCoordinator.navigationController))
         
         // MARK: - LoginCoordinator
-        container.register(type: LoginCoordinator.self, component: LoginCoordinator(navigationController: appCoordinator.navigationController, tabBarController: UITabBarController(), container: DIContainer()))
+        container.register(type: LoginCoordinator.self, component: LoginCoordinator(navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController, container: container))
         
         // MARK: - CreateAccountCoordinator
         container.register(type: CreateAccountCoordinator.self, component: CreateAccountCoordinator(navigationController: appCoordinator.navigationController))
