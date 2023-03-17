@@ -18,8 +18,11 @@ public class FavoritesCharacterUseCase {
 }
 
 extension FavoritesCharacterUseCase: FavoritesCharacterUseCaseProtocol {
-    public func addFavoriteCharacter(completion: @escaping (Result<CharacterResponse, Error>) -> Void) {
-        favoritesCharacterRepository.markAsFavorite(completion: completion)
-        favoritesCharacterRepository.unmarkAsFavorite(completion: completion)
+    public func markAsFavorite<T>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void) where T : Encodable {
+        favoritesCharacterRepository.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel, completion: completion)
+    }
+    
+    public func unmarkAsFavorite(characterID: Int, isFavorite: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
+        favoritesCharacterRepository.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite, completion: completion)
     }
 }

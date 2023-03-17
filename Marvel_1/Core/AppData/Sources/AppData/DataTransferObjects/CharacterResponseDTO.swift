@@ -11,10 +11,16 @@ import SwiftUI
 
 public struct CharacterResponseDTO: Codable {
     
+    public init(id: Int? = nil, name: String, resultDescription: String, thumbnail: ThumbnailDTO) {
+        self.id = id
+        self.name = name
+        self.resultDescription = resultDescription
+        self.thumbnail = thumbnail
+    }
+    
     public let id: Int?
     public let name, resultDescription: String
-    public let thumbnail: ThumbnailDTO
-    
+    public let thumbnail: ThumbnailDTO?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -38,26 +44,12 @@ extension CharacterResponseDTO {
 
 extension CharacterResponseDTO {
     
-   public var toDictionary: [String: Any] {
-        let dict: [String: Any?] = [
-            "id": id,
-            "name": name,
-            "resultDescription": resultDescription,
-            "thumbnail": thumbnail
-        ]
-        return dict.compactMapValues { $0 }
-    }
-}
-
-extension CharacterResponseDTO {
-    
     public var toDomain: CharacterResponse {
         .init(
             id: id ?? .zero,
             name: name,
             resultDescription: resultDescription,
-            thumbnail: thumbnail.toDomain
+            thumbnail: thumbnail?.toDomain
         )
     }
 }
-

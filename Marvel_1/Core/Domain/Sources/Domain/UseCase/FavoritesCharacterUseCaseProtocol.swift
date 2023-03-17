@@ -5,8 +5,10 @@
 //  Created by Jessica Serqueira on 15/03/23.
 //
 
+import Common
 import Foundation
 
 public protocol FavoritesCharacterUseCaseProtocol {
-    func addFavoriteCharacter(completion: @escaping (Result<CharacterResponse, Error>) -> Void)
+    func markAsFavorite<T: Encodable>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void)
+    func unmarkAsFavorite(characterID: Int, isFavorite: Bool, completion: @escaping (Result<Void, Error>) -> Void)
 }

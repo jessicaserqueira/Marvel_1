@@ -45,6 +45,16 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                                             viewModel.isFavorites.first(where:{ character.id == $0.id })?.isFavorite ?? false
                                         },
                                         set: { isFavorite in
+                                            if isFavorite {
+                                                viewModel.markAsFavorite(
+                                                    characterID: character.id ?? 0,
+                                                    isFavorite: isFavorite,
+                                                    characterModel: character)
+                                            } else {
+                                                viewModel.unmarkAsFavorite(
+                                                    characterID: character.id ?? 0,
+                                                    isFavorite: isFavorite)
+                                            }
                                             viewModel.isFavorites = viewModel.isFavorites.map {
                                                 character.id == $0.id ? .init(id: $0.id, isFavorite: isFavorite) : $0
                                             }

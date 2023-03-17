@@ -19,23 +19,24 @@ public class FavoritesCharacterRemoteDataSource {
 }
 
 extension FavoritesCharacterRemoteDataSource: AppData.FavoritesCharacterRemoteDataSource {
-    public func markAsFavorite(completion: @escaping (Result<AppData.CharacterResponseDTO, Error>) -> Void) {
-            favoriteService.markAsFavorite() { result in
-                switch result {
-                case .success(let response):
-                    completion(.success(response))
-                case .failure(let error):
-                    print("\(error.localizedDescription)")
-                    completion(.failure(error))
-                }
+    public func markAsFavorite<T>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void) where T : Encodable {
+        
+        favoriteService.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel) { result in
+            switch result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+                completion(.failure(error))
             }
         }
+    }
     
-    public func unmarkAsFavorite(completion: @escaping (Result<AppData.CharacterResponseDTO, Error>) -> Void) {
-        favoriteService.unmarkAsFavorite() { result in
+    public func unmarkAsFavorite(characterID: Int, isFavorite: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
+        favoriteService.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite) { result in
             switch result {
-            case .success(let response):
-                completion(.success(response))
+            case .success(_):
+                completion(.success(()))
             case .failure(let error):
                 print("\(error.localizedDescription)")
                 completion(.failure(error))

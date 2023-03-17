@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 import Common
 import SwiftUI
+import Domain
 
-public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating {
+public class CharacterHomeCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
@@ -26,7 +27,7 @@ public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         
         let hostingController = UIHostingController(rootView: characterHomeView)
-        hostingController.tabBarItem.title = L10n.Characters.Title.tile
+        hostingController.tabBarItem.title = L10n.Characters.Title.title
         hostingController.tabBarItem.image = UIImage(named: "shield-Color")
         hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
         
@@ -35,17 +36,23 @@ public class CharacterHomeCoordinator: Coordinator, DetailsCharacterCoordinating
 }
 
 // MARK: CharacterHomeCoordinating
-extension CharacterHomeCoordinator: CharacterHomeCoordinating {
-    
+extension CharacterHomeCoordinator: CharacterHomeCoordinating, DetailsCharacterCoordinating {
     public func buttonDetails(with id: Int) {
         let viewModel = DetailsCharacterViewModel(coordinator: self)
         let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
-        
-        #warning("TODO Implementar navigation sem tabBar")
-//        navigationController.pushViewController(UIHostingController(rootView: screenDetailsView), animated: true)
-//        navigationController.hidesBottomBarWhenPushed = true
-//        navigationController.tabBarController?.tabBar.isHidden = true
+    }
+}
+
+extension CharacterHomeCoordinator: FavoritesCoordinating {
+    @MainActor public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
+        let viewModel = FavoritesViewModel(coordinator: self)
+        viewModel.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel)
+    }
+    
+    @MainActor public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
+        let viewModel = FavoritesViewModel(coordinator: self)
+        viewModel.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
     }
 }
