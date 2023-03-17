@@ -8,5 +8,5 @@
 public protocol CreateAccountCoordinating {
 
     func returnLoginView()
-    func buttonCreateAccount()
+    func dismissModal()
 }

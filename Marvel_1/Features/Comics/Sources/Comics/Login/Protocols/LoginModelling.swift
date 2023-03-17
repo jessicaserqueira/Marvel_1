@@ -10,6 +10,8 @@ import SwiftUI
 @MainActor
 public protocol LoginModelling: ObservableObject {
     var loginModel: LoginAuthenticationModel { get set }
+    var formInvalid: Bool { get set }
+    var alertText: String { get }
     
     func loginButton()
     func createAccount()
