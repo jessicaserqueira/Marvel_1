@@ -43,5 +43,14 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
             self.navigationController.popViewController(animated: true)
         }
     }
+    
+    public func dismissModal() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            let coordinator = LoginCoordinator(navigationController: self.navigationController, tabBarController: UITabBarController(), container: DIContainer())
+            let viewModel = LoginViewModel(coordinator: coordinator)
+            _ = LoginView(viewModel: viewModel)
+            self.navigationController.popViewController(animated: true)
+        }
+    }
 }
     
