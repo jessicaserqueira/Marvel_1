@@ -11,42 +11,36 @@ import Common
 import SwiftUI
 
 @available(iOS 14.0, *)
-public class LoginCoordinator: Coordinator {
+public class LoginCoordinator: Coordinator, LoginCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
-//    var tabBarController: UITabBarController
+    var tabBarController: UITabBarController
+    var container: DIContainer
     
-    public init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
         self.navigationController = navigationController
-//        self.tabBarController = tabBarController
+        self.tabBarController = tabBarController
+        self.container = container
     }
     
     public func start()  {
-        
-#warning("Coordinator refactor")
-        
-//        let viewModel = LoginViewModel(coordinator: self)
-//        let loginView = LoginView(viewModel: viewModel)
-//        
-//        let hostingController = UIHostingController(rootView: loginView)
-//        
-//        navigationController.pushViewController(hostingController, animated: true)
+        let viewModel = LoginViewModel(coordinator: self)
+        let loginView = LoginView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: loginView)
+        navigationController.pushViewController(hostingController, animated: true)
+    }
+    
+    public func createAccount() {
+        let coordinator = CreateAccountCoordinator(navigationController: navigationController)
+        let viewModel = CreateAccountViewModel(coordinator: coordinator)
+        let createAccountView = CreateAccountView(viewModel: viewModel)
+        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.pushViewController(UIHostingController(rootView: createAccountView), animated: true)
+    }
+    
+    @MainActor public func loginButton() {
+        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController.self, container: container.self)
+        tabBarCoordinator.start()
     }
 }
-
-
-//@available(iOS 14.0, *)
-//extension LoginCoordinator: LoginCoordinating {
-//
-//    public func createAccount() {
-//
-//    }
-//
-//    public func showTabBarCoordinator() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-//            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController)
-//            tabBarcoordinator.start()
-//        }
-//    }
-//}

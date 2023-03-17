@@ -11,7 +11,7 @@ import SwiftUI
 
 public protocol DetailsCharacterCoordinatorDelegate: AnyObject {}
 
-public struct DetailsCharacterCoordinator {
+public struct DetailsCharacterCoordinator: DetailsCharacterCoordinating {
     
     public var coordinatorDelegate: DetailsCharacterCoordinatorDelegate?
     public var childCoordinators: [Coordinator] = []
@@ -27,9 +27,3 @@ public struct DetailsCharacterCoordinator {
         navigationController.pushViewController(UIHostingController(rootView: detailsCharacterView), animated: false)
     }
 }
-
-// MARK: DetailsCoordinator
-extension DetailsCharacterCoordinator {}
-
-// MARK: DetailsCoordinating
-extension DetailsCharacterCoordinator: DetailsCharacterCoordinating {}

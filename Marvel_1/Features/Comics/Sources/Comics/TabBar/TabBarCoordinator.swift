@@ -46,7 +46,7 @@ public class TabBarCoordinator: Coordinator {
         navigationController.setViewControllers([tabBarViewController], animated: true)
     }
     
-    private func makeCharacterHomeCoordinator() -> CharacterHomeCoordinator {
+    @MainActor private func makeCharacterHomeCoordinator() -> CharacterHomeCoordinator {
         let coordinator = container.resolveSafe(CharacterHomeCoordinator.self)
         coordinator.start()
         return coordinator
