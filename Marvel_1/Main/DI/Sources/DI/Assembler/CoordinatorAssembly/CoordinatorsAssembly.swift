@@ -56,6 +56,8 @@ class CoordinatorsAssembly: Assembly {
         
         // MARK: - FavoritesCoordinator
         container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (tabBarController: appCoordinator.tabBarController))
+        
+        container.register(type: ContentViewCoordinator.self, component: ContentViewCoordinator(navigationController: appCoordinator.navigationController))
     }
 }
 

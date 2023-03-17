@@ -8,6 +8,8 @@
 import SwiftUI
 import Common
 import Domain
+import Firebase
+import FirebaseAuth
 
 public class CharacterHomeViewModel: ObservableObject {
     
@@ -33,6 +35,11 @@ public class CharacterHomeViewModel: ObservableObject {
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
+    
+    func loggout() {
+        print("sair")
+        try? Auth.auth().signOut()
+    }
     
     func selectCharacter(_ character: CharacterModel) {
         selectedCharacter = character
@@ -81,7 +88,5 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     
     @MainActor public func buttonDetails(with id: Int) {
         coordinator?.buttonDetails(with: id)
-        
-        
     }
 }

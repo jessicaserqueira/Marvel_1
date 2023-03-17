@@ -15,6 +15,7 @@ import SwiftUI
      var searchTerm: String { get set }
     var isLoading: Bool { get set }
     
+    func loggout()
     func didAppear()
     func fetchCharacter()
     func filterCharacters(searchTerm: String) -> [CharacterModel]

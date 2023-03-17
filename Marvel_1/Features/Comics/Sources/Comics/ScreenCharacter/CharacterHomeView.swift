@@ -28,12 +28,22 @@ import SwiftUI
                 .edgesIgnoringSafeArea(.top)
             
             VStack(alignment: .leading) {
-                Text(L10n.Characters.Title.tile)
-                    .font(Font.custom("Bangers-Regular", size: 40))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading, 24)
-                    .padding(.top, -36)
+                HStack {
+                    Text(L10n.Characters.Title.tile)
+                        .font(Font.custom("Bangers-Regular", size: 40))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.leading)
+                        .padding(.leading, 24)
+                        .padding(.top, -36)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        viewModel.loggout()
+                    }) {
+                        Text("Logout")
+                    }
+                }
                 
                 VStack {
                     if #available(iOS 14.0, *) {

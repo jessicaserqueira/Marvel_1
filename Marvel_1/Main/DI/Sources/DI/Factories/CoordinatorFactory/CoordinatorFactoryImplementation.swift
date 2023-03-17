@@ -42,4 +42,8 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     func makeScreenDetailsCoordinator() -> Comics.DetailsCharacterCoordinator {
         container.resolveSafe(DetailsCharacterCoordinator.self)
     }
+    
+    func makeContentViewCoordinator() -> Comics.ContentViewCoordinator {
+        container.resolveSafe(ContentViewCoordinator.self)
+    }
 }
