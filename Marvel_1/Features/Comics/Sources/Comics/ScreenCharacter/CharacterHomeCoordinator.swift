@@ -56,6 +56,5 @@ extension CharacterHomeCoordinator: FavoritesCoordinating {
     @MainActor public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
         let viewModel = FavoritesViewModel(coordinator: self)
         viewModel.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
-
     }
 }
