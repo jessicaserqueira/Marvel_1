@@ -44,6 +44,7 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating, DetailsCharacterC
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
 
+        
     }
 }
 
