@@ -21,6 +21,7 @@ public struct LoginTextField: View {
                     .foregroundColor(.black)
                     .background(Color.clear)
                     .autocapitalization(.none)
+                    .autocorrectionDisabled(false)
                 if(email.count != 0) {
                     
                     Image(systemName: email.isValidEmail() ? "checkmark" : "xmark")
