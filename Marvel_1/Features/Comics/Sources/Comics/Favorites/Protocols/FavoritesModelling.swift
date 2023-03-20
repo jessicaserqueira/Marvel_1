@@ -8,8 +8,8 @@
 import Foundation
 
 @MainActor
-public protocol FavoritesModelling {
+public protocol FavoritesModelling: ObservableObject  {
     
-    #warning("TODO")
+    func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
+    func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
 }
-

@@ -9,14 +9,14 @@ import Domain
 import Foundation
 import SwiftUI
 
-public struct CharacterModel: Identifiable, Decodable {
+public struct CharacterModel: Identifiable, Encodable {
     
-    public let item: CharacterResponse
-
+    public var item: CharacterResponse
     
-    init(_ item: CharacterResponse) {
+    
+    public init(_ item: CharacterResponse) {
         self.item = item
-
+        
     }
 }
 
@@ -40,8 +40,23 @@ extension CharacterModel {
         return URL(string: urlString) ?? URL(fileURLWithPath: "")
     }
     
-    var toDomain: CharacterResponse {
+    var toDomain: Domain.CharacterResponse {
         item
+    }
+}
+
+extension CharacterModel {
+    
+    var toDictionary: [String: Any] {
+        let dict: [String: Any?] = [
+            "id": id,
+            "name": name,
+            "resultDescription": resultDescription,
+            "thumbnail": thumbnail.absoluteString
+            
+            
+        ]
+        return dict.compactMapValues { $0 }
     }
 }
 

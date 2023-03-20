@@ -8,6 +8,5 @@
 import Foundation
 
 public protocol FavoritesCoordinating {
-    
-    #warning("TODO")
+
 }

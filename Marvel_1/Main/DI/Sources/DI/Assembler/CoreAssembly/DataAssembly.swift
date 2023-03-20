@@ -11,6 +11,7 @@ import Storage
 import SDK
 import AppData
 import Networking
+import FireStorage
 
 class DataAssembly: Assembly {
     
@@ -20,6 +21,7 @@ class DataAssembly: Assembly {
         let comicsRemoteDataSource = container.resolveSafe(Networking.ComicsRemoteDataSource.self)
         let detailsCharacterRemoteDataSource = container.resolveSafe(Networking.DetailsCharacterRemoteDataSource.self)
         let detailsComicsRemoteDataSource = container.resolveSafe(Networking.DetailsComicsRemoteDataSource.self)
+        let favoritesCharacterRemoteDataSource = container.resolveSafe(FireStorage.FavoritesCharacterRemoteDataSource.self)
         let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
         
         
@@ -34,6 +36,9 @@ class DataAssembly: Assembly {
         
         // MARK: - DetailsComics
         container.register(type: Domain.DetailsComicsRepository.self, component: AppData.DetailsComicsRepository(remote: detailsComicsRemoteDataSource))
+        
+        // MARK: - FavoritesCharacter
+        container.register(type: Domain.FavoritesCharacterRepository.self, component: AppData.FavoritesCharacterRepository(remote: favoritesCharacterRemoteDataSource))
         
         // MARK: - Image
         container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))

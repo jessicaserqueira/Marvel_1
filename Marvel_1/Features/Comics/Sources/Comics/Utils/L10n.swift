@@ -19,7 +19,7 @@ internal enum L10n {
   internal enum Characters {
     internal enum Title {
       /// Personagens
-      internal static let tile = L10n.tr("Localizable", "Characters.Title.tile", fallback: "Personagens")
+      internal static let title = L10n.tr("Localizable", "Characters.Title.tile", fallback: "Personagens")
     }
   }
   internal enum CreateAccount {
