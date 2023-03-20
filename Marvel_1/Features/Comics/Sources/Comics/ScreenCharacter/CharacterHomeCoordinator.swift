@@ -43,6 +43,7 @@ extension CharacterHomeCoordinator: CharacterHomeCoordinating, DetailsCharacterC
         let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
+
     }
 }
 
@@ -55,5 +56,6 @@ extension CharacterHomeCoordinator: FavoritesCoordinating {
     @MainActor public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
         let viewModel = FavoritesViewModel(coordinator: self)
         viewModel.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
+
     }
 }

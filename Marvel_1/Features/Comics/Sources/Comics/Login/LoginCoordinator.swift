@@ -39,10 +39,8 @@ public class LoginCoordinator: Coordinator, LoginCoordinating {
         navigationController.pushViewController(UIHostingController(rootView: createAccountView), animated: true)
     }
     
-    public func loginButton() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-            let tabBarcoordinator = TabBarCoordinator(navigationController: self.navigationController, tabBarViewController: self.tabBarController, container: self.container)
-            tabBarcoordinator.start()
-        }
+    @MainActor public func loginButton() {
+        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController.self, container: container.self)
+        tabBarCoordinator.start()
     }
 }
