@@ -35,12 +35,16 @@ let package = Package(
         .package(
             name: "Domain",
             path: "../Core/Domain"
+        ),
+        .package(
+            name: "FireStorage",
+            path: "../Core/FireStorage"
         )
     ],
     targets: [
         .target(
             name: "DI",
-            dependencies: ["Common", "Storage", "Networking", "Domain","AppNavigation", "SDK"]),
+            dependencies: ["Common", "Storage", "Networking", "Domain","AppNavigation", "SDK", "FireStorage"]),
         .testTarget(
             name: "DITests",
             dependencies: ["DI"]),

@@ -12,8 +12,8 @@ public enum MarvelService {
     
     static let baseUrlString = "https://gateway.marvel.com/"
     static let apiVersion = "v1/"
-    static let privateKey = "7eb31cd0c8dbf9e1eaabf85e2fd610909d9bcfa0"
-    static let publicKey = "5ec3b77555354c4688df7eb4dd482ee5"
+    static let privateKey = "d7f2879d24bc1b99339bdc91f0c0d51e5cf6a8bf"
+    static let publicKey = "5f57f1e2e1e9d30841921274a5910396"
     
     case characters(offset: Int)
     case charactersDetails(id: Int)

@@ -20,7 +20,7 @@
 // MARK: - ModalNotificationView
 //Create Account
 "Modal.NotficationSuccessCreate.title" = "Conta criada com sucesso";
-"Modal.NotficationSuccessCreate.subTitle" = "Prencha os campos com login e senha";
+"Modal.NotficationSuccessCreate.subTitle" = "Preencha os campos com login e senha";
 "Modal.NotficationFailCreate.title" = "Error ao criar conta";
 "Modal.NotficationFailCreate.subTitle" = "Não foi possível criar sua conta, tente mais tarde";
 //Login

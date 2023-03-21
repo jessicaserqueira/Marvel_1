@@ -21,4 +21,6 @@ protocol CharacterHomeModelling: ObservableObject {
     func filterCharacters(searchTerm: String) -> [CharacterModel]
     func favoriteButton()
     func buttonDetails(with id: Int)
+     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
+    func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
 }

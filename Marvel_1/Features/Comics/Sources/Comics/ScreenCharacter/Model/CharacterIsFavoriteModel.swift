@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct CharacterIsFavoriteModel {
+public struct CharacterIsFavoriteModel {
     
     let id: Int
-    let isFavorite: Bool
+    var isFavorite: Bool
+    
 }

@@ -33,6 +33,4 @@ public class FavoritesCoordinator: Coordinator{
     }
 }
 
-extension FavoritesCoordinator: FavoritesCoordinating {
-    
-}
+extension FavoritesCoordinator: FavoritesCoordinating {}

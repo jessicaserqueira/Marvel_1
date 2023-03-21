@@ -19,7 +19,7 @@ internal enum L10n {
   internal enum Characters {
     internal enum Title {
       /// Personagens
-      internal static let tile = L10n.tr("Localizable", "Characters.Title.tile", fallback: "Personagens")
+      internal static let title = L10n.tr("Localizable", "Characters.Title.tile", fallback: "Personagens")
     }
   }
   internal enum CreateAccount {
@@ -102,8 +102,8 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "Modal.NotficationFailLogin.title", fallback: "Falha no Login")
     }
     internal enum NotficationSuccessCreate {
-      /// Prencha os campos com login e senha
-      internal static let subTitle = L10n.tr("Localizable", "Modal.NotficationSuccessCreate.subTitle", fallback: "Prencha os campos com login e senha")
+      /// Preencha os campos com login e senha
+      internal static let subTitle = L10n.tr("Localizable", "Modal.NotficationSuccessCreate.subTitle", fallback: "Preencha os campos com login e senha")
       /// Conta criada com sucesso
       internal static let title = L10n.tr("Localizable", "Modal.NotficationSuccessCreate.title", fallback: "Conta criada com sucesso")
     }

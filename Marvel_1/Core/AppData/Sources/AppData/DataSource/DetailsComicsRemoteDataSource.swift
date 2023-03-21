@@ -10,5 +10,4 @@ import Foundation
 
 public protocol DetailsComicsRemoteDataSource: AnyObject {
     func request(with id: Int, completion: @escaping ResultCompletion<DataComicsDTO>)
-
 }

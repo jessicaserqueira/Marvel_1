@@ -89,4 +89,13 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     @MainActor public func buttonDetails(with id: Int) {
         coordinator?.buttonDetails(with: id)
     }
+
+    
+    func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
+        coordinator?.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel)
+    }
+    
+    func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
+        coordinator?.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
+    }
 }

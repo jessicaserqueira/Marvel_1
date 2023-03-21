@@ -7,13 +7,20 @@
 
 import Foundation
 import Domain
+import SwiftUI
 
 public struct CharacterResponseDTO: Codable {
     
+    public init(id: Int? = nil, name: String, resultDescription: String, thumbnail: ThumbnailDTO) {
+        self.id = id
+        self.name = name
+        self.resultDescription = resultDescription
+        self.thumbnail = thumbnail
+    }
+    
     public let id: Int?
     public let name, resultDescription: String
-    public let thumbnail: ThumbnailDTO
-    
+    public let thumbnail: ThumbnailDTO?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -42,8 +49,7 @@ extension CharacterResponseDTO {
             id: id ?? .zero,
             name: name,
             resultDescription: resultDescription,
-            thumbnail: thumbnail.toDomain
+            thumbnail: thumbnail?.toDomain
         )
     }
 }
-
