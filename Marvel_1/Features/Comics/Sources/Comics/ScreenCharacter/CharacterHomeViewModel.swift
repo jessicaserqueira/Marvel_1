@@ -36,9 +36,9 @@ public class CharacterHomeViewModel: ObservableObject {
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
     
-    func loggout() {
+    func logout() {
         print("sair")
-        try? Auth.auth().signOut()
+        try! Auth.auth().signOut()
     }
     
     func selectCharacter(_ character: CharacterModel) {

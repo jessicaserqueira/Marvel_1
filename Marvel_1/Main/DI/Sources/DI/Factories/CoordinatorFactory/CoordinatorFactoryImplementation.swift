@@ -22,6 +22,11 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
         container.resolveSafe(SplashScreenCoordinator.self)
     }
     
+    // MARK: - LoginPersistenceCoordinator
+    func makeLoginPersistenceCoordinator() -> Comics.LoginPersistenceCoordinator {
+        container.resolveSafe(LoginPersistenceCoordinator.self)
+    }
+    
     // MARK: - LoginCoordinator
     func makeLoginCoordinator() -> Comics.LoginCoordinator {
         container.resolveSafe(LoginCoordinator.self)
@@ -41,9 +46,5 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
     // MARK: - ScreenDetailsCoordinator
     func makeScreenDetailsCoordinator() -> Comics.DetailsCharacterCoordinator {
         container.resolveSafe(DetailsCharacterCoordinator.self)
-    }
-    
-    func makeContentViewCoordinator() -> Comics.ContentViewCoordinator {
-        container.resolveSafe(ContentViewCoordinator.self)
     }
 }

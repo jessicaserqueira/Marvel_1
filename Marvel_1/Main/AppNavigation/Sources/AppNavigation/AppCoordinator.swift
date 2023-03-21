@@ -36,16 +36,16 @@ public class AppCoordinator: Common.Coordinator {
 extension AppCoordinator {
     
     func showSplashCoordinator() {
-        let coordinator = coordinatorFactory.makeContentViewCoordinator()
+        let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
-        showLogin()
+        loginPersistence()
     }
     
-    func showLogin() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let coordinator = self.coordinatorFactory.makeLoginCoordinator()
+    func loginPersistence() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let coordinator = self.coordinatorFactory.makeLoginPersistenceCoordinator()
             coordinator.start()
-//        }
+        }
     }
 }
 

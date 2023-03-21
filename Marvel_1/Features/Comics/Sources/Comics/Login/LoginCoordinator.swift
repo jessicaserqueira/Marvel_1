@@ -40,7 +40,10 @@ public class LoginCoordinator: Coordinator, LoginCoordinating {
     }
     
     @MainActor public func loginButton() {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController.self, container: container.self)
+//        let coordinator = CharacterHomeCoordinator(tabBarController: tabBarController)
+//        let viewModel = CharacterHomeViewModel(coordinator: coordinator)
+//        CharacterHomeView(viewModel: viewModel)
+        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
         tabBarCoordinator.start()
     }
 }

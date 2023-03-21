@@ -9,24 +9,25 @@ import SwiftUI
 import Common
 
 @available(iOS 14.0, *)
-public struct ContentView: View {
+struct LoginPersistenceView<ViewModel: LoginPersistenceModelling>: View {
     
-    @StateObject var viewModel = ContentViewModel()
+    @ObservedObject var viewModel: ViewModel
+    var navigationController = UINavigationController()
+    var tabBarController = UITabBarController()
+    var container = DIContainer()
     
-    public init() {
-        
+    public init(viewModel: ViewModel) {
+        self.viewModel = viewModel
     }
     
     public var body: some View {
         ZStack {
             if viewModel.isLogged {
-                let coordinator = CharacterHomeCoordinator(tabBarController: UITabBarController())
+                let coordinator = CharacterHomeCoordinator(tabBarController: tabBarController)
                 let viewModel = CharacterHomeViewModel(coordinator: coordinator)
                 CharacterHomeView(viewModel: viewModel)
-                
             } else {
-                
-                let coordinator = LoginCoordinator(navigationController: UINavigationController(), tabBarController: UITabBarController(), container: DIContainer())
+                let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
                 let viewModel = LoginViewModel(coordinator: coordinator)
                 LoginView(viewModel: viewModel)
             }

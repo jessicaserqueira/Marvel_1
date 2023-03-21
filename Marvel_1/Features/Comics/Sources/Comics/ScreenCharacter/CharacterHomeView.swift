@@ -39,10 +39,13 @@ import SwiftUI
                     Spacer()
                     
                     Button(action: {
-                        viewModel.loggout()
+                        viewModel.logout()
                     }) {
-                        Text("Logout")
-                    }
+                        Text("Sair")
+                            .font(Font.custom("Nunito-Medium", size: 20))
+                        Image(systemName: "arrow.right.to.line")
+                    }.foregroundColor(Color.black)
+                        .padding(.trailing, 15)
                 }
                 
                 VStack {
