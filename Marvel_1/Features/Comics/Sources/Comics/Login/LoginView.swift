@@ -89,5 +89,6 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 }
             }
         }.navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }
