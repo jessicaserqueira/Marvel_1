@@ -13,6 +13,7 @@ public protocol LoginModelling: ObservableObject {
     var formInvalid: Bool { get set }
     var alertText: String { get }
     
-    func loginButton()
+    func loginAuthentication(email: String, password: String)
+    func loginButton(email: String, password: String)
     func createAccount()
 }

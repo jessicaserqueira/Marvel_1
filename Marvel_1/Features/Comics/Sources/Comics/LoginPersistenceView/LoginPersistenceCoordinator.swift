@@ -18,7 +18,7 @@ import Common
 import SwiftUI
 
 @available(iOS 14.0, *)
-public class LoginPersistenceCoordinator: Coordinator, LoginPersistenceCoordinating {
+public class LoginPersistenceCoordinator: LoginPersistenceCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
@@ -31,10 +31,22 @@ public class LoginPersistenceCoordinator: Coordinator, LoginPersistenceCoordinat
         self.container = container
     }
     
-    public func start()  {
+    @MainActor public func start()  {
         let viewModel = LoginPersistenceViewModel(coordinator: self)
-        let loginPersistence = LoginPersistenceView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: loginPersistence)
-        navigationController.pushViewController(hostingController, animated: true)
+        viewModel.onAppear()
+    }
+}
+
+@available(iOS 14.0, *)
+extension LoginPersistenceCoordinator: LoginPersistenceCoordinating {
+    
+    @MainActor public func isLogged(_ isLogged: Bool) {
+        if isLogged {
+            let coordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
+            coordinator.start()
+        } else {
+            let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
+            coordinator.start()
+        }
     }
 }

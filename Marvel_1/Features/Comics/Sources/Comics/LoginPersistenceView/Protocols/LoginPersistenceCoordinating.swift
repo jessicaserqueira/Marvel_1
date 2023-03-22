@@ -8,4 +8,7 @@
 import Foundation
 import Common
 
-public protocol LoginPersistenceCoordinating: Coordinator {}
+public protocol LoginPersistenceCoordinating {
+    
+    func isLogged(_ isLogged: Bool)
+}

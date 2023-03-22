@@ -6,23 +6,32 @@
 //
 
 import Foundation
-import FirebaseAuth
-import Firebase
 import Common
+import Domain
 
 public class LoginPersistenceViewModel: ObservableObject {
     private var coordinator: LoginPersistenceCoordinating?
-    @Published public var isLogged = Auth.auth().currentUser != nil
+    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    @Published public var isLogged = false
     
     public init(coordinator: LoginPersistenceCoordinating) {
         self.coordinator = coordinator
+        self.loginPersistenceUseCase = loginPersistenceUseCase
     }
 }
 
 extension LoginPersistenceViewModel: LoginPersistenceModelling {
+    
     public func onAppear() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            self.isLogged = user != nil
-        }
+        loginPersistenceUseCase.loginValidation(isLogged: isLogged)
+        coordinator?.isLogged(isLogged)
     }
 }
+
+//extension LoginPersistenceViewModel: LoginPersistenceCoordinating {
+//    
+//    
+//    public func isLogged(_ isLogged: Bool) {
+//        coordinator?.isLogged(isLogged)
+//    }
+//}

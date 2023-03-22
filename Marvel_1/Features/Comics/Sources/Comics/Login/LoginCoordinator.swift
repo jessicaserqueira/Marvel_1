@@ -39,10 +39,7 @@ public class LoginCoordinator: Coordinator, LoginCoordinating {
         navigationController.pushViewController(UIHostingController(rootView: createAccountView), animated: true)
     }
     
-    @MainActor public func loginButton() {
-//        let coordinator = CharacterHomeCoordinator(tabBarController: tabBarController)
-//        let viewModel = CharacterHomeViewModel(coordinator: coordinator)
-//        CharacterHomeView(viewModel: viewModel)
+    @MainActor public func loginButton(email: String, password: String) {
         let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
         tabBarCoordinator.start()
     }

@@ -29,7 +29,7 @@ import SwiftUI
             
             VStack(alignment: .leading) {
                 HStack {
-                    Text(L10n.Characters.Title.tile)
+                    Text(L10n.Characters.Title.title)
                         .font(Font.custom("Bangers-Regular", size: 40))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.leading)

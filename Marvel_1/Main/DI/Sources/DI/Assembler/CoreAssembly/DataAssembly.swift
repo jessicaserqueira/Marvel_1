@@ -13,6 +13,7 @@ import AppData
 import Networking
 import FireStorage
 
+@available(iOS 14.0, *)
 class DataAssembly: Assembly {
     
     func assemble(container: DIContainer) {
@@ -22,6 +23,8 @@ class DataAssembly: Assembly {
         let detailsCharacterRemoteDataSource = container.resolveSafe(Networking.DetailsCharacterRemoteDataSource.self)
         let detailsComicsRemoteDataSource = container.resolveSafe(Networking.DetailsComicsRemoteDataSource.self)
         let favoritesCharacterRemoteDataSource = container.resolveSafe(FireStorage.FavoritesCharacterRemoteDataSource.self)
+        let loginPersistenceDataSource = container.resolveSafe(FireStorage.LoginPersistenceDataSource.self)
+        let loginDataSource = container.resolveSafe(FireStorage.LoginDataSource.self)
         let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
         
         
@@ -39,6 +42,12 @@ class DataAssembly: Assembly {
         
         // MARK: - FavoritesCharacter
         container.register(type: Domain.FavoritesCharacterRepository.self, component: AppData.FavoritesCharacterRepository(remote: favoritesCharacterRemoteDataSource))
+        
+        // MARK: - LoginPersistence
+        container.register(type: Domain.LoginPersistenceRepository.self, component: AppData.LoginPersistenceRepository(remote: loginPersistenceDataSource))
+        
+        // MARK: - Login
+        container.register(type: Domain.LoginRepository.self, component: AppData.LoginRepository(remote: loginDataSource))
         
         // MARK: - Image
         container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))
