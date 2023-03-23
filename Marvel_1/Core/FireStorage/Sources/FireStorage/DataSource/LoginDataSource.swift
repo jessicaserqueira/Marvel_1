@@ -32,4 +32,8 @@ extension LoginDataSource: AppData.LoginDataSource {
             }
         }
     }
+    
+    public func signOut() {
+        loginService.signOut()
+    }
 }

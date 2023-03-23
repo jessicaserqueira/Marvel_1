@@ -8,4 +8,5 @@
 public protocol LoginCoordinating {
     func loginButton(email: String, password: String)
     func createAccount()
+    func signOut()
 }

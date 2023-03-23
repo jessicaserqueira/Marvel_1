@@ -8,14 +8,14 @@
 import SwiftUI
 
 @MainActor
-protocol CharacterHomeModelling: ObservableObject {
+public protocol CharacterHomeModelling: ObservableObject {
     
     var data: [CharacterModel] { get }
     var isFavorites: [CharacterIsFavoriteModel] { get set }
     var searchTerm: String { get set }
     var isLoading: Bool { get set }
     
-    func logout()
+    func signOut()
     func didAppear()
     func fetchCharacter()
     func filterCharacters(searchTerm: String) -> [CharacterModel]

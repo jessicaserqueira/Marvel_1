@@ -9,4 +9,5 @@ import Foundation
 
 public protocol LoginRepository {
     func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void)
+    func signOut()
 }

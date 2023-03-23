@@ -27,11 +27,3 @@ extension LoginPersistenceViewModel: LoginPersistenceModelling {
         coordinator?.isLogged(isLogged)
     }
 }
-
-//extension LoginPersistenceViewModel: LoginPersistenceCoordinating {
-//    
-//    
-//    public func isLogged(_ isLogged: Bool) {
-//        coordinator?.isLogged(isLogged)
-//    }
-//}

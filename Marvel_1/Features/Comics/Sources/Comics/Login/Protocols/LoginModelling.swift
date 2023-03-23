@@ -16,4 +16,5 @@ public protocol LoginModelling: ObservableObject {
     func loginAuthentication(email: String, password: String)
     func loginButton(email: String, password: String)
     func createAccount()
+    func signOut()
 }

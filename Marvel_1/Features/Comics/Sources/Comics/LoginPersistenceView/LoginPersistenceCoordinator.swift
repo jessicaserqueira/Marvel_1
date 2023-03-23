@@ -35,10 +35,6 @@ public class LoginPersistenceCoordinator: LoginPersistenceCoordinating {
         let viewModel = LoginPersistenceViewModel(coordinator: self)
         viewModel.onAppear()
     }
-}
-
-@available(iOS 14.0, *)
-extension LoginPersistenceCoordinator: LoginPersistenceCoordinating {
     
     @MainActor public func isLogged(_ isLogged: Bool) {
         if isLogged {

@@ -29,4 +29,7 @@ extension LoginRepository: Domain.LoginRepository {
             }
         }
     }
+    public func signOut() {
+        remote.signOut()
+    }
 }

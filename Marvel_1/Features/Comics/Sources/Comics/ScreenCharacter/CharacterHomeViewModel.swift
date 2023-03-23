@@ -15,10 +15,10 @@ public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var data: [CharacterModel] = []
     @Published public var selectedCharacter: CharacterModel?
-    @Published var searchTerm: String = ""
+    @Published public var searchTerm: String = ""
     @Published public var isLoading: Bool = false
     
-    @Published var isFavorites: [CharacterIsFavoriteModel] = []
+    @Published public var isFavorites: [CharacterIsFavoriteModel] = []
     
     
     private var offset: Int = 0
@@ -36,20 +36,20 @@ public class CharacterHomeViewModel: ObservableObject {
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
     
-    func logout() {
+    public func signOut() {
         print("sair")
-        try! Auth.auth().signOut()
+        coordinator?.signOut()
     }
     
-    func selectCharacter(_ character: CharacterModel) {
+    public func selectCharacter(_ character: CharacterModel) {
         selectedCharacter = character
     }
     
-    func didAppear() {
+    public func didAppear() {
         fetchCharacter()
     }
     
-    func fetchCharacter() {
+    public func fetchCharacter() {
         isLoading = true
         characterUseCase.getCharater(offset: offset) { [weak self] result in
             guard let self = self else { return }
@@ -72,7 +72,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             }
         }
     }
-    func filterCharacters(searchTerm: String) -> [CharacterModel] {
+    public func filterCharacters(searchTerm: String) -> [CharacterModel] {
         
         if searchTerm.isEmpty {
             return data
@@ -82,7 +82,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
         }
     }
     
-    func favoriteButton() {
+    public func favoriteButton() {
         print("Favorito")
     }
     
@@ -91,11 +91,11 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     }
 
     
-    func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
+    public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
         coordinator?.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel)
     }
     
-    func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
+    public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
         coordinator?.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
     }
 }

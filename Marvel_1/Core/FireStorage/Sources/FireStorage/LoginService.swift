@@ -19,20 +19,22 @@ public class LoginService {
     }
     
     func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
-                print("Os dados fornecidos são inválidos.")
                 print(error)
                 completion(.failure(error))
-                return
+            } else {
+                guard let user = result?.user else {
+                    completion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
+                    return
+                }
+                print("usuario logado \(user.uid)")
+                completion(.success(()))
             }
-
-            print("Sucesso")
-            print(authResult?.user.uid ?? "")
-            withAnimation {
-                self.userID = authResult?.user.uid ?? ""
-            }
-            completion(.success(()))
         }
+    }
+    
+    public func signOut() {
+        try! Auth.auth().signOut()
     }
 }
