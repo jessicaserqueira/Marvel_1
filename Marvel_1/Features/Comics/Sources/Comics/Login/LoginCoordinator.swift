@@ -44,9 +44,9 @@ public class LoginCoordinator: Coordinator, LoginCoordinating {
         tabBarCoordinator.start()
     }
     
-    @MainActor public func signOut() {
-        let coordinator = CharacterHomeCoordinator(tabBarController: tabBarController)
-        let viewModel = CharacterHomeViewModel(coordinator: coordinator)
-        viewModel.signOut()
-    }
+//    @MainActor public func signOut() {
+//        let coordinator = CharacterHomeCoordinator(tabBarController: tabBarController)
+//        let viewModel = CharacterHomeViewModel(coordinator: coordinator)
+//        viewModel.signOut()
+//    }
 }

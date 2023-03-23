@@ -10,5 +10,6 @@ import Common
 
 public protocol LoginPersistenceCoordinating {
     
+    func logout()
     func isLogged(_ isLogged: Bool)
 }

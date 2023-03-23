@@ -9,5 +9,4 @@ import Foundation
 
 public protocol LoginUseCaseProtocol {
     func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void)
-    func signOut()
 }

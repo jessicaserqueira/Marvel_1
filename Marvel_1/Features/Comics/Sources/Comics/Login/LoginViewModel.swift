@@ -49,8 +49,4 @@ extension LoginViewModel: LoginModelling {
         print("criar conta")
         coordinator?.createAccount()
     }
-    
-    public func signOut() {
-        loginUseCase.signOut()
-    }
 }

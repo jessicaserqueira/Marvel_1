@@ -18,7 +18,20 @@ public class LoginPersistenceRepository {
 
 extension LoginPersistenceRepository: Domain.LoginPersistenceRepository {
     
-    public func loginValidation(isLogged: Bool) {
-        remote.loginValidation(isLogged: isLogged)
+    public var userID: String? {
+        remote.userID ?? ""
+    }
+    
+    
+    public var isLogged: Bool {
+        remote.isLogged
+    }
+    
+    public func loginValidation() {
+        remote.loginValidation()
+    }
+    
+    public func logout() {
+        remote.logout()
     }
 }

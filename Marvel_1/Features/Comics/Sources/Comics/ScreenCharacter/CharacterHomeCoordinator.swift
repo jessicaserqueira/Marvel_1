@@ -48,14 +48,11 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
     }
     
+    @MainActor
     public func signOut() {
-
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
-        let viewModel = LoginViewModel(coordinator: coordinator)
-        let loginView = LoginView(viewModel: viewModel)
-        navigationController.setViewControllers([UIHostingController(rootView: loginView)], animated: true)
-        
-        tabBarController.tabBar.isHidden = true
+        let coordinator = LoginPersistenceCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
+        let viewModel = LoginPersistenceViewModel(coordinator: coordinator)
+        viewModel.logout()
     }
 }
 

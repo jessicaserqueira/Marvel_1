@@ -12,7 +12,6 @@ import SwiftUI
 
 @available(iOS 14.0, *)
 public class LoginService {
-    @AppStorage("uid") var userID = String()
     
     public init() {
         
@@ -32,9 +31,5 @@ public class LoginService {
                 completion(.success(()))
             }
         }
-    }
-    
-    public func signOut() {
-        try! Auth.auth().signOut()
     }
 }

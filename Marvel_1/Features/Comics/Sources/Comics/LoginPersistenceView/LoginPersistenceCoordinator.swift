@@ -45,4 +45,13 @@ public class LoginPersistenceCoordinator: LoginPersistenceCoordinating {
             coordinator.start()
         }
     }
+    
+    public func logout() {
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
+        let viewModel = LoginViewModel(coordinator: coordinator)
+        let loginView = LoginView(viewModel: viewModel)
+        navigationController.setViewControllers([UIHostingController(rootView: loginView)], animated: true)
+
+        tabBarController.tabBar.isHidden = true
+    }
 }

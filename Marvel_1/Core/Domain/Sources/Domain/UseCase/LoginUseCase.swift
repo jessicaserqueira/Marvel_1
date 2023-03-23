@@ -19,8 +19,4 @@ extension LoginUseCase: LoginUseCaseProtocol {
     public func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         loginRepository.loginAuthentication(email: email, password: password, completion: completion)
     }
-    
-    public func signOut() {
-        loginRepository.signOut()
-    }
 }

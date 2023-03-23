@@ -8,6 +8,7 @@
 import Foundation
 import AppData
 
+@available(iOS 14.0, *)
 public class LoginPersistenceDataSource {
     public let loginPresistenceService: LoginPersistenceService
     
@@ -16,8 +17,22 @@ public class LoginPersistenceDataSource {
     }
 }
 
+@available(iOS 14.0, *)
 extension LoginPersistenceDataSource: AppData.LoginPersistenceDataSource {
-    public func loginValidation(isLogged: Bool) {
+    
+    public var userID: String? {
+        loginPresistenceService.userID ?? ""
+    }
+    
+    public var isLogged: Bool {
+        loginPresistenceService.isLogged
+    }
+    
+    public func loginValidation() {
         loginPresistenceService.loginValidation()
+    }
+    
+    public func logout() {
+        loginPresistenceService.logout()
     }
 }
