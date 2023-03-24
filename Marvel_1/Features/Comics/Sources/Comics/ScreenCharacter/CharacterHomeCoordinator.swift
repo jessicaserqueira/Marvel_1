@@ -36,7 +36,7 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
 }
 
 // MARK: CharacterHomeCoordinating
-extension CharacterHomeCoordinator: CharacterHomeCoordinating, DetailsCharacterCoordinating {
+extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
 
     public func buttonDetails(with id: Int) {
         let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
