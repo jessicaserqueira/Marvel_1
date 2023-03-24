@@ -16,8 +16,21 @@ public class LoginPersistenceUseCase {
 }
 
 extension LoginPersistenceUseCase: LoginPersistenceUseCaseProtocol {
+    public var userID: String? {
+        loginPersistenceRepository.userID ?? ""
+        
+    }
     
-    public func loginValidation(isLogged: Bool) {
-        loginPersistenceRepository.loginValidation(isLogged: isLogged)
+    public var isLogged: Bool {
+        loginPersistenceRepository.isLogged
+    }
+    
+    
+    public func loginValidation() {
+        loginPersistenceRepository.loginValidation()
+    }
+    
+    public func logout() {
+        loginPersistenceRepository.logout()
     }
 }

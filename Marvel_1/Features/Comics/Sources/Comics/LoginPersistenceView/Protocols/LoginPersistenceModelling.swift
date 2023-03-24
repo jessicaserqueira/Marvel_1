@@ -11,7 +11,6 @@ import SwiftUI
 @MainActor
 public protocol LoginPersistenceModelling: ObservableObject {
     
-    var isLogged: Bool { get }
-    
     func onAppear()
+    func logout()
 }

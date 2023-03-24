@@ -16,7 +16,7 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
-    public var tabBarController: UITabBarController?
+    public var tabBarController: UITabBarController
     
     public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
@@ -46,6 +46,13 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
         let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
+    }
+    
+    @MainActor
+    public func signOut() {
+        let coordinator = LoginPersistenceCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
+        let viewModel = LoginPersistenceViewModel(coordinator: coordinator)
+        viewModel.logout()
     }
 }
 

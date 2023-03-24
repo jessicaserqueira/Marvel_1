@@ -7,15 +7,30 @@
 
 import Foundation
 import FirebaseAuth
+import SwiftUI
+
+@available(iOS 14.0, *)
 
 public class LoginPersistenceService {
-    var isLogged = Auth.auth().currentUser != nil
     
     public init() {}
+    
+    var userID: String? {
+        return Auth.auth().currentUser?.uid
+    }
+    var isLogged = Auth.auth().currentUser != nil
     
     public func loginValidation() {
         Auth.auth().addStateDidChangeListener { auth, user in
             self.isLogged = user != nil
+        }
+    }
+    
+    public func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("Erro ao fazer logout: \(error.localizedDescription)")
         }
     }
 }

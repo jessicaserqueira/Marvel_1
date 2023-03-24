@@ -35,10 +35,6 @@ public class LoginPersistenceCoordinator: LoginPersistenceCoordinating {
         let viewModel = LoginPersistenceViewModel(coordinator: self)
         viewModel.onAppear()
     }
-}
-
-@available(iOS 14.0, *)
-extension LoginPersistenceCoordinator: LoginPersistenceCoordinating {
     
     @MainActor public func isLogged(_ isLogged: Bool) {
         if isLogged {
@@ -48,5 +44,12 @@ extension LoginPersistenceCoordinator: LoginPersistenceCoordinating {
             let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
             coordinator.start()
         }
+    }
+    
+    public func logout() {
+        if let loginView = navigationController.viewControllers.first(where: { $0 is LoginView<LoginViewModel> }) {
+            navigationController.popToViewController(loginView, animated: true)
+        }
+        tabBarController.tabBar.isHidden = true
     }
 }

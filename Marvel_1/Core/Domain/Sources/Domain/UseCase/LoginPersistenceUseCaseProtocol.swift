@@ -8,5 +8,10 @@
 import Foundation
 
 public protocol LoginPersistenceUseCaseProtocol {
-    func loginValidation(isLogged: Bool)
+    
+    var userID: String? { get }
+    var isLogged: Bool { get }
+    
+    func loginValidation()
+    func logout()
 }

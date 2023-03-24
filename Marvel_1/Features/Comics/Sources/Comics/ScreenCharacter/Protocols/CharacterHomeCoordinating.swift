@@ -13,4 +13,5 @@ public protocol CharacterHomeCoordinating: Coordinator {
     func buttonDetails(with id: Int)
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
+    func signOut()
 }
