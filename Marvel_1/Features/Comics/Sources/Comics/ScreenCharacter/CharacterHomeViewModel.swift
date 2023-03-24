@@ -37,7 +37,6 @@ public class CharacterHomeViewModel: ObservableObject {
 extension CharacterHomeViewModel: CharacterHomeModelling {
     
     public func signOut() {
-        print("sair")
         coordinator?.signOut()
     }
     
