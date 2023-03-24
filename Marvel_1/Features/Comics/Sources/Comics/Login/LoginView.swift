@@ -7,7 +7,6 @@
 
 import Kingfisher
 import SwiftUI
-import FirebaseAuth
 
 public struct LoginView<ViewModel: LoginModelling>: View {
     @ObservedObject var viewModel: ViewModel
@@ -69,7 +68,7 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 
                 
                 Button {
-                    viewModel.loginButton()
+                    viewModel.loginButton(email: viewModel.loginModel.email, password: viewModel.loginModel.password)
                 } label: {
                     Text(L10n.Login.Button.title)
                         .foregroundColor(.white)
@@ -90,5 +89,6 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 }
             }
         }.navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
     }
 }

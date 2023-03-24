@@ -36,6 +36,14 @@ class DomainAssembly: Assembly {
         let favoritesCharacterRepository = container.resolveSafe(Domain.FavoritesCharacterRepository.self)
         container.register(type: Domain.FavoritesCharacterUseCaseProtocol.self, component:  Domain.FavoritesCharacterUseCase(favoritesCharacterRepository: favoritesCharacterRepository))
         
+        // MARK: - LoginPersistence
+        let loginPersistenceRepository = container.resolveSafe(Domain.LoginPersistenceRepository.self)
+        container.register(type: Domain.LoginPersistenceUseCaseProtocol.self, component:  Domain.LoginPersistenceUseCase(loginPersistenceRepository: loginPersistenceRepository))
+        
+        // MARK: - Login
+        let loginRepository = container.resolveSafe(Domain.LoginRepository.self)
+        container.register(type: Domain.LoginUseCaseProtocol.self, component:  Domain.LoginUseCase(loginRepository: loginRepository))
+        
         // MARK: - Image
         let fetchImageRepository = container.resolveSafe(Domain.FetchImageRepository.self)
         container.register(type: Domain.FetchImageUseCaseProtocol.self, component: Domain.FetchImageUseCase(fetchImageRepository: fetchImageRepository))

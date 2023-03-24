@@ -38,12 +38,12 @@ extension AppCoordinator {
     func showSplashCoordinator() {
         let coordinator = coordinatorFactory.makeSplashCoordinator()
         coordinator.start()
-        showLogin()
+        loginPersistence()
     }
     
-    func showLogin() {
+    func loginPersistence() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let coordinator = self.coordinatorFactory.makeLoginCoordinator()
+            let coordinator = self.coordinatorFactory.makeLoginPersistenceCoordinator()
             coordinator.start()
         }
     }

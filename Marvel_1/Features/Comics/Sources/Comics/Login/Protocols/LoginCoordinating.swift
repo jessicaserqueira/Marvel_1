@@ -6,6 +6,6 @@
 //
 
 public protocol LoginCoordinating {
-    func loginButton()
+    func loginButton(email: String, password: String)
     func createAccount()
 }

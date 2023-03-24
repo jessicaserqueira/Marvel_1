@@ -11,6 +11,7 @@ import Common
 import SwiftUI
 import Domain
 
+@available(iOS 14.0, *)
 public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public var childCoordinators: [Coordinator] = []
@@ -36,6 +37,7 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
 }
 
 // MARK: CharacterHomeCoordinating
+@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
 
     public func buttonDetails(with id: Int) {
@@ -47,6 +49,7 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
     }
 }
 
+@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: FavoritesCoordinating {
     @MainActor public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
         let viewModel = FavoritesViewModel(coordinator: self)

@@ -11,6 +11,7 @@ import Comics
 import Domain
 import SwiftUI
 
+@available(iOS 14.0, *)
 class CharacterAssembly: Assembly {
     
     func assemble(container: Common.DIContainer) {
