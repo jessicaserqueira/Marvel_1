@@ -8,8 +8,6 @@
 import SwiftUI
 import Common
 import Domain
-import Firebase
-import FirebaseAuth
 
 public class CharacterHomeViewModel: ObservableObject {
     

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 @available(iOS 14.0, *)
 struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
