@@ -34,21 +34,3 @@ public class LoginPersistenceService {
         }
     }
 }
-
-
-//public class LoginPersistenceService {
-//    @AppStorage("uid") var userID = String()
-//    var isLogged = Auth.auth().currentUser != nil
-//
-//    public init() {}
-//
-//    public func loginValidation(userID: String) {
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            if let user = user {
-//                self.userID = user.uid
-//            }
-//            self.isLogged = userID != nil
-//        }
-//    }
-//}
-

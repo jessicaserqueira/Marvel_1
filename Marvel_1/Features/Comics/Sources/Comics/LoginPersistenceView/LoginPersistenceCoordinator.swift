@@ -47,11 +47,9 @@ public class LoginPersistenceCoordinator: LoginPersistenceCoordinating {
     }
     
     public func logout() {
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
-        let viewModel = LoginViewModel(coordinator: coordinator)
-        let loginView = LoginView(viewModel: viewModel)
-        navigationController.setViewControllers([UIHostingController(rootView: loginView)], animated: true)
-
+        if let loginView = navigationController.viewControllers.first(where: { $0 is LoginView<LoginViewModel> }) {
+            navigationController.popToViewController(loginView, animated: true)
+        }
         tabBarController.tabBar.isHidden = true
     }
 }
