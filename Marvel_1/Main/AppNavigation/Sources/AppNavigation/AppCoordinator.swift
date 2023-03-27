@@ -43,7 +43,7 @@ extension AppCoordinator {
     
     func loginPersistence() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let coordinator = self.coordinatorFactory.makeLoginPersistenceCoordinator()
+            let coordinator = self.coordinatorFactory.makeLoginCoordinator()
             coordinator.start()
         }
     }

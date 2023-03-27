@@ -16,6 +16,9 @@ public class LoginViewModel: ObservableObject {
     @AppStorage("uid") var userID = String()
     @Published public var formInvalid = false
     public var alertText = ""
+    
+    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    
     private lazy var loginUseCase = DIContainer.shared.resolveSafe(Domain.LoginUseCaseProtocol.self)
     
     
@@ -27,6 +30,25 @@ public class LoginViewModel: ObservableObject {
 
 @available(iOS 14.0, *)
 extension LoginViewModel: LoginModelling {
+    
+    public func logout() {
+        loginPersistenceUseCase.logout()
+//        coordinator?.isLogged(false)
+        coordinator?.logout()
+    }
+    
+    public func onAppear() {
+        let isLogged = loginPersistenceUseCase.isLogged
+        loginPersistenceUseCase.loginValidation()
+        coordinator?.isLogged(isLogged)
+//        coordinator?.onAppear()
+    }
+    
+    public func isLogged(_ isLogged: Bool) {
+        onAppear()
+//        coordinator?.isLogged(isLogged)
+    }
+    
     public func loginButton(email: String, password: String) {
         loginUseCase.loginAuthentication(email: loginModel.email, password: loginModel.password) {
             result in

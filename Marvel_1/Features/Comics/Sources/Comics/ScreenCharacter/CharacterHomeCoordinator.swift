@@ -50,9 +50,8 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
     
     @MainActor
     public func signOut() {
-        let coordinator = LoginPersistenceCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
-        let viewModel = LoginPersistenceViewModel(coordinator: coordinator)
-        viewModel.logout()
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: DIContainer())
+        coordinator.logout()
     }
 }
 
