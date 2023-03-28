@@ -7,6 +7,7 @@
 
 import UIKit
 import Common
+import Domain
 import Comics
 
 @available(iOS 14.0, *)
@@ -17,12 +18,16 @@ public class AppCoordinator: Common.Coordinator {
     public var tabBarController: UITabBarController
     public var childCoordinators: [Coordinator] = []
     public let coordinatorFactory: CoordinatorFactory
+    private var container: DIContainer
     
-    public init(window: UIWindow, factory: CoordinatorFactory) {
+    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    
+    public init(window: UIWindow, factory: CoordinatorFactory, container: DIContainer) {
         self.window = window
         self.coordinatorFactory = factory
         self.navigationController = UINavigationController()
         self.tabBarController = UITabBarController()
+        self.container = container
     }
     
     public func start() {
@@ -43,9 +48,20 @@ extension AppCoordinator {
     
     func loginPersistence() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.loginPersistenceUseCase.loginValidation()
+                self.loginPersistenceValidation()
+        }
+    }
+    
+    @MainActor func loginPersistenceValidation() {
+        
+        if loginPersistenceUseCase.isLogged {
+            let coordinator = self.coordinatorFactory.makeTabBarCoordinator()
+            coordinator.start()
+            
+        } else {
             let coordinator = self.coordinatorFactory.makeLoginCoordinator()
             coordinator.start()
         }
     }
 }
-

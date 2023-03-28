@@ -18,7 +18,6 @@ public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var isFavorites: [CharacterIsFavoriteModel] = []
     
-    
     private var offset: Int = 0
     private var totalPages: Int = 0
     
@@ -26,17 +25,12 @@ public class CharacterHomeViewModel: ObservableObject {
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
     public init(coordinator: CharacterHomeCoordinating) {
-        self.characterUseCase = characterUseCase
         self.coordinator = coordinator
     }
 }
 
 //MARK: - ScreenHomeModelling
 extension CharacterHomeViewModel: CharacterHomeModelling {
-    
-    public func signOut() {
-        coordinator?.signOut()
-    }
     
     public func selectCharacter(_ character: CharacterModel) {
         selectedCharacter = character
@@ -93,5 +87,9 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     
     public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
         coordinator?.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite)
+    }
+    
+    public func logout() {
+        coordinator?.signOut()
     }
 }

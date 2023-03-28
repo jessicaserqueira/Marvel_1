@@ -24,48 +24,24 @@ public class LoginViewModel: ObservableObject {
     
     public init(coordinator: LoginCoordinating) {
         self.coordinator = coordinator
-        self.loginUseCase = loginUseCase
     }
 }
 
 @available(iOS 14.0, *)
 extension LoginViewModel: LoginModelling {
+
     
-    public func logout() {
-        loginPersistenceUseCase.logout()
-//        coordinator?.isLogged(false)
-        coordinator?.logout()
-    }
-    
-    public func onAppear() {
-        let isLogged = loginPersistenceUseCase.isLogged
-        loginPersistenceUseCase.loginValidation()
-        coordinator?.isLogged(isLogged)
-//        coordinator?.onAppear()
-    }
-    
-    public func isLogged(_ isLogged: Bool) {
-        onAppear()
-//        coordinator?.isLogged(isLogged)
-    }
-    
-    public func loginButton(email: String, password: String) {
-        loginUseCase.loginAuthentication(email: loginModel.email, password: loginModel.password) {
+    public func loginAuthentication(email: String, password: String) {
+        loginUseCase.loginAuthentication(email: loginModel.email, password: loginModel.password) { [weak self]
             result in
             switch result {
             case .success(()):
-                self.coordinator?.loginButton(email: email, password: password)
+                self?.coordinator?.loginValidation(email: email, password: password)
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
     }
-    
-    
-    public func loginAuthentication(email: String, password: String) {
-        
-    }
-    
     
     @MainActor public func createAccount() {
         print("criar conta")

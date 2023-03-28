@@ -25,7 +25,7 @@ class CoordinatorsAssembly: Assembly {
     func assemble(container: DIContainer) {
         
         let coordinatorFactory = container.resolveSafe(CoordinatorFactory.self)
-        container.register(type: AppCoordinator.self, component: AppCoordinator(window: window, factory: coordinatorFactory))
+        container.register(type: AppCoordinator.self, component: AppCoordinator(window: window, factory: coordinatorFactory, container: container))
         
         let appCoordinator = container.resolveSafe(AppCoordinator.self)
         self.appCoordinator = appCoordinator
@@ -46,7 +46,7 @@ class CoordinatorsAssembly: Assembly {
         container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController, container: container))
         
         // MARK: - CharacterHomeCoordinator 
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator(tabBarController: appCoordinator.tabBarController))
+        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator(tabBarController: appCoordinator.tabBarController, container: container))
 
         // MARK: - DetailsCharacterCoordinator
         container.register(type: DetailsCharacterCoordinator.self, component: DetailsCharacterCoordinator(navigationController: appCoordinator.navigationController))
@@ -55,10 +55,10 @@ class CoordinatorsAssembly: Assembly {
         container.register(type: DetailsComicsCoordinator.self, component: DetailsComicsCoordinator(navigationController: appCoordinator.navigationController))
         
         // MARK: - ComicsCoordinator
-        container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (tabBarController: appCoordinator.tabBarController))
+        container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (tabBarController: appCoordinator.tabBarController, container: container))
         
         // MARK: - FavoritesCoordinator
-        container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (tabBarController: appCoordinator.tabBarController))
+        container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (tabBarController: appCoordinator.tabBarController, container: container))
     }
 }
 

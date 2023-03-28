@@ -17,9 +17,7 @@ public class LoginCoordinator: Coordinator {
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
     var tabBarController: UITabBarController
-    var container: DIContainer
-    @Published public var userID: String = ""
-    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    private var container: DIContainer
     
     public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
         self.navigationController = navigationController
@@ -31,45 +29,26 @@ public class LoginCoordinator: Coordinator {
         let viewModel = LoginViewModel(coordinator: self)
         let loginView = LoginView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: loginView)
-        navigationController.pushViewController(hostingController, animated: true)
-        viewModel.onAppear()
+        navigationController.setViewControllers([hostingController], animated: true)
     }
 }
 
 @available(iOS 14.0, *)
 extension LoginCoordinator: LoginCoordinating {
     
-//    @MainActor public func onAppear() {
-//        loginPersistenceUseCase.loginValidation()
-////        isLogged(loginPersistenceUseCase.isLogged)
-//    }
-    
     // MARK: -LoginPersisntence
-    @MainActor public func logout() {
-//        loginPersistenceUseCase.logout()
-        start()
-        tabBarController.tabBar.isHidden = true
+    
+    @MainActor public func loginValidation(email: String, password: String) {
+        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
+        tabBarCoordinator.start()
     }
     
-    @MainActor public func isLogged(_ isLogged: Bool) {
-        if isLogged {
-            let coordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
-            coordinator.start()
-        } else {
-            start()
-        }
-    }
-    
+    // MARK: -CreateAccount
     public func createAccount() {
         let coordinator = CreateAccountCoordinator(navigationController: navigationController)
         let viewModel = CreateAccountViewModel(coordinator: coordinator)
         let createAccountView = CreateAccountView(viewModel: viewModel)
         navigationController.modalPresentationStyle = .overFullScreen
         navigationController.pushViewController(UIHostingController(rootView: createAccountView), animated: true)
-    }
-    
-    @MainActor public func loginButton(email: String, password: String) {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
-        tabBarCoordinator.start()
     }
 }

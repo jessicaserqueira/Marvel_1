@@ -29,6 +29,7 @@ public class LoginPersistenceService {
     public func logout() {
         do {
             try Auth.auth().signOut()
+         
         } catch {
             print("Erro ao fazer logout: \(error.localizedDescription)")
         }
