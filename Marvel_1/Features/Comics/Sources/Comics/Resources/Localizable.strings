@@ -29,7 +29,7 @@
 
 
 // MARK: - CreateAccountView
-"CreateAccount.Label.title" = "Crie sua Conta";
+"CreateAccount.Label.title" = "Crie \nsua Conta";
 "CreateAccount.Ask.title" = "Já possui conta?";
 "CreateAccount.Button.title" = "Criar";
 
@@ -37,9 +37,10 @@
 "Password.TextField.title" = "Senha";
 
 // MARK: - CharacterHomeView
-"Characters.Title.tile" = "Personagens";
+"Characters.Title.title" = "Personagens";
 "FindComic.Search.placeHolder" = "Encontre o seu quadrinho";
 "DetailsCharacter" = "Detalhes do personagem";
+"Characters.signOut" = "Sair";
 
 // MARK: - DetailsHQView
 "DetailsHQ" = "Detalhes da HQ";

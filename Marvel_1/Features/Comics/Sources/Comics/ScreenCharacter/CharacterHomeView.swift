@@ -41,7 +41,7 @@ import SwiftUI
                     Button(action: {
                         viewModel.logout()
                     }) {
-                        Text("Sair")
+                        Text(L10n.Characters.signOut)
                             .font(Font.custom("Nunito-Medium", size: 20))
                         Image(systemName: "arrow.right.to.line")
                     }.foregroundColor(Color.black)

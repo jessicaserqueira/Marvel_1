@@ -31,23 +31,24 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
                 }
                 .padding()
                 .padding(.top)
+                
                 Spacer()
-                HStack {
+                
                     LoginTextField(email: $viewModel.createAccount.email, borderColor: .black)
-                    Spacer()
-                }
-                .padding()
-                HStack {
+                
+                        .padding()
+    
                     PasswordTextField(password: $viewModel.createAccount.password, borderColor: .black)
-                    Spacer()
-                }
+                
                 .padding()
+                
                 Button(action: {
                     viewModel.returnLoginView()
                 }) {
                     Text(L10n.CreateAccount.Ask.title)
                         .foregroundColor(.black.opacity(0.7))
                 }
+                
                 Spacer()
                 Spacer()
                 VStack {
