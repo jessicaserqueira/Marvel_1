@@ -39,7 +39,7 @@ import SwiftUI
                     Spacer()
                     
                     Button(action: {
-                        viewModel.signOut()
+                        viewModel.logout()
                     }) {
                         Text("Sair")
                             .font(Font.custom("Nunito-Medium", size: 20))

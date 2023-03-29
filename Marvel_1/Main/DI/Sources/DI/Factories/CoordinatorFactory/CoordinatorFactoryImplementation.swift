@@ -22,10 +22,10 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
         container.resolveSafe(SplashScreenCoordinator.self)
     }
     
-    // MARK: - LoginPersistenceCoordinator
-    func makeLoginPersistenceCoordinator() -> Comics.LoginPersistenceCoordinator {
-        container.resolveSafe(LoginPersistenceCoordinator.self)
-    }
+//    // MARK: - LoginPersistenceCoordinator
+//    func makeLoginPersistenceCoordinator() -> Comics.LoginPersistenceCoordinator {
+//        container.resolveSafe(LoginPersistenceCoordinator.self)
+//    }
     
     // MARK: - LoginCoordinator
     func makeLoginCoordinator() -> Comics.LoginCoordinator {

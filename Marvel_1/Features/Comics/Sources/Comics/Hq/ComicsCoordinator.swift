@@ -15,9 +15,11 @@ public class ComicsCoordinator: Coordinator, DetailsComicsCoordinating{
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController?
+    var container: DIContainer
     
-    public init(tabBarController: UITabBarController) {
+    public init(tabBarController: UITabBarController, container: DIContainer) {
         self.tabBarController = tabBarController
+        self.container = container
     }
     
     @MainActor public func start() {

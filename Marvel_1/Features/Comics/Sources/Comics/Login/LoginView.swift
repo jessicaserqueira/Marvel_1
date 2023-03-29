@@ -15,7 +15,6 @@ public struct LoginView<ViewModel: LoginModelling>: View {
         self.viewModel = viewModel
     }
 
-    
     public var borderColor: Color = .black
     
     public var body: some View {
@@ -34,25 +33,19 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 .padding(.top)
                 
                 Spacer()
-                
                 HStack {
                     LoginTextField(email: $viewModel.loginModel.email, borderColor: .black)
                     
                     Spacer()
                     
                 }
-                
                 .padding()
-                
-                
                 HStack {
                     PasswordTextField(password: $viewModel.loginModel.password, borderColor: .black)
                     
                     Spacer()
-                    
                 }
                 .padding()
-                
                 
                 Button(action: {
                     viewModel.createAccount()
@@ -66,9 +59,8 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 Spacer()
                 Spacer()
                 
-                
                 Button {
-                    viewModel.loginButton(email: viewModel.loginModel.email, password: viewModel.loginModel.password)
+                    viewModel.loginAuthentication(email: viewModel.loginModel.email, password: viewModel.loginModel.password)
                 } label: {
                     Text(L10n.Login.Button.title)
                         .foregroundColor(.white)

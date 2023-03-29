@@ -15,12 +15,12 @@ public protocol CharacterHomeModelling: ObservableObject {
     var searchTerm: String { get set }
     var isLoading: Bool { get set }
     
-    func signOut()
+    func logout()
     func didAppear()
     func fetchCharacter()
     func filterCharacters(searchTerm: String) -> [CharacterModel]
     func favoriteButton()
     func buttonDetails(with id: Int)
-     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
+    func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
 }

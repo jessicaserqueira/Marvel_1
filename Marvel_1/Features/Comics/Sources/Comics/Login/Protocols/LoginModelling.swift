@@ -14,6 +14,5 @@ public protocol LoginModelling: ObservableObject {
     var alertText: String { get }
     
     func loginAuthentication(email: String, password: String)
-    func loginButton(email: String, password: String)
     func createAccount()
 }
