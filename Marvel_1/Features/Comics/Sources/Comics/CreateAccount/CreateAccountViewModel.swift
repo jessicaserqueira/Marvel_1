@@ -27,7 +27,6 @@ public class CreateAccountViewModel: ObservableObject {
 extension CreateAccountViewModel: CreateAccountModelling {
     
     public func returnLoginView() {
-        print("return")
         coordinator?.returnLoginView()
     }
     

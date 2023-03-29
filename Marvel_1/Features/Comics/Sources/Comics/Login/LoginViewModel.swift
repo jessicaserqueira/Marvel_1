@@ -44,7 +44,6 @@ extension LoginViewModel: LoginModelling {
     }
     
     @MainActor public func createAccount() {
-        print("criar conta")
         coordinator?.createAccount()
     }
 }

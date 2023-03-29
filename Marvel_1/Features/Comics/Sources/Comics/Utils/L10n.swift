@@ -17,9 +17,11 @@ internal enum L10n {
   /// Você ainda não selecionou um personagem favorito
   internal static let notSelected = L10n.tr("Localizable", "NotSelected", fallback: "Você ainda não selecionou um personagem favorito")
   internal enum Characters {
+    /// Sair
+    internal static let signOut = L10n.tr("Localizable", "Characters.signOut", fallback: "Sair")
     internal enum Title {
       /// Personagens
-      internal static let title = L10n.tr("Localizable", "Characters.Title.tile", fallback: "Personagens")
+      internal static let title = L10n.tr("Localizable", "Characters.Title.title", fallback: "Personagens")
     }
   }
   internal enum CreateAccount {
@@ -32,8 +34,9 @@ internal enum L10n {
       internal static let title = L10n.tr("Localizable", "CreateAccount.Button.title", fallback: "Criar")
     }
     internal enum Label {
-      /// Crie sua Conta
-      internal static let title = L10n.tr("Localizable", "CreateAccount.Label.title", fallback: "Crie sua Conta")
+      /// Crie 
+      /// sua Conta
+      internal static let title = L10n.tr("Localizable", "CreateAccount.Label.title", fallback: "Crie \nsua Conta")
     }
   }
   internal enum Favorites {

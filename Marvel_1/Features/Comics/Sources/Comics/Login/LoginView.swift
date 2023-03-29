@@ -33,24 +33,12 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                 .padding(.top)
                 
                 Spacer()
-                HStack {
                     LoginTextField(email: $viewModel.loginModel.email, borderColor: .black)
-                    
-                    Spacer()
-                    
-                }
                 .padding()
-                HStack {
                     PasswordTextField(password: $viewModel.loginModel.password, borderColor: .black)
-                    
-                    Spacer()
-                }
                 .padding()
-                
                 Button(action: {
                     viewModel.createAccount()
-                    
-                    
                 }) {
                     Text(L10n.Login.Label.title)
                         .foregroundColor(.black.opacity(0.7))
