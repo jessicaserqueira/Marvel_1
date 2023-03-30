@@ -9,8 +9,6 @@ import Foundation
 import FirebaseAuth
 import SwiftUI
 
-@available(iOS 14.0, *)
-
 public class LoginPersistenceService {
     
     public init() {}

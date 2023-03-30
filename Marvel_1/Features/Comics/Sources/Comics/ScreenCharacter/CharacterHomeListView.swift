@@ -8,7 +8,6 @@
 import SwiftUI
 import Kingfisher
 
-@available(iOS 14.0, *)
 struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     
     @ObservedObject var viewModel: ViewModel

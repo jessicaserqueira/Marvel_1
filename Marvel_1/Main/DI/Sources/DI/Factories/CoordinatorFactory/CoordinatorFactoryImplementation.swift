@@ -9,7 +9,6 @@ import Common
 import Comics
 import AppNavigation
 
-@available(iOS 14.0, *)
 class CoordinatorFactoryImplementation: CoordinatorFactory {
     private let container: DIContainer
     
@@ -43,6 +42,10 @@ class CoordinatorFactoryImplementation: CoordinatorFactory {
         container.resolveSafe(TabBarCoordinator.self)
     }
     
+    // MARK: - CharacterCoordinator
+    func makeCharacterCoordinator() -> Comics.CharacterHomeCoordinator {
+        container.resolveSafe(CharacterHomeCoordinator.self)
+    }
     // MARK: - ScreenDetailsCoordinator
     func makeScreenDetailsCoordinator() -> Comics.DetailsCharacterCoordinator {
         container.resolveSafe(DetailsCharacterCoordinator.self)

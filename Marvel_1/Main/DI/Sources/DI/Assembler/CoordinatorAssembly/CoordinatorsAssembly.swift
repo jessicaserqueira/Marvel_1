@@ -11,7 +11,6 @@ import Domain
 import Comics
 import UIKit
 
-@available(iOS 14.0, *)
 class CoordinatorsAssembly: Assembly {
     
     private weak var appCoordinator: AppCoordinator?

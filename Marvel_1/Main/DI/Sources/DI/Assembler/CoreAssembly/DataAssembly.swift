@@ -13,7 +13,6 @@ import AppData
 import Networking
 import FireStorage
 
-@available(iOS 14.0, *)
 class DataAssembly: Assembly {
     
     func assemble(container: DIContainer) {

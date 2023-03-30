@@ -10,7 +10,6 @@ import AppData
 import Common
 import FirebaseAuth
 
-@available(iOS 14.0, *)
 public class LoginDataSource {
     private let loginService: LoginService
     
@@ -19,7 +18,6 @@ public class LoginDataSource {
     }
 }
 
-@available(iOS 14.0, *)
 extension LoginDataSource: AppData.LoginDataSource {
     public func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         loginService.loginAuthentication(email: email, password: password) { result in

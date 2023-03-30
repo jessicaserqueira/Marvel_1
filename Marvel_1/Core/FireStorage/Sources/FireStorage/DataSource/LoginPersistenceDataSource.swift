@@ -8,7 +8,6 @@
 import Foundation
 import AppData
 
-@available(iOS 14.0, *)
 public class LoginPersistenceDataSource {
     public let loginPresistenceService: LoginPersistenceService
     
@@ -17,7 +16,6 @@ public class LoginPersistenceDataSource {
     }
 }
 
-@available(iOS 14.0, *)
 extension LoginPersistenceDataSource: AppData.LoginPersistenceDataSource {
     
     public var userID: String? {

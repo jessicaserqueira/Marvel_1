@@ -10,8 +10,6 @@ import Common
 import UIKit
 import SwiftUI
 
-
-@available(iOS 14.0, *)
 public class SplashScreenCoordinator {
     
     var navigationController: UINavigationController

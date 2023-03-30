@@ -8,6 +8,7 @@
 import Foundation
 
 public struct LoginAuthenticationModel {
+    
     var email: String
     var password: String
 }

@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-@available(iOS 14.0, *)
+
 public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public var childCoordinators: [Coordinator] = []

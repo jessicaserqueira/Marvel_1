@@ -10,7 +10,6 @@ import Common
 import Domain
 import FirebaseAuth
 
-@available(iOS 14.0, *)
 public class CreateAccountViewModel: ObservableObject {
     private var coordinator: CreateAccountCoordinating?
     @Published public var createAccount = CreateAccountModel(email: "", password: "")
@@ -23,7 +22,6 @@ public class CreateAccountViewModel: ObservableObject {
     }
 }
 
-@available(iOS 14.0, *)
 extension CreateAccountViewModel: CreateAccountModelling {
     
     public func returnLoginView() {

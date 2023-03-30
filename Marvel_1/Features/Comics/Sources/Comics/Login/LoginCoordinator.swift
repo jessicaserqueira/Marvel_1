@@ -11,13 +11,13 @@ import Common
 import SwiftUI
 import Domain
 
-@available(iOS 14.0, *)
 public class LoginCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
     var tabBarController: UITabBarController
     private var container: DIContainer
+
     
     public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
         self.navigationController = navigationController
@@ -29,11 +29,11 @@ public class LoginCoordinator: Coordinator {
         let viewModel = LoginViewModel(coordinator: self)
         let loginView = LoginView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: loginView)
-        navigationController.setViewControllers([hostingController], animated: true)
+          navigationController.setViewControllers([hostingController], animated: true)
     }
+    public var didFinish: (() -> Void)?
 }
 
-@available(iOS 14.0, *)
 extension LoginCoordinator: LoginCoordinating {
     
     // MARK: -LoginPersisntence

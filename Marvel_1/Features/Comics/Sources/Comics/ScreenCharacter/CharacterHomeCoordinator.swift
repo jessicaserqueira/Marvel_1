@@ -11,7 +11,6 @@ import Common
 import SwiftUI
 import Domain
 
-@available(iOS 14.0, *)
 public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public var childCoordinators: [Coordinator] = []
@@ -27,21 +26,23 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     }
     
     public func start()  {
-        
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
+            .onDisappear {
+                
+            }
         
         let hostingController = UIHostingController(rootView: characterHomeView)
         hostingController.tabBarItem.title = L10n.Characters.Title.title
         hostingController.tabBarItem.image = UIImage(named: "shield-Color")
         hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
         
+        tabBarController.tabBar.isHidden = false
         navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
 // MARK: CharacterHomeCoordinating
-@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
 
     public func buttonDetails(with id: Int) {
@@ -57,13 +58,13 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
         loginPersistenceUseCase.logout()
         tabBarController.viewControllers?.removeAll()
         navigationController.viewControllers.removeAll()
-        
+
         let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
         coordinator.start()
+       
     }
 }
 
-@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: FavoritesCoordinating {
     @MainActor public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
         let viewModel = FavoritesViewModel(coordinator: self)

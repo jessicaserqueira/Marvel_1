@@ -9,7 +9,6 @@ import Common
 import UIKit
 import SwiftUI
 
-@available(iOS 14.0, *)
 public class TabBarCoordinator: Coordinator {
     
     var navigationController: UINavigationController

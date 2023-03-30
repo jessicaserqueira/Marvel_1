@@ -9,7 +9,6 @@ import Common
 import FireStorage
 import AppData
 
-@available(iOS 14.0, *)
 class FireStorageAssembly: Assembly {
     
     func assemble(container: DIContainer) {

@@ -24,6 +24,10 @@ public class CharacterHomeViewModel: ObservableObject {
     private var coordinator: CharacterHomeCoordinating?
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
+    deinit{
+        debugPrint("\(self) deinit")
+    }
+    
     public init(coordinator: CharacterHomeCoordinating) {
         self.coordinator = coordinator
     }

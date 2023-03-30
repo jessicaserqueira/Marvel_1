@@ -10,7 +10,6 @@ import FirebaseAuth
 import AppData
 import SwiftUI
 
-@available(iOS 14.0, *)
 public class LoginService {
     
     public init() {
