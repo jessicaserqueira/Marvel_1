@@ -16,13 +16,12 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController
-    var container: DIContainer
     
     private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
     
-    public init(tabBarController: UITabBarController, container: DIContainer) {
+    public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-        self.container = container
+
     }
     
     public func start()  {
@@ -59,7 +58,7 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
         tabBarController.viewControllers?.removeAll()
         navigationController.viewControllers.removeAll()
 
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
+        let coordinator = DIContainer.shared.resolveSafe(LoginCoordinator.self)
         coordinator.start()
        
     }

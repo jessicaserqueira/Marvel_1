@@ -16,13 +16,12 @@ public class LoginCoordinator: Coordinator {
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
     var tabBarController: UITabBarController
-    private var container: DIContainer
+
 
     
-    public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
         self.navigationController = navigationController
         self.tabBarController = tabBarController
-        self.container = container
     }
     
     @MainActor public func start()  {
@@ -39,8 +38,8 @@ extension LoginCoordinator: LoginCoordinating {
     // MARK: -LoginPersisntence
     
     @MainActor public func loginValidation(email: String, password: String) {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
-        tabBarCoordinator.start()
+        let coordinator = DIContainer.shared.resolveSafe(TabBarCoordinator.self)
+        coordinator.start()
     }
     
     // MARK: -CreateAccount

@@ -15,11 +15,9 @@ public class FavoritesCoordinator: Coordinator{
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController?
-    var container: DIContainer
     
-    public init(tabBarController: UITabBarController, container: DIContainer) {
+    public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-        self.container = container
     }
     
     @MainActor public func start() {
