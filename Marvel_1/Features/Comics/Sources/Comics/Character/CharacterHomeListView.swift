@@ -14,7 +14,7 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
     
     var borderColor: Color
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 3)
-    
+
     var body: some View {
         SearchBar(searchTerm: $viewModel.searchTerm, borderColor: borderColor)
             .padding(.horizontal, 24)
@@ -66,8 +66,6 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
             .gesture(DragGesture().onChanged({ _ in
                 UIApplication.shared.endEditing()
             }))
-            .rotationEffect(Angle(degrees: 0))
-            .scaleEffect(x: 1.0, y: 1.0, anchor: .center)
         }
     }
 }
