@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 import Common
 import SwiftUI
 import Domain
@@ -17,8 +16,6 @@ public class LoginCoordinator: Coordinator {
     public var navigationController: UINavigationController
     var tabBarController: UITabBarController
 
-
-    
     public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
         self.navigationController = navigationController
         self.tabBarController = tabBarController
@@ -30,7 +27,6 @@ public class LoginCoordinator: Coordinator {
         let hostingController = UIHostingController(rootView: loginView)
           navigationController.setViewControllers([hostingController], animated: true)
     }
-    public var didFinish: (() -> Void)?
 }
 
 extension LoginCoordinator: LoginCoordinating {

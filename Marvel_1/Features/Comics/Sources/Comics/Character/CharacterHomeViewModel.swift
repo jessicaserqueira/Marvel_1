@@ -24,10 +24,6 @@ public class CharacterHomeViewModel: ObservableObject {
     private var coordinator: CharacterHomeCoordinating?
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
-    deinit{
-        debugPrint("\(self) deinit")
-    }
-    
     public init(coordinator: CharacterHomeCoordinating) {
         self.coordinator = coordinator
     }
@@ -67,14 +63,24 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             }
         }
     }
-    public func filterCharacters(searchTerm: String) -> [CharacterModel] {
-        
-        if searchTerm.isEmpty {
-            return data
-        }
-        return data.filter {
-            $0.name.lowercased().contains(searchTerm.lowercased())
-        }
+    
+    public func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> {
+        Binding<Bool>(
+            get: { [weak self] in
+                self?.isFavorites.first(where: { $0.id == character.id })?.isFavorite ?? false
+            },
+            set: { [weak self] isFavorite in
+                guard let self = self else { return }
+                if isFavorite {
+                    self.markAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite, characterModel: character)
+                } else {
+                    self.unmarkAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite)
+                }
+                self.isFavorites = self.isFavorites.map {
+                    $0.id == character.id ? CharacterIsFavoriteModel(id: $0.id, isFavorite: isFavorite) : $0
+                }
+            }
+        )
     }
     
     public func favoriteButton() {

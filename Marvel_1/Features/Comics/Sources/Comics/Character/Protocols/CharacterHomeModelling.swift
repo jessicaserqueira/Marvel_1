@@ -18,9 +18,19 @@ public protocol CharacterHomeModelling: ObservableObject {
     func logout()
     func didAppear()
     func fetchCharacter()
-    func filterCharacters(searchTerm: String) -> [CharacterModel]
     func favoriteButton()
     func buttonDetails(with id: Int)
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
+    func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool>
+}
+
+extension CharacterHomeModelling {
+    
+    var filteredCharacters: [CharacterModel] {
+        let filteredCharacters = searchTerm.isEmpty ? data : data.filter {
+            $0.name.lowercased().contains(searchTerm.lowercased())
+        }
+        return filteredCharacters.sorted(by: { $0.name < $1.name })
+    }
 }

@@ -12,7 +12,6 @@ import SwiftUI
     
     @ObservedObject var viewModel: ViewModel
     @State private var searchTerm: String = ""
-    @State private var isFavorite: Bool = false
     
     public init(viewModel: ViewModel, searchTerm: String = "") {
         self.viewModel = viewModel
