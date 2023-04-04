@@ -13,12 +13,13 @@ public protocol CharacterHomeModelling: ObservableObject {
     var data: [CharacterModel] { get }
     var isFavorites: [CharacterIsFavoriteModel] { get set }
     var searchTerm: String { get set }
+    var offset: Int { get set }
+    var totalPages: Int { get set }
     var isLoading: Bool { get set }
     
     func logout()
     func didAppear()
     func fetchCharacter()
-    func favoriteButton()
     func buttonDetails(with id: Int)
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)

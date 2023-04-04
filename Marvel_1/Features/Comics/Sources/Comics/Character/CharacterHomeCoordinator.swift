@@ -21,7 +21,7 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-
+        
     }
     
     public func start()  {
@@ -39,7 +39,7 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
 
 // MARK: CharacterHomeCoordinating
 extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
-
+    
     public func buttonDetails(with id: Int) {
         let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
         let viewModel = DetailsCharacterViewModel(coordinator: coordinator)
@@ -50,10 +50,10 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
     
     @MainActor
     public func signOut() {
-            loginPersistenceUseCase.logout()
-            tabBarController.viewControllers?.removeAll()
-            navigationController.viewControllers.removeAll()
-
+        loginPersistenceUseCase.logout()
+        tabBarController.viewControllers?.removeAll()
+        navigationController.viewControllers.removeAll()
+        
         let coordinator = DIContainer.shared.resolveSafe(LoginCoordinator.self)
         coordinator.start()
     }
