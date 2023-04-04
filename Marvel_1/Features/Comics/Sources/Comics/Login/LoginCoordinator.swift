@@ -25,7 +25,7 @@ public class LoginCoordinator: Coordinator {
         let viewModel = LoginViewModel(coordinator: self)
         let loginView = LoginView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: loginView)
-          navigationController.setViewControllers([hostingController], animated: true)
+          navigationController.setViewControllers([hostingController], animated: false)
     }
 }
 

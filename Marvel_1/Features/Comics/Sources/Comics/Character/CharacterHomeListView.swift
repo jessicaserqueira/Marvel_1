@@ -33,8 +33,8 @@ struct CharacterHomeListView<ViewModel: CharacterHomeModelling>: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 100, height: 100)
                                     .overlay(RoundedRectangle(cornerRadius: 0).stroke(self.borderColor, lineWidth: 2))
-                                
                             }
+                            
                             HStack(spacing: 10) {
                                 Text(character.name)
                                     .font(Font.custom("Bangers-Regular", size: 14))

@@ -27,10 +27,6 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     public func start()  {
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
-            .onDisappear {
-                
-            }
-        
         let hostingController = UIHostingController(rootView: characterHomeView)
         hostingController.tabBarItem.title = L10n.Characters.Title.title
         hostingController.tabBarItem.image = UIImage(named: "shield-Color")
@@ -54,13 +50,12 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
     
     @MainActor
     public func signOut() {
-        loginPersistenceUseCase.logout()
-        tabBarController.viewControllers?.removeAll()
-        navigationController.viewControllers.removeAll()
+            loginPersistenceUseCase.logout()
+            tabBarController.viewControllers?.removeAll()
+            navigationController.viewControllers.removeAll()
 
         let coordinator = DIContainer.shared.resolveSafe(LoginCoordinator.self)
         coordinator.start()
-       
     }
 }
 
