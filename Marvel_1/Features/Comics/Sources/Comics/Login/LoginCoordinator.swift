@@ -6,41 +6,37 @@
 //
 
 import Foundation
-import UIKit
 import Common
 import SwiftUI
 import Domain
 
-@available(iOS 14.0, *)
 public class LoginCoordinator: Coordinator {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController: UINavigationController
     var tabBarController: UITabBarController
-    private var container: DIContainer
-    
-    public init(navigationController: UINavigationController, tabBarController: UITabBarController, container: DIContainer) {
+
+    public init(navigationController: UINavigationController, tabBarController: UITabBarController) {
         self.navigationController = navigationController
         self.tabBarController = tabBarController
-        self.container = container
     }
     
     @MainActor public func start()  {
         let viewModel = LoginViewModel(coordinator: self)
         let loginView = LoginView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: loginView)
-        navigationController.setViewControllers([hostingController], animated: true)
+        navigationController.setViewControllers([hostingController], animated: false)
+
     }
 }
 
-@available(iOS 14.0, *)
 extension LoginCoordinator: LoginCoordinating {
     
     // MARK: -LoginPersisntence
     
     @MainActor public func loginValidation(email: String, password: String) {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, container: container)
-        tabBarCoordinator.start()
+        let coordinator = DIContainer.shared.resolveSafe(TabBarCoordinator.self)
+        coordinator.start()
     }
     
     // MARK: -CreateAccount

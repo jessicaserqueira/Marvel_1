@@ -10,7 +10,6 @@ import Common
 import Domain
 import Comics
 
-@available(iOS 14.0, *)
 public class AppCoordinator: Common.Coordinator {
     
     public var window: UIWindow
@@ -21,6 +20,7 @@ public class AppCoordinator: Common.Coordinator {
     private var container: DIContainer
     
     private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
     
     public init(window: UIWindow, factory: CoordinatorFactory, container: DIContainer) {
         self.window = window
@@ -30,14 +30,14 @@ public class AppCoordinator: Common.Coordinator {
         self.container = container
     }
     
-    public func start() {
+    @MainActor public func start() {
         window.rootViewController = self.navigationController
         window.makeKeyAndVisible()
         showSplashCoordinator()
+  
     }
 }
 
-@available(iOS 14.0, *)
 extension AppCoordinator {
     
     func showSplashCoordinator() {

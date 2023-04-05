@@ -9,10 +9,9 @@ import SwiftUI
 import Common
 import Domain
 
-@available(iOS 14.0, *)
 public class LoginViewModel: ObservableObject {
     private var coordinator: LoginCoordinating?
-    @Published public var loginModel = LoginAuthenticationModel(email: "", password: "")
+    @Published public var loginModel = LoginAuthenticationModel(email: "jessicaserqueira@gmail.com", password: "15ioasys@A")
     @AppStorage("uid") var userID = String()
     @Published public var formInvalid = false
     public var alertText = ""
@@ -21,13 +20,15 @@ public class LoginViewModel: ObservableObject {
     
     private lazy var loginUseCase = DIContainer.shared.resolveSafe(Domain.LoginUseCaseProtocol.self)
     
+    deinit{
+        debugPrint("\(self) deinit")
+    }
     
     public init(coordinator: LoginCoordinating) {
         self.coordinator = coordinator
     }
 }
 
-@available(iOS 14.0, *)
 extension LoginViewModel: LoginModelling {
 
     

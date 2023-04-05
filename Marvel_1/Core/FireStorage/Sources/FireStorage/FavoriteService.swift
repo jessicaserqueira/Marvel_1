@@ -21,12 +21,10 @@ public class FavoriteService {
             let data = try encoder.encode(characterModel)
             var dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
             
-            // Adicionar characterID e isFavorite ao dicionário
             dict["characterID"] = characterID
             dict["isFavorite"] = isFavorite
             
-            // Salvar o dicionário no Firestore
-            Firestore.firestore().collection("Characters Favorites")
+            Firestore.firestore().collection("charactersFavorites")
                 .document(uuid)
                 .setData(dict) { error in
                     if let error = error {
@@ -41,7 +39,7 @@ public class FavoriteService {
     }
     
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool, completion: @escaping (Result<Void, Error>) -> Void) {
-        Firestore.firestore().collection("Characters Favorites")
+        Firestore.firestore().collection("charactersFavorites")
             .whereField("characterID", isEqualTo: characterID)
             .getDocuments { snapshot, error in
                 guard let document = snapshot?.documents.first else {
@@ -52,7 +50,7 @@ public class FavoriteService {
                 if isFavorite {
                     completion(.success(()))
                 } else {
-                    Firestore.firestore().collection("Characters Favorites")
+                    Firestore.firestore().collection("charactersFavorites")
                         .document(document.documentID)
                         .delete { error in
                             if let error = error {

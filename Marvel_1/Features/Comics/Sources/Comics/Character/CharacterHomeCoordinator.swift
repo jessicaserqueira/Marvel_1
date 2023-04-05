@@ -11,39 +11,35 @@ import Common
 import SwiftUI
 import Domain
 
-@available(iOS 14.0, *)
 public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController
-    var container: DIContainer
     
     private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
     
-    public init(tabBarController: UITabBarController, container: DIContainer) {
+    public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-        self.container = container
+        
     }
     
     public func start()  {
-        
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
-        
         let hostingController = UIHostingController(rootView: characterHomeView)
         hostingController.tabBarItem.title = L10n.Characters.Title.title
         hostingController.tabBarItem.image = UIImage(named: "shield-Color")
         hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
         
+        tabBarController.tabBar.isHidden = false
         navigationController.pushViewController(hostingController, animated: true)
     }
 }
 
 // MARK: CharacterHomeCoordinating
-@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
-
+    
     public func buttonDetails(with id: Int) {
         let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
         let viewModel = DetailsCharacterViewModel(coordinator: coordinator)
@@ -58,12 +54,11 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
         tabBarController.viewControllers?.removeAll()
         navigationController.viewControllers.removeAll()
         
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, container: container)
+        let coordinator = DIContainer.shared.resolveSafe(LoginCoordinator.self)
         coordinator.start()
     }
 }
 
-@available(iOS 14.0, *)
 extension CharacterHomeCoordinator: FavoritesCoordinating {
     @MainActor public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
         let viewModel = FavoritesViewModel(coordinator: self)

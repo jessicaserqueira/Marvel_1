@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
 struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
     @ObservedObject var viewModel: ViewModel
     @State private var showModal = false

@@ -10,7 +10,7 @@ import UIKit
 import Common
 import SwiftUI
 
-@available(iOS 14.0, *)
+
 public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public var childCoordinators: [Coordinator] = []
@@ -29,14 +29,14 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     }
     
     public func returnLoginView() {
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), container: DIContainer())
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController())
         let viewModel = LoginViewModel(coordinator: coordinator)
         _ = LoginView(viewModel: viewModel)
         navigationController.popViewController(animated: true)
     }
     
     public func buttonCreateAccount() {
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), container: DIContainer())
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController())
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             let viewModel = LoginViewModel(coordinator: coordinator)
             _ = LoginView(viewModel: viewModel)
@@ -46,7 +46,7 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public func dismissModal() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            let coordinator = LoginCoordinator(navigationController: self.navigationController, tabBarController: UITabBarController(), container: DIContainer())
+            let coordinator = LoginCoordinator(navigationController: self.navigationController, tabBarController: UITabBarController())
             let viewModel = LoginViewModel(coordinator: coordinator)
             _ = LoginView(viewModel: viewModel)
             self.navigationController.popViewController(animated: true)

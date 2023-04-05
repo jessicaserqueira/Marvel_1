@@ -8,7 +8,6 @@
 import SwiftUI
 import Kingfisher
 
-@available(iOS 14.0, *)
 struct FavoritesListView<ViewModel: FavoritesModelling>: View {
     
     @ObservedObject var viewModel: ViewModel

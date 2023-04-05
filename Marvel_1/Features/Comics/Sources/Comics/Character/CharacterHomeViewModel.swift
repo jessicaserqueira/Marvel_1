@@ -12,14 +12,12 @@ import Domain
 public class CharacterHomeViewModel: ObservableObject {
     
     @Published public var data: [CharacterModel] = []
+    @Published public var isFavorites: [CharacterIsFavoriteModel] = []
     @Published public var selectedCharacter: CharacterModel?
     @Published public var searchTerm: String = ""
     @Published public var isLoading: Bool = false
-    
-    @Published public var isFavorites: [CharacterIsFavoriteModel] = []
-    
-    private var offset: Int = 0
-    private var totalPages: Int = 0
+    @Published public var offset: Int = 0
+    @Published public var totalPages: Int = 0
     
     private var coordinator: CharacterHomeCoordinating?
     private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
@@ -47,34 +45,41 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
             switch result {
             case .success(let response):
                 self.totalPages = (response.total ?? 0) / 20
-                self.data +=  response.results?.compactMap { CharacterModel($0) } ?? []
-                self.isFavorites += self.data.map {
-                    CharacterIsFavoriteModel(id: $0.item.id ?? .zero, isFavorite: false)
+                self.data += response.results?.compactMap { CharacterModel($0) } ?? []
+                
+                for character in response.results ?? [] {
+                    if let id = character.id {
+                        let isFavorite = self.isFavorites.contains(where: { $0.id == id }) ? true : false
+                        self.isFavorites.append(CharacterIsFavoriteModel(id: id, isFavorite: isFavorite))
+                    }
                 }
+                
                 self.offset += 20
-                if self.offset < response.total ?? 0 {
-                    self.fetchCharacter()
-                } else {
-                    self.isLoading = false
-                }
+                self.isLoading = false
             case .failure(let error):
                 print(error.localizedDescription)
                 self.isLoading = false
             }
         }
     }
-    public func filterCharacters(searchTerm: String) -> [CharacterModel] {
-        
-        if searchTerm.isEmpty {
-            return data
-        }
-        return data.filter {
-            $0.name.lowercased().contains(searchTerm.lowercased())
-        }
-    }
     
-    public func favoriteButton() {
-        print("Favorito")
+    public func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> {
+        Binding<Bool>(
+            get: { [weak self] in
+                self?.isFavorites.first(where: { $0.id == character.id })?.isFavorite ?? false
+            },
+            set: { [weak self] isFavorite in
+                guard let self = self else { return }
+                if isFavorite {
+                    self.markAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite, characterModel: character)
+                } else {
+                    self.unmarkAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite)
+                }
+                self.isFavorites = self.isFavorites.map {
+                    $0.id == character.id ? CharacterIsFavoriteModel(id: $0.id, isFavorite: isFavorite) : $0
+                }
+            }
+        )
     }
     
     @MainActor public func buttonDetails(with id: Int) {

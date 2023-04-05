@@ -8,7 +8,6 @@
 import Kingfisher
 import SwiftUI
 
-@available(iOS 14.0, *)
 struct ComicsListView<ViewModel: ComicsModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
