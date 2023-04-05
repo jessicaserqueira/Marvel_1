@@ -59,9 +59,3 @@ extension CharacterModel {
         return dict.compactMapValues { $0 }
     }
 }
-
-extension CharacterModel: Equatable {
-    public static func == (lhs: CharacterModel, rhs: CharacterModel) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
