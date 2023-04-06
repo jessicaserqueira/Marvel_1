@@ -16,8 +16,6 @@ public class ComicsViewModel: ObservableObject {
     @Published public var isLoading: Bool = false
     @Published public var offset: Int = 0
     @Published public var totalPages: Int = 0
-    @State var selectedComicsId: Int?
-    
     
     private var coordinator: ComicsCoordinating?
     private lazy var comicsUseCase = DIContainer.shared.resolveSafe(Domain.ComicsUseCaseProtocol.self)
@@ -69,6 +67,5 @@ extension ComicsViewModel: ComicsModelling {
     
     public func buttonDetails(with id: Int) {
         coordinator?.buttonDetails(with: id)
-        selectedComicsId = id
     }
 }
