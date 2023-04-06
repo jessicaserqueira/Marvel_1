@@ -43,10 +43,7 @@ public struct ComicsView: View {
                     .padding(.top, -36)
                 
                 VStack {
-                    if #available(iOS 14.0, *) {
-                        ComicsListView(viewModel: viewModel)
-                    } else {
-                    }
+                    ComicsListView(viewModel: viewModel)
                 }
             }
         }

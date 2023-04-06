@@ -14,7 +14,7 @@ public class ComicsCoordinator: Coordinator, DetailsComicsCoordinating{
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
-    public var tabBarController: UITabBarController?
+    public var tabBarController: UITabBarController
     
     public init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController

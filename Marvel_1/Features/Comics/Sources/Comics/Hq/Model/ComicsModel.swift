@@ -11,7 +11,6 @@ import SwiftUI
 
 public struct ComicsModel: Identifiable, Codable {
     private let item: ComicsResponse
-    var uniqueId = UUID()
     
     init(_ item: ComicsResponse) {
         self.item = item
