@@ -11,19 +11,19 @@ public struct CharacterResponse: Codable  {
     
     public let id: Int?
     public let name: String
-    public let resultDescription: String
+    public let result_description: String
     public let thumbnail: Thumbnail?
     
     public init(
         id: Int,
         name: String,
-        resultDescription: String,
+        result_description: String,
         thumbnail: Thumbnail?
         
     ) {
         self.id = id
         self.name = name
-        self.resultDescription = resultDescription
+        self.result_description = result_description
         self.thumbnail = thumbnail
     }
 }

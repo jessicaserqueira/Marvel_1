@@ -9,7 +9,7 @@ import Domain
 import Foundation
 import SwiftUI
 
-public struct CharacterModel: Identifiable, Encodable {
+public struct CharacterModel: Identifiable, Codable {
     
     public var item: CharacterResponse
     
@@ -31,7 +31,7 @@ extension CharacterModel {
     }
     
     var resultDescription: String {
-        item.resultDescription
+        item.result_description
     }
     
     var thumbnail: URL {
@@ -42,20 +42,5 @@ extension CharacterModel {
     
     var toDomain: Domain.CharacterResponse {
         item
-    }
-}
-
-extension CharacterModel {
-    
-    var toDictionary: [String: Any] {
-        let dict: [String: Any?] = [
-            "id": id,
-            "name": name,
-            "resultDescription": resultDescription,
-            "thumbnail": thumbnail.absoluteString
-            
-            
-        ]
-        return dict.compactMapValues { $0 }
     }
 }

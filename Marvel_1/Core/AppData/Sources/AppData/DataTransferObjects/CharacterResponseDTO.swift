@@ -11,22 +11,22 @@ import SwiftUI
 
 public struct CharacterResponseDTO: Codable {
     
-    public init(id: Int? = nil, name: String, resultDescription: String, thumbnail: ThumbnailDTO) {
-        self.id = id
-        self.name = name
-        self.resultDescription = resultDescription
-        self.thumbnail = thumbnail
-    }
-    
     public let id: Int?
-    public let name, resultDescription: String
+    public let name, result_description: String
     public let thumbnail: ThumbnailDTO?
     
+    public init(id: Int? = nil, name: String, result_description: String, thumbnail: ThumbnailDTO) {
+        self.id = id
+        self.name = name
+        self.result_description = result_description
+        self.thumbnail = thumbnail
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
-        self.resultDescription = try container.decode(String.self, forKey: .resultDescription)
+        self.result_description = try container.decode(String.self, forKey: .result_description)
         self.thumbnail = try container.decode(ThumbnailDTO.self, forKey: .thumbnail)
     }
 }
@@ -36,7 +36,7 @@ extension CharacterResponseDTO {
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case resultDescription = "description"
+        case result_description = "description"
         case thumbnail
         
     }
@@ -48,7 +48,7 @@ extension CharacterResponseDTO {
         .init(
             id: id ?? .zero,
             name: name,
-            resultDescription: resultDescription,
+            result_description: result_description,
             thumbnail: thumbnail?.toDomain
         )
     }

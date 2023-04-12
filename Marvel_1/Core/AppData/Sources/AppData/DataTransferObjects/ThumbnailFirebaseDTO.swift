@@ -27,10 +27,7 @@ extension ThumbnailFirebaseDTO {
 }
 
 extension ThumbnailFirebaseDTO {
-    public var toDomain: ThumbnailFirebase {
-        .init(
-            path: path,
-            extensionType: extensionType
-        )
+    func toThumbnailFirebase() -> ThumbnailFirebase {
+        return ThumbnailFirebase(path: self.path, extensionType: self.extensionType)
     }
 }

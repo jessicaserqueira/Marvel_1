@@ -9,17 +9,20 @@ import Foundation
 import Domain
 
 public struct CharacterDTO: Codable {
+    public let uuid: String
     public let id: Int
     public let name: String
     public let resultDescription: String
     public let thumbnailFirebase: ThumbnailFirebaseDTO
     
     public init(
+        uuid: String,
         id: Int,
         name: String,
         resultDescription: String,
         thumbnailFirebase: ThumbnailFirebaseDTO
     ) {
+        self.uuid = uuid
         self.id = id
         self.name = name
         self.resultDescription = resultDescription
@@ -29,6 +32,7 @@ public struct CharacterDTO: Codable {
 
 extension CharacterDTO {
     enum CodingKeys: String, CodingKey {
+        case uuid
         case id
         case name
         case resultDescription
@@ -39,10 +43,11 @@ extension CharacterDTO {
 extension CharacterDTO {
     public var toDomain: Character {
         .init(
+            uuid: uuid,
             id: id,
             name: name,
             resultDescription: resultDescription,
-            thumbnailFirebase: thumbnailFirebase.toDomain
+            thumbnailFirebase: thumbnailFirebase.toThumbnailFirebase()
         )
     }
 }
