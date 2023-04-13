@@ -13,7 +13,6 @@ public struct CharacterModel: Identifiable, Codable {
     
     public var item: CharacterResponse
     
-    
     public init(_ item: CharacterResponse) {
         self.item = item
         

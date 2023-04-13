@@ -23,7 +23,9 @@ public class FavoriteService {
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
         do {
-            var dict = try encoder.encode(characterModel) as? [String: Any] ?? [:]
+            let data = try encoder.encode(characterModel)
+            var dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
+            
             dict["characterID"] = characterID
             dict["isFavorite"] = isFavorite
             
@@ -72,7 +74,7 @@ public class FavoriteService {
             }
     }
     
-    public func getFavorites<T: Decodable>(characterModel: T, completion: @escaping (Result<[T], Error>) -> Void) {
+    public func getFavorites<T: Decodable>(completion: @escaping (Result<[T], Error>) -> Void) {
         Firestore.firestore().collection("users").document(userId).collection("charactersFavorites").getDocuments { snapshot, error in
             if let error = error {
                 completion(.failure(error))

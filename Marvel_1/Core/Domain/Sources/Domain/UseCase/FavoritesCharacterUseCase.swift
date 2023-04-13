@@ -26,7 +26,7 @@ extension FavoritesCharacterUseCase: FavoritesCharacterUseCaseProtocol {
         favoritesCharacterRepository.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite, completion: completion)
     }
     
-    public func getFavorites<T: Decodable>(characterModel: T, completion: @escaping (Result<[CharacterResponse], Error>) -> Void) {
-        favoritesCharacterRepository.getFavorites(characterModel: characterModel, completion: completion)
+    public func getFavorites(completion: @escaping (Result<[Character], Error>) -> Void) {
+        favoritesCharacterRepository.getFavorites(completion: completion)
     }
 }

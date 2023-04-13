@@ -10,7 +10,6 @@ import Foundation
 
 public class FavoritesCharacterRemoteDataSource: AppData.FavoritesCharacterRemoteDataSource {
     
-    
     let favoriteService: FavoriteService
     
     public init(favoriteService: FavoriteService) {
@@ -19,15 +18,16 @@ public class FavoritesCharacterRemoteDataSource: AppData.FavoritesCharacterRemot
 }
 
 extension FavoritesCharacterRemoteDataSource {
-    public func getFavorites<T>(characterModel: T, completion: @escaping (Result<[AppData.CharacterResponseDTO], Error>) -> Void) where T : Decodable {
-        favoriteService.getFavorites(characterModel: characterModel) { result in
+    
+    public func getFavorites<T: Decodable>(completion: @escaping (Result<[T], Error>) -> Void) {
+        favoriteService.getFavorites { (result: Result<[T], Error>) in
             switch result {
             case .success(let response):
-                guard let characterResponses = response as? [AppData.CharacterResponseDTO] else {
+                guard response is [AppData.CharacterResponseDTO] else {
                     completion(.failure(NSError(domain: "getFavorites", code: 0, userInfo: [NSLocalizedDescriptionKey: "Response type mismatch"])))
                     return
                 }
-                completion(.success(characterResponses))
+                completion(.success(response))
             case .failure(let error):
                 completion(.failure(error))
             }

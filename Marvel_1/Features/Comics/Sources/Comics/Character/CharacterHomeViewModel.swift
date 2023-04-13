@@ -72,7 +72,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
                 guard let self = self else { return }
                 if isFavorite {
                     self.markAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite, characterModel: character)
-                    self.coordinator?.getFavorites(characterModel: character)
+                    self.coordinator?.getFavorites()
                 } else {
                     self.unmarkAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite)
                 }

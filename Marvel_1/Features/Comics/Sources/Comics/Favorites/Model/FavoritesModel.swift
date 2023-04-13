@@ -8,14 +8,12 @@
 import Domain
 import Foundation
 
-public struct FavoritesModel: Identifiable {
+public struct FavoritesModel: Identifiable, Codable {
     
-    public var item: Character
-    public let isFavorite: Bool
+    public var item: Item
     
-    public init(_ item: Character, isFavorite: Bool)  {
+    public init(_ item: Item)  {
         self.item = item
-        self.isFavorite = isFavorite
         
     }
 }
@@ -31,15 +29,19 @@ extension FavoritesModel {
     }
     
     var resultDescription: String {
-        item.resultDescription
+        item.result_description
     }
     
     var thumbnail: URL {
-        let path = item.thumbnailFirebase.path
-        let ext = item.thumbnailFirebase.extensionType
+        let path = item.thumbnail.path
+        let ext = item.thumbnail.extensionType
         let urlString = "\(path).\(ext)"
         return URL(string: urlString) ?? URL(fileURLWithPath: "")
         
+    }
+    
+    var toDomain: Domain.Item {
+        item
     }
 }
 
@@ -57,4 +59,3 @@ extension FavoritesModel {
         return dict.compactMapValues { $0 }
     }
 }
-

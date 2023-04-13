@@ -18,8 +18,8 @@ public struct FavoritesCharacterRepository {
 }
 
 extension FavoritesCharacterRepository: Domain.FavoritesCharacterRepository {
-    public func getFavorites<T>(characterModel: T, completion: @escaping (Result<[Domain.CharacterResponse], Error>) -> Void) where T : Decodable {
-            remote.getFavorites(characterModel: characterModel) { result in
+    public func getFavorites(completion: @escaping (Result<[Domain.Character], Error>) -> Void) {
+            remote.getFavorites{ (result: Result<[CharacterDTO], Error>) in
                 switch result {
                 case .success(let response):
                     completion(.success(response.map { $0.toDomain}))

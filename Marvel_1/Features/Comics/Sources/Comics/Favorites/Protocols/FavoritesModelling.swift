@@ -9,22 +9,21 @@ import Foundation
 
 @MainActor
 public protocol FavoritesModelling: ObservableObject  {
-    var favorites: [CharacterModel] { get }
+    var favorites: [FavoritesModel] { get }
     var isFavorites: [CharacterIsFavoriteModel] { get }
     var searchTerm: String { get set }
     var isLoading: Bool { get set }
 
     func didAppear()
-    func getFavorites(characterModel: CharacterModel) -> [CharacterModel] 
+    func getFavorites()
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
-    func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool>
-    func fetchCharacter()
+    func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> 
 }
 
 extension FavoritesModelling {
     
-    var filteredCharacters: [CharacterModel] {
+    var filteredCharacters: [FavoritesModel] {
         let filteredCharacters = searchTerm.isEmpty ? favorites : favorites.filter {
             $0.name.lowercased().contains(searchTerm.lowercased())
         }
