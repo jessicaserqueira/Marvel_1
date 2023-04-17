@@ -10,12 +10,14 @@ import Foundation
 @MainActor
 public protocol FavoritesModelling: ObservableObject  {
     var favorites: [FavoritesModel] { get }
+    var character: CharacterModel? { get }
     var isFavorites: [CharacterIsFavoriteModel] { get }
     var searchTerm: String { get set }
     var isLoading: Bool { get set }
 
     func didAppear()
     func getFavorites()
+    func buttonDetails(with id: Int)
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
     func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> 
@@ -24,9 +26,14 @@ public protocol FavoritesModelling: ObservableObject  {
 extension FavoritesModelling {
     
     var filteredCharacters: [FavoritesModel] {
-        let filteredCharacters = searchTerm.isEmpty ? favorites : favorites.filter {
-            $0.name.lowercased().contains(searchTerm.lowercased())
+        get {
+            let filteredCharacters = searchTerm.isEmpty ? favorites : favorites.filter {
+                $0.name.lowercased().contains(searchTerm.lowercased())
+            }
+            return filteredCharacters.sorted(by: { $0.name < $1.name })
         }
-        return filteredCharacters.sorted(by: { $0.name < $1.name })
+        set {
+            // Defina o novo valor da propriedade
+        }
     }
 }

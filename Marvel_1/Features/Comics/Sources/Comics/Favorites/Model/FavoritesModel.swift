@@ -44,18 +44,3 @@ extension FavoritesModel {
         item
     }
 }
-
-extension FavoritesModel {
-    
-    var toDictionary: [String: Any] {
-        let dict: [String: Any?] = [
-            "id": id,
-            "name": name,
-            "resultDescription": resultDescription,
-            "thumbnail": thumbnail.absoluteString
-            
-            
-        ]
-        return dict.compactMapValues { $0 }
-    }
-}

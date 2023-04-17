@@ -23,7 +23,7 @@ extension FavoritesCharacterRemoteDataSource {
         favoriteService.getFavorites { (result: Result<[T], Error>) in
             switch result {
             case .success(let response):
-                guard response is [AppData.CharacterResponseDTO] else {
+                guard response is [AppData.CharacterDTO] else {
                     completion(.failure(NSError(domain: "getFavorites", code: 0, userInfo: [NSLocalizedDescriptionKey: "Response type mismatch"])))
                     return
                 }
