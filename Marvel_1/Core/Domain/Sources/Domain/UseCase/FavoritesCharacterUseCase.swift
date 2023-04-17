@@ -5,7 +5,6 @@
 //  Created by Jessica Serqueira on 15/03/23.
 //
 
-
 import Foundation
 
 public class FavoritesCharacterUseCase {

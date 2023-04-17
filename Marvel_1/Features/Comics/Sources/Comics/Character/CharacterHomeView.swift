@@ -8,7 +8,7 @@
 import Kingfisher
 import SwiftUI
 
- struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
+struct CharacterHomeView<ViewModel: CharacterHomeModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
     @State private var searchTerm: String = ""
@@ -48,10 +48,8 @@ import SwiftUI
                 }
                 
                 VStack {
-                    if #available(iOS 14.0, *) {
-                        CharacterHomeListView(viewModel: viewModel, borderColor: borderColor)
-                            .padding(.bottom, 1)
-                    } else {}
+                    CharacterHomeListView(viewModel: viewModel, borderColor: borderColor)
+                        .padding(.bottom, 1)
                 }
             }
         }.navigationBarBackButtonHidden(true)

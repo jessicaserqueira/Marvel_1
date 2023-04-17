@@ -14,7 +14,6 @@ public class FavoritesViewModel: ObservableObject {
     
     @Published public var searchTerm: String = ""
     @Published public var favorites: [FavoritesModel] = []
-    @Published public var character: CharacterModel?
     @Published public var filterFavorites: [FavoritesModel] = []
     @Published public var isFavorites: [CharacterIsFavoriteModel] = []
     @Published public var isLoading: Bool = false
@@ -29,7 +28,6 @@ public class FavoritesViewModel: ObservableObject {
 }
 
 extension FavoritesViewModel: FavoritesModelling {
-    
     public func didAppear() {
         getFavorites()
     }
@@ -68,31 +66,10 @@ extension FavoritesViewModel: FavoritesModelling {
                     let isFavorite = self.isFavorites.contains(where: { $0.id == id }) ? true : false
                     self.isFavorites.append(CharacterIsFavoriteModel(id: id, isFavorite: isFavorite))
                 }
-                self.filteredCharacters = self.filteredCharacters.sorted(by: { $0.name < $1.name })
-                
             case .failure(let error):
                 print("Error getting favorites: \(error.localizedDescription)")
             }
         }
-    }
-    
-    public func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> {
-        Binding<Bool>(
-            get: { [weak self] in
-                self?.isFavorites.first(where: { $0.id == character.id })?.isFavorite ?? false
-            },
-            set: { [weak self] isFavorite in
-                guard let self = self else { return }
-                if isFavorite {
-                    self.markAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite, characterModel: character)
-                } else {
-                    self.unmarkAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite)
-                }
-                self.isFavorites = self.isFavorites.map {
-                    $0.id == character.id ? CharacterIsFavoriteModel(id: $0.id, isFavorite: isFavorite) : $0
-                }
-            }
-        )
     }
     
     public func buttonDetails(with id: Int) {

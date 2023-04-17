@@ -66,18 +66,21 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     public func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> {
         Binding<Bool>(
             get: { [weak self] in
-                self?.isFavorites.first(where: { $0.id == character.id })?.isFavorite ?? false
+                guard self != nil else { return false }
+                return UserDefaults.standard.bool(forKey: "isFavorite-\(character.id ?? 0)")
             },
             set: { [weak self] isFavorite in
                 guard let self = self else { return }
+                UserDefaults.standard.set(isFavorite, forKey: "isFavorite-\(character.id ?? 0)")
+                UserDefaults.standard.synchronize()
+                self.isFavorites = self.isFavorites.map {
+                    $0.id == character.id ? CharacterIsFavoriteModel(id: $0.id, isFavorite: isFavorite) : $0
+                }
                 if isFavorite {
                     self.markAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite, characterModel: character)
                     self.coordinator?.getFavorites()
                 } else {
                     self.unmarkAsFavorite(characterID: character.id ?? 0, isFavorite: isFavorite)
-                }
-                self.isFavorites = self.isFavorites.map {
-                    $0.id == character.id ? CharacterIsFavoriteModel(id: $0.id, isFavorite: isFavorite) : $0
                 }
             }
         )
