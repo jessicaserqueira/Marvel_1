@@ -11,12 +11,9 @@ import SwiftUI
  struct FavoritesView<ViewModel: FavoritesModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
-    @State private var searchTerm: String = ""
-    @State private var isFavorite: Bool = false
     
-    public init(viewModel: ViewModel, searchTerm: String = "") {
+    public init(viewModel: ViewModel) {
         self.viewModel = viewModel
-        self.searchTerm = searchTerm
     }
     
     public var borderColor: Color = .black

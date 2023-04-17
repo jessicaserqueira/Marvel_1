@@ -9,40 +9,28 @@ import Foundation
 import Domain
 
 public struct CharacterDTO: Codable {
-    public let id: Int
-    public let name: String
-    public let resultDescription: String
-    public let thumbnailFirebase: ThumbnailFirebaseDTO
+    
+    public let characterID: Int
+    public let isFavorite: Bool
+    public var item: ItemDTO
     
     public init(
-        id: Int,
-        name: String,
-        resultDescription: String,
-        thumbnailFirebase: ThumbnailFirebaseDTO
+        characterID: Int,
+        isFavorite: Bool,
+        item: ItemDTO
     ) {
-        self.id = id
-        self.name = name
-        self.resultDescription = resultDescription
-        self.thumbnailFirebase = thumbnailFirebase
-    }
-}
-
-extension CharacterDTO {
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case resultDescription
-        case thumbnailFirebase = "thumbnail"
+        self.characterID = characterID
+        self.isFavorite = isFavorite
+        self.item = item
     }
 }
 
 extension CharacterDTO {
     public var toDomain: Character {
         .init(
-            id: id,
-            name: name,
-            resultDescription: resultDescription,
-            thumbnailFirebase: thumbnailFirebase.toDomain
+            characterID: characterID,
+            isFavorite: isFavorite,
+            item: item.toDomain
         )
     }
 }

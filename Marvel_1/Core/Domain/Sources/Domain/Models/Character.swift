@@ -8,20 +8,18 @@
 import Foundation
 
 public struct Character: Codable {
-    public let id: Int
-    public let name: String
-    public let resultDescription: String
-    public let thumbnailFirebase: ThumbnailFirebase
-        
+    
+    public let characterID: Int
+    public let isFavorite: Bool
+    public var item: Item
+    
     public init(
-        id: Int,
-        name: String,
-        resultDescription: String,
-        thumbnailFirebase: ThumbnailFirebase
+        characterID: Int,
+        isFavorite: Bool,
+        item: Item
     ) {
-            self.id = id
-            self.name = name
-            self.resultDescription = resultDescription
-            self.thumbnailFirebase = thumbnailFirebase
-        }
+        self.characterID = characterID
+        self.isFavorite = isFavorite
+        self.item = item
+    }
 }

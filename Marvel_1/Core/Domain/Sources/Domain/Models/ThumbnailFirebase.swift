@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ThumbnailFirebase: Codable{
+public struct ThumbnailFirebase: Codable {
     public let path: String
     public let extensionType: String
     

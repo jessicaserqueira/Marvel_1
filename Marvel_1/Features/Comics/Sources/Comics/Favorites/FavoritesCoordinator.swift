@@ -33,4 +33,14 @@ public class FavoritesCoordinator: Coordinator{
     }
 }
 
-extension FavoritesCoordinator: FavoritesCoordinating {}
+extension FavoritesCoordinator: FavoritesCoordinating, DetailsCharacterCoordinating {
+    
+    public func buttonDetails(with id: Int) {
+        let coordinator = DetailsCharacterCoordinator(navigationController: navigationController)
+        let viewModel = DetailsCharacterViewModel(coordinator: coordinator)
+        let screenDetailsView = DetailsCharacterView(viewModel: viewModel, selectedItemId: id)
+        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.present(UIHostingController(rootView: screenDetailsView), animated: true)
+        
+    }
+}
