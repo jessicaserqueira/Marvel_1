@@ -32,14 +32,11 @@ public struct DetailsCharacterView<ViewModel: DetailsCharacterModelling>: View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 if let currentCharacter {
-                    if #available(iOS 14.0, *) {
-                        KFImage(URL(string: "\(currentCharacter.thumbnail)"))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
-                            .clipped()
-                    } else {
-                    }
+                    KFImage(URL(string: "\(currentCharacter.thumbnail)"))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
+                        .clipped()
                 }
                 
                 VStack {

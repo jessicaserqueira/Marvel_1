@@ -7,26 +7,15 @@
 
 import SwiftUI
 
-public struct ComicsView: View {
+struct ComicsView<ViewModel: ComicsModelling>: View {
     
-    @ObservedObject var viewModel: ComicsViewModel
-    @State private var selection = 0
+    @ObservedObject var viewModel: ViewModel
     
-    public var borderColor: Color = .black
-    
-    private func createBorder(borderColor: Color) -> some View {
-        return RoundedRectangle(cornerRadius: 0)
-            .stroke(borderColor, lineWidth: 1.5)
-    }
-    
-    public init(viewModel: ComicsViewModel) {
+    public init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
     
-    // MARK: - Properties
-    
-    @State private var searchTerm: String = ""
-    @State private var buttonImage: String = "icon-favorite"
+    public var borderColor: Color = .black
     
     public var body: some View {
         ZStack(alignment: .top) {
@@ -46,7 +35,6 @@ public struct ComicsView: View {
                     ComicsListView(viewModel: viewModel)
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
-

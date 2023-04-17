@@ -5,10 +5,9 @@
 //  Created by NMAS Amaral on 09/01/23.
 //
 
-import Kingfisher
 import SwiftUI
 
- struct FavoritesView<ViewModel: FavoritesModelling>: View {
+struct FavoritesView<ViewModel: FavoritesModelling>: View {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -33,10 +32,8 @@ import SwiftUI
                     .padding(.top, -36)
                 
                 VStack {
-                    if #available(iOS 14.0, *) {
-                        FavoritesListView(viewModel: viewModel, borderColor: borderColor)
-                            .padding(.bottom, 1)
-                    } else {}
+                    FavoritesListView(viewModel: viewModel, borderColor: borderColor)
+                        .padding(.bottom, 1)
                 }
             }
         }.navigationBarBackButtonHidden(true)

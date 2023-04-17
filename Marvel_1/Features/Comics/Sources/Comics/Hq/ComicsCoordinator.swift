@@ -28,7 +28,7 @@ public class ComicsCoordinator: Coordinator, DetailsComicsCoordinating{
         hostingController.tabBarItem.title = L10n.Hq.title
         hostingController.tabBarItem.image = UIImage(named: "hq")
         hostingController.tabBarItem.selectedImage = UIImage(named: "hq-Color")
-        
+
         navigationController.pushViewController(hostingController, animated: true)
     }
 }

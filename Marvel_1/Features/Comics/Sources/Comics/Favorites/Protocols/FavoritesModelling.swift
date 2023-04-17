@@ -10,7 +10,6 @@ import Foundation
 @MainActor
 public protocol FavoritesModelling: ObservableObject  {
     var favorites: [FavoritesModel] { get }
-    var character: CharacterModel? { get }
     var isFavorites: [CharacterIsFavoriteModel] { get }
     var searchTerm: String { get set }
     var isLoading: Bool { get set }
@@ -20,7 +19,6 @@ public protocol FavoritesModelling: ObservableObject  {
     func buttonDetails(with id: Int)
     func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel)
     func unmarkAsFavorite(characterID: Int, isFavorite: Bool)
-    func isFavoriteButtonActive(for character: CharacterModel) -> Binding<Bool> 
 }
 
 extension FavoritesModelling {
