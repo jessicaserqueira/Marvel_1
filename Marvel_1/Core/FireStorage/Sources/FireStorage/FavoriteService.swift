@@ -14,8 +14,13 @@ public class FavoriteService {
     private let userId: String
     
     public init(){
-        self.userId = Auth.auth().currentUser!.uid
+        if let currentUser = Auth.auth().currentUser {
+            self.userId = currentUser.uid
+        } else {
+            self.userId = "default value"
+        }
     }
+
     
     func markAsFavorite<T: Encodable>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void) {
         let uuid = UUID().uuidString

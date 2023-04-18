@@ -14,23 +14,29 @@ public struct LoginView<ViewModel: LoginModelling>: View {
     public init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
-
+    
     public var borderColor: Color = .black
     
     public var body: some View {
-        ZStack {
-            Color.white.edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .top) {
+            Image("background")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.86)
             
             VStack {
                 HStack {
+                    Spacer()
                     Text(L10n.Splash.title)
-                        .font(.largeTitle)
-                        .bold()
-                    
+                        .font(Font.custom("Bangers-Regular", size: 50))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
                     Spacer()
                 }
                 .padding()
                 .padding(.top)
+                .multilineTextAlignment(.center)
                 
                 Spacer()
                 HStack {
@@ -80,6 +86,7 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                     Alert(title: Text(viewModel.alertText), dismissButton: .default(Text("OK")))
                 }
             }
+            .padding()
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
     }

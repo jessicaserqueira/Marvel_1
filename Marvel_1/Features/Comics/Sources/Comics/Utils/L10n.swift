@@ -125,7 +125,7 @@ internal enum L10n {
     ///   Marvel
     /// 
     ///   Created by NMAS Amaral on 18/01/23.
-    internal static let title = L10n.tr("Localizable", "Splash.title", fallback: "Marvel \nComics")
+    internal static let title = L10n.tr("Localizable", "Splash.title", fallback: "Marvel Comics")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
