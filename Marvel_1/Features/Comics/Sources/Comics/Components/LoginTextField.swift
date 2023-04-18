@@ -33,8 +33,8 @@ public struct LoginTextField: View {
         
         }
         .padding(12)
-        .frame(width: 327,height: 48)
-        .background(Color.white.opacity(0.2))
+        .frame(height: 48)
+        .background(Color.white.opacity(0.4))
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(borderColor, lineWidth: 2))
     }
 }
