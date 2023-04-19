@@ -19,4 +19,8 @@ extension String {
         
     }
     
+    func isValidName(_ name: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^[\\p{L}]+([\\p{Zs}\\-][\\p{L}]+)*$", options: .caseInsensitive)
+        return regex.firstMatch(in: name, range: NSRange(location: 0, length: name.utf16.count)) != nil
+    }
 }

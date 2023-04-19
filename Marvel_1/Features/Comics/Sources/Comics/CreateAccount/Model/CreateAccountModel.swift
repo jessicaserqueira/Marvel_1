@@ -8,6 +8,7 @@
 import Foundation
 
 public struct CreateAccountModel {
+    var name: String
     var email: String
     var password: String
 }

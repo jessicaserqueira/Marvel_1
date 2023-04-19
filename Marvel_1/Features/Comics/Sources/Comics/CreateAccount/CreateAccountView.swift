@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
+struct CreateAccountView<ViewModel: CreateAccountModelling>: View {
+    
     @ObservedObject var viewModel: ViewModel
     @State private var showModal = false
     @State private var isButtonDisable = true
+    @State var isShowPhotoLibrary = false
     
     public init(viewModel: ViewModel) {
         self.viewModel = viewModel
@@ -22,80 +24,94 @@ struct CreateAccountView <ViewModel: CreateAccountModelling> : View {
             Color.white.edgesIgnoringSafeArea(.all)
             
             VStack {
-                HStack {
-                    Text(L10n.CreateAccount.Label.title)
-                        .font(.largeTitle)
-                        .bold()
-                    Spacer()
-                }
-                .padding()
-                .padding(.top)
                 Spacer()
-                HStack {
-                    LoginTextField(email: $viewModel.createAccount.email, borderColor: .black)
-                    Spacer()
+                
+                Text(L10n.CreateAccount.Label.title)
+                    .font(.largeTitle)
+                    .bold()
+                
+                Spacer()
+                
+                VStack(alignment: .center) {
+                    Button {
+                        isShowPhotoLibrary = true
+                    } label: {
+                        if viewModel.image.size.width > 0 {
+                            Image(uiImage: viewModel.image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 130, height: 130)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.black, lineWidth: 4))
+                                .shadow(radius: 7)
+                        } else {
+                            Text("Foto")
+                                .frame(width: 130, height: 130)
+                                .padding()
+                                .foregroundColor(Color.black)
+                                .cornerRadius(100.0)
+                        }
+                        
+                    }
                 }
-                .padding()
-                HStack {
-                    PasswordTextField(password: $viewModel.createAccount.password, borderColor: .black)
-                    Spacer()
+                .background(Color.white)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.black, lineWidth: 2))
+                .shadow(radius: 8)
+                .padding(6)
+                .padding(.bottom, 32)
+                .sheet(isPresented: $isShowPhotoLibrary) {
+                    ImagePicker(selectedImage: $viewModel.image)
                 }
-                .padding()
+                
+                NameTextField(name: $viewModel.createAccount.name, borderColor: .black)
+                    .padding()
+                LoginTextField(email: $viewModel.createAccount.email, borderColor: .black)
+                    .padding()
+                PasswordTextField(password: $viewModel.createAccount.password, borderColor: .black)
+                    .padding()
+                
                 Button(action: {
                     viewModel.returnLoginView()
                 }) {
                     Text(L10n.CreateAccount.Ask.title)
                         .foregroundColor(.black.opacity(0.7))
                 }
-                Spacer()
-                Spacer()
-                VStack {
-                    Button {
-                        viewModel.buttonCreateAccount()
-                        self.showModal = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                            viewModel.dismissModal()
-                            self.showModal = false
-                        }
-                    } label: {
-                        Text(L10n.CreateAccount.Button.title)
-                            .foregroundColor(.white)
-                            .bold()
-                        
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                        
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.black)
-                            )
-                            .padding(.horizontal)
-                            .padding(.bottom, 30)
-                    }
-                    .disabled(isButtonDisable)
-                    .foregroundColor(.gray)
-                    .opacity(isButtonDisable ? 0.5 : 1.0)
-                    .alert(isPresented: $viewModel.formInvalid) {
-                        Alert(title: Text(viewModel.alertText))
-                    }
-                }
-                .onChange(of: viewModel.createAccount.password) { newValue in
-                    let passwordRegex = "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[1-9])(?=.*[A-Z]).{6,}$"
-                    let isValidPassword = newValue.range(of: passwordRegex, options: .regularExpression) != nil
-                    isButtonDisable = newValue.isEmpty || !isValidPassword
-                }
-#warning("TODO - Mover essa lógica")
+                .padding(.bottom, 32)
                 
-                if showModal {
-                    ModalView()
-                        .frame(width: 328, height: 70)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                        .transition(.move(edge: .bottom))
-                        .animation(.spring())
-                        .padding(.bottom, 20)
+                Spacer()
+                
+                Button(action: {
+                    viewModel.buttonCreateAccount()
+                    self.showModal = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        viewModel.dismissModal()
+                        self.showModal = false
+                    }
+                }) {
+                    Text(L10n.CreateAccount.Button.title)
+                        .foregroundColor(.white)
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.black)
+                        )
+                        .padding(.horizontal)
+                        .padding(.bottom, 30)
                 }
-            }.navigationBarBackButtonHidden(true)
+                .disabled(isButtonDisable)
+                .foregroundColor(.gray)
+                .opacity(isButtonDisable ? 0.5 : 1.0)
+                .alert(isPresented: $viewModel.formInvalid) {
+                    Alert(title: Text(viewModel.alertText))
+                }
+            }
+            .navigationBarBackButtonHidden(true)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, 32)
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

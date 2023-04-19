@@ -10,6 +10,7 @@ import SwiftUI
 @MainActor
 public protocol CreateAccountModelling: ObservableObject {
     var createAccount: CreateAccountModel { get set }
+    var image: UIImage { get set }
     var formInvalid: Bool { get set }
     var alertText: String { get }
     var validData: Bool { get }

@@ -71,6 +71,12 @@ internal enum L10n {
       /// Ainda não possui conta?
       internal static let title = L10n.tr("Localizable", "Login.Label.title", fallback: "Ainda não possui conta?")
     }
+      internal enum NameTextField {
+        /// Insira seu Name
+        internal static let placeHolder = L10n.tr("Localizable", "Login.NameTextField.placeHolder", fallback: "Insira seu nome")
+        /// Name
+        internal static let title = L10n.tr("Localizable", "Login.NameTextField.title", fallback: "nome")
+      }
     internal enum TextField {
       /// Insira seu e-mail
       internal static let placeHolder = L10n.tr("Localizable", "Login.TextField.placeHolder", fallback: "Insira seu e-mail")

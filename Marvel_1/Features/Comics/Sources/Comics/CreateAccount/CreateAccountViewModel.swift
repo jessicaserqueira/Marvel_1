@@ -11,9 +11,11 @@ import Domain
 import FirebaseAuth
 
 public class CreateAccountViewModel: ObservableObject {
+    
     private var coordinator: CreateAccountCoordinating?
-    @Published public var createAccount = CreateAccountModel(email: "", password: "")
+    @Published public var createAccount = CreateAccountModel(name: "", email: "", password: "")
     @AppStorage("uid") var userID = String()
+    @Published public var image = UIImage()
     @Published public var formInvalid = false
     public var alertText = ""
     
@@ -36,17 +38,23 @@ extension CreateAccountViewModel: CreateAccountModelling {
     public var validData: Bool {
         return !createAccount.email.isEmpty
     }
-
+    
     public func buttonCreateAccount() {
+        
+        if (image.size.width <= 0) {
+            formInvalid = true
+            alertText = "Selecione uma foto"
+            return
+        }
+        
         Auth.auth().createUser(withEmail: createAccount.email, password: createAccount.password) { authResult, error in
-            
             guard let user = authResult?.user, error == nil else {
                 self.formInvalid = true
                 self.alertText = error!.localizedDescription
                 print(error!)
                 return
             }
-
+            
             if let authResult = authResult {
                 print(authResult.user.uid)
                 self.userID = authResult.user.uid
