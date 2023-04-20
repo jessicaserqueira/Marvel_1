@@ -21,17 +21,16 @@ struct CreateAccountView<ViewModel: CreateAccountModelling>: View {
     var body: some View {
         
         ZStack {
-            Color.white.edgesIgnoringSafeArea(.all)
-            
+            Image("login")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
+
             VStack {
-                Spacer()
-                
+
                 Text(L10n.CreateAccount.Label.title)
-                    .font(.largeTitle)
-                    .bold()
-                
-                Spacer()
-                
+                    .font(Font.custom("Bangers-Regular", size: 50))
+                    .foregroundColor(.primary)
                 VStack(alignment: .center) {
                     Button {
                         isShowPhotoLibrary = true
@@ -75,37 +74,56 @@ struct CreateAccountView<ViewModel: CreateAccountModelling>: View {
                     viewModel.returnLoginView()
                 }) {
                     Text(L10n.CreateAccount.Ask.title)
-                        .foregroundColor(.black.opacity(0.7))
+                        .foregroundColor(.black)
                 }
                 .padding(.bottom, 32)
                 
-                Spacer()
-                
-                Button(action: {
-                    viewModel.buttonCreateAccount()
-                    self.showModal = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                        viewModel.dismissModal()
-                        self.showModal = false
+                VStack {
+                    Button(action: {
+                        viewModel.buttonCreateAccount()
+                        self.showModal = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            viewModel.dismissModal()
+                            self.showModal = false
+                        }
+                    }) {
+                        Text(L10n.CreateAccount.Button.title)
+                            .foregroundColor(.white)
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.black)
+                            )
+                            .padding(.horizontal)
+                            .padding(.bottom, 30)
                     }
-                }) {
-                    Text(L10n.CreateAccount.Button.title)
-                        .foregroundColor(.white)
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.black)
-                        )
-                        .padding(.horizontal)
-                        .padding(.bottom, 30)
-                }
-                .disabled(isButtonDisable)
-                .foregroundColor(.gray)
-                .opacity(isButtonDisable ? 0.5 : 1.0)
-                .alert(isPresented: $viewModel.formInvalid) {
-                    Alert(title: Text(viewModel.alertText))
+                    .disabled(isButtonDisable)
+                    .foregroundColor(.gray)
+                    .opacity(isButtonDisable ? 0.5 : 1.0)
+                    .alert(isPresented: $viewModel.formInvalid) {
+                        Alert(title: Text(viewModel.alertText))
+                    }
+                    .onChange(of: viewModel.createAccount.password) { newValue in
+                        let passwordRegex = "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[1-9])(?=.*[A-Z]).{6,}$"
+                        let isValidPassword = newValue.range(of: passwordRegex, options: .regularExpression) != nil
+                        let isValidName = !viewModel.createAccount.name.isEmpty
+                        let isValidEmail = viewModel.createAccount.email.isValidEmail()
+                        isButtonDisable = newValue.isEmpty || !isValidPassword || !isValidName || !isValidEmail
+                    }
+                    .onChange(of: viewModel.createAccount.name) { newValue in
+                        let isValidName = !newValue.isEmpty
+                        let isValidPassword = viewModel.createAccount.password.range(of: "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[1-9])(?=.*[A-Z]).{6,}$", options: .regularExpression) != nil
+                        let isValidEmail = viewModel.createAccount.email.isValidEmail()
+                        isButtonDisable = newValue.isEmpty || !isValidPassword || !isValidEmail || !isValidName
+                    }
+                    .onChange(of: viewModel.createAccount.email) { newValue in
+                        let isValidEmail = newValue.isValidEmail()
+                        let isValidPassword = viewModel.createAccount.password.range(of: "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[1-9])(?=.*[A-Z]).{6,}$", options: .regularExpression) != nil
+                        let isValidName = !viewModel.createAccount.name.isEmpty
+                        isButtonDisable = newValue.isEmpty || !isValidPassword || !isValidName || !isValidEmail
+                    }
                 }
             }
             .navigationBarBackButtonHidden(true)

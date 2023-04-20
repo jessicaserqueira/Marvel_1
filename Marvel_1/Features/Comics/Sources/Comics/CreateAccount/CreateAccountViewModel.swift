@@ -41,12 +41,6 @@ extension CreateAccountViewModel: CreateAccountModelling {
     
     public func buttonCreateAccount() {
         
-        if (image.size.width <= 0) {
-            formInvalid = true
-            alertText = "Selecione uma foto"
-            return
-        }
-        
         Auth.auth().createUser(withEmail: createAccount.email, password: createAccount.password) { authResult, error in
             guard let user = authResult?.user, error == nil else {
                 self.formInvalid = true
