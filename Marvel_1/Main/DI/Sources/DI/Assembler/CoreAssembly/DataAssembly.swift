@@ -24,6 +24,7 @@ class DataAssembly: Assembly {
         let favoritesCharacterRemoteDataSource = container.resolveSafe(FireStorage.FavoritesCharacterRemoteDataSource.self)
         let loginPersistenceDataSource = container.resolveSafe(FireStorage.LoginPersistenceDataSource.self)
         let loginDataSource = container.resolveSafe(FireStorage.LoginDataSource.self)
+        let createAccountRemoteDataSource = container.resolveSafe(FireStorage.CreateAccountRemoteDataSource.self)
         let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
         
         
@@ -47,6 +48,9 @@ class DataAssembly: Assembly {
         
         // MARK: - Login
         container.register(type: Domain.LoginRepository.self, component: AppData.LoginRepository(remote: loginDataSource))
+        
+        // MARK: - CreateAccount
+        container.register(type: Domain.CreateAccountRepository.self, component: AppData.CreateAccountRepository(remote: createAccountRemoteDataSource))
         
         // MARK: - Image
         container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))

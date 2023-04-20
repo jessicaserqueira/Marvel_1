@@ -42,9 +42,6 @@ extension LoginCoordinator: LoginCoordinating {
     // MARK: -CreateAccount
     public func createAccount() {
         let coordinator = CreateAccountCoordinator(navigationController: navigationController)
-        let viewModel = CreateAccountViewModel(coordinator: coordinator)
-        let createAccountView = CreateAccountView(viewModel: viewModel)
-        navigationController.modalPresentationStyle = .overFullScreen
-        navigationController.pushViewController(UIHostingController(rootView: createAccountView), animated: true)
+        coordinator.start()
     }
 }

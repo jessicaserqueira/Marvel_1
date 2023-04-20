@@ -14,6 +14,7 @@ public protocol CreateAccountModelling: ObservableObject {
     var formInvalid: Bool { get set }
     var alertText: String { get }
     var validData: Bool { get }
+    var isLoading: Bool { get }
     
     func returnLoginView()
     func buttonCreateAccount()

@@ -24,5 +24,9 @@ class FireStorageAssembly: Assembly {
         // MARK: - Login
         container.register(type: AppData.LoginDataSource.self,
                            component: FireStorage.LoginDataSource.init(loginService: LoginService()))
+        
+        // MARK: - CreateAccount
+        container.register(type: AppData.CreateAccountRemoteDataSource.self,
+                           component: FireStorage.CreateAccountRemoteDataSource.init(createAccountService: CreateAccountService()))
     }
 }
