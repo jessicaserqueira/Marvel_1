@@ -16,5 +16,3 @@ public class ComicsLocalDataSource {
 extension ComicsLocalDataSource: AppData.ComicsLocalDataSource {
     #warning("TODO")
 }
-
-

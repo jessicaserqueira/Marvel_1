@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol CoordinatorDelegate: class {
+public protocol CoordinatorDelegate: AnyObject {
 
     func coordinatorDidExit(_ coordinator: Coordinator)
 }
@@ -15,14 +15,14 @@ public protocol CoordinatorDelegate: class {
 public protocol Coordinator: CoordinatorDelegate {
 
     var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
 
-    func start()
+    func start() 
+    
 }
 
 public extension Coordinator {
 
-    public func coordinatorDidExit(_ coordinator: Coordinator) {
+    func coordinatorDidExit(_ coordinator: Coordinator) {
 
         guard let index = self.childCoordinators.firstIndex(where: { $0 === coordinator }) else { return }
         self.childCoordinators.remove(at: index)

@@ -14,4 +14,5 @@ class CoordinatorsFactoryAssembly: Assembly {
     func assemble(container: DIContainer) {
         container.register(type: CoordinatorFactory.self, component: CoordinatorFactoryImplementation(container: container))
     }
+    
 }

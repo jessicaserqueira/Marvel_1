@@ -10,13 +10,15 @@ import UIKit
 
 public enum MarvelService {
     
-    static let baseUrlString = "https://gateway.marvel.com:443/"
+    static let baseUrlString = "https://gateway.marvel.com/"
     static let apiVersion = "v1/"
-    static let privateKey = "d7f2879d24bc1b99339bdc91f0c0d51e5cf6a8bf"
-    static let publicKey = "5f57f1e2e1e9d30841921274a5910396"
+    static let privateKey = "b6e847fd18120736057cbba8037ceb7ab0f76278"
+    static let publicKey = "9e8af919d77f61ed11f75668aaa6d222"
     
     case characters(offset: Int)
     case charactersDetails(id: Int)
+    case comics(Offset: Int)
+    case comicsDetails(id: Int)
     
     public enum HTTPMethod {
         case get
@@ -36,8 +38,8 @@ public enum MarvelService {
     
     public var method: HTTPMethod {
         switch self {
-        case .characters: return .get
-        case .charactersDetails: return .get
+        case .characters, .charactersDetails, .comics, .comicsDetails:
+            return .get
         }
     }
 
@@ -47,13 +49,17 @@ public enum MarvelService {
             return "public/characters?"
         case .charactersDetails(let id):
             return "public/characters/\(id)?"
+        case .comics:
+            return "public/comics?"
+        case .comicsDetails(let id):
+            return "public/comics/\(id)?"
         }
     }
     
     public var parameters: String {
         
         switch self {
-        case .characters(let offset):
+        case .characters(let offset), .comics(let offset):
             return ["offset": offset].queryString.unwrappedValue
         default:
             return [:].queryString.unwrappedValue
@@ -78,9 +84,9 @@ public enum MarvelService {
         urlRequest.httpMethod = method.value
         
         switch self {
-        case .characters:
+        case .characters, .comics:
             return urlRequest
-        case .charactersDetails:
+        case .charactersDetails, .comicsDetails:
             return urlRequest
         }
     }

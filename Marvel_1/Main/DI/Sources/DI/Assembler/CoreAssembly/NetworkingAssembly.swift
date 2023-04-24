@@ -13,8 +13,19 @@ class NetworkingAssembly: Assembly {
     
     func assemble(container: DIContainer) {
         
+        // MARK: - Character
         container.register(type: AppData.CharacterRemoteDataSource.self,
                            component: Networking.CharacterRemoteDataSource.init(serviceManager: ServiceManager()))
-        container.register(type: AppData.ComicsRemoteDataSource.self, component:  Networking.ComicsRemoteDataSource.init())
+        
+        // MARK: - Comics
+        container.register(type: AppData.ComicsRemoteDataSource.self, component:  Networking.ComicsRemoteDataSource.init(serviceManager: ServiceManager()))
+        
+        // MARK: - DetailsCharacter
+        container.register(type: AppData.DetailsCharacterRemoteDataSource.self,
+                           component: Networking.DetailsCharacterRemoteDataSource.init(serviceManager: ServiceManager()))
+        
+        // MARK: - DetailsComics
+        container.register(type: AppData.DetailsComicsRemoteDataSource.self,
+                           component: Networking.DetailsComicsRemoteDataSource.init(serviceManager: ServiceManager()))
     }
 }

@@ -22,11 +22,11 @@ public class DependencyInjector {
         
         let assembler = Assembler([
             CoordinatorsFactoryAssembly(),
-            ViewControllersFactoryAssembly(),
             
             SDKAssembly(),
             StorageAssembly(),
             NetworkingAssembly(),
+            FireStorageAssembly(),
             DataAssembly(),
             DomainAssembly(),
             

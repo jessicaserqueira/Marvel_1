@@ -18,9 +18,9 @@ public class CharacterRemoteDataSource {
 }
 
 extension CharacterRemoteDataSource: AppData.CharacterRemoteDataSource {
-    public func request(offset: Int, completion: @escaping Common.ResultCompletion<AppData.DataClassDTO>) {
+    public func request(offset: Int, completion: @escaping Common.ResultCompletion<AppData.DataCharacterDTO>) {
         
-        serviceManager.request(type: DataClassDTO.self, router: .characters(offset: offset)) { result in
+        serviceManager.request(type: DataCharacterDTO.self, router: .characters(offset: offset)) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))

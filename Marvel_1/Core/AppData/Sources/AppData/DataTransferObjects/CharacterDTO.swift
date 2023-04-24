@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  File 3.swift
 //  
 //
-//  Created by Jessica Serqueira on 01/12/22.
+//  Created by Jessica Serqueira on 24/03/23.
 //
 
 import Foundation
@@ -10,43 +10,27 @@ import Domain
 
 public struct CharacterDTO: Codable {
     
-    public let id: Int?
-    public let name, resultDescription: String
-    public let thumbnail: ThumbnailDTO
-
+    public let characterID: Int
+    public let isFavorite: Bool
+    public var item: ItemDTO
     
-    init(
-        id: Int?,
-        name: String,
-        resultDescription: String,
-        thumbnail: ThumbnailDTO
-        
+    public init(
+        characterID: Int,
+        isFavorite: Bool,
+        item: ItemDTO
     ) {
-        self.id = id
-        self.name = name
-        self.resultDescription = resultDescription
-        self.thumbnail = thumbnail
+        self.characterID = characterID
+        self.isFavorite = isFavorite
+        self.item = item
     }
 }
 
 extension CharacterDTO {
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case resultDescription = "description"
-        case thumbnail
-    }
-}
-
-extension CharacterDTO {
-    
-    public var toDomain: CharacterResponse {
+    public var toDomain: Character {
         .init(
-            id: id ?? .zero,
-            name: name,
-            resultDescription: resultDescription,
-            thumbnail: thumbnail.toDomain
+            characterID: characterID,
+            isFavorite: isFavorite,
+            item: item.toDomain
         )
     }
 }

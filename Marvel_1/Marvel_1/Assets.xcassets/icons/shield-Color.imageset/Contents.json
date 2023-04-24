@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icone-escudo.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

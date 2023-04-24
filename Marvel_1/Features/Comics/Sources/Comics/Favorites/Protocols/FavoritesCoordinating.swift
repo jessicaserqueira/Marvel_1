@@ -5,9 +5,10 @@
 //  Created by NMAS Amaral on 09/01/23.
 //
 
+import Common
 import Foundation
 
-public protocol FavoritesCoordinating {
+public protocol FavoritesCoordinating: Coordinator {
     
-    #warning("TODO")
+    func buttonDetails(with id: Int)
 }

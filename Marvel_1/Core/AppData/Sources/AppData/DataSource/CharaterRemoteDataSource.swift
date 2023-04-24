@@ -9,6 +9,5 @@ import Common
 import Foundation
 
 public protocol CharacterRemoteDataSource: AnyObject {
-    func request(offset: Int, completion: @escaping ResultCompletion<DataClassDTO>)
-    
+    func request(offset: Int, completion: @escaping ResultCompletion<DataCharacterDTO>)
 }

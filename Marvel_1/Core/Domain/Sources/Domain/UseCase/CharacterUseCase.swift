@@ -14,13 +14,12 @@ public class CharacterUseCase {
     
     public init(characterRepository: CharacterRepository) {
         self.characterRepository = characterRepository
+    
     }
 }
 
-extension CharacterUseCase: CharacterUseCaseProtocol {
-    public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<CharacterData>) {
-
+extension CharacterUseCase: CharacterUseCaseProtocol {    
+    public func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<DataCharacter>) {
         characterRepository.getCharater(offset: offset, completion: completion)
-        
     }
 }

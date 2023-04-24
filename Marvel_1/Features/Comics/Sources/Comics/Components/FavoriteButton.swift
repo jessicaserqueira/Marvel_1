@@ -7,17 +7,16 @@
 
 import SwiftUI
 
+
 struct FavoriteButton: View {
-    
-    let action: () -> Void
-    @Binding var buttonImage: String
-    
+
+    @Binding var isFavoriteButtonActive: Bool
+
     var body: some View {
         Button(action: {
-            self.action()
-            self.buttonImage = self.buttonImage == "icon-favorite" ? "icon-favoriteColor" : "icon-favorite"
+            isFavoriteButtonActive.toggle()
         }) {
-            Image(buttonImage)
+            Image(isFavoriteButtonActive ? "icon-favoriteColor" : "icon-favorite")
                 .padding(.leading, 12)
         }
     }
