@@ -8,14 +8,17 @@
 import SwiftUI
 import Common
 import Domain
-import FirebaseAuth
 
 public class CreateAccountViewModel: ObservableObject {
+    
     private var coordinator: CreateAccountCoordinating?
-    @Published public var createAccount = CreateAccountModel(email: "", password: "")
-    @AppStorage("uid") var userID = String()
+    @Published public var createAccount = CreateAccountModel(name: "", email: "", password: "")
+    @Published public var image = UIImage()
+    @Published public var isLoading: Bool = false
     @Published public var formInvalid = false
     public var alertText = ""
+    
+    private lazy var createAccountUseCase = DIContainer.shared.resolveSafe(Domain.CreateAccountUseCaseProtocol.self)
     
     public init(coordinator: CreateAccountCoordinating) {
         self.coordinator = coordinator
@@ -36,21 +39,25 @@ extension CreateAccountViewModel: CreateAccountModelling {
     public var validData: Bool {
         return !createAccount.email.isEmpty
     }
-
+    
     public func buttonCreateAccount() {
-        Auth.auth().createUser(withEmail: createAccount.email, password: createAccount.password) { authResult, error in
-            
-            guard let user = authResult?.user, error == nil else {
+        print("nome: \(createAccount.name), email: \(createAccount.email), senha: \(createAccount.password)")
+        
+        if (image.size.width <= 0) {
+            formInvalid = true
+            alertText = "Selecione uma foto"
+            return
+        }
+        
+        isLoading = true
+        
+        createAccountUseCase.signUp(withEmail: createAccount.email, password: createAccount.password, image: image, name: createAccount.name) { err in
+            if let err = err {
                 self.formInvalid = true
-                self.alertText = error!.localizedDescription
-                print(error!)
-                return
+                self.alertText = err
+                print(err)
             }
-
-            if let authResult = authResult {
-                print(authResult.user.uid)
-                self.userID = authResult.user.uid
-            }
+            self.isLoading = false
         }
     }
 }

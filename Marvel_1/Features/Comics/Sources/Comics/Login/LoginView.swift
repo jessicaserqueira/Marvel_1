@@ -19,62 +19,41 @@ public struct LoginView<ViewModel: LoginModelling>: View {
     
     public var body: some View {
         ZStack(alignment: .top) {
-            Image("background")
+            Image("login")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .edgesIgnoringSafeArea(.all)
-                .opacity(0.86)
-            
             VStack {
                 HStack {
-                    Spacer()
                     Text(L10n.Splash.title)
                         .font(Font.custom("Bangers-Regular", size: 50))
                         .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
-                    Spacer()
                 }
                 .padding()
-                .padding(.top)
-                .multilineTextAlignment(.center)
-                
+                .padding(.top, 70)
+
                 Spacer()
-                HStack {
-                    LoginTextField(email: $viewModel.loginModel.email, borderColor: .black)
-                    
-                    Spacer()
-                    
-                }
-                .padding()
-                HStack {
-                    PasswordTextField(password: $viewModel.loginModel.password, borderColor: .black)
-                    
-                    Spacer()
-                }
-                .padding()
                 
+                LoginTextField(email: $viewModel.loginModel.email, borderColor: .black)
+                    .padding()
+                PasswordTextField(password: $viewModel.loginModel.password, borderColor: .black)
+                    .padding()
                 Button(action: {
                     viewModel.createAccount()
-                    
                     
                 }) {
                     Text(L10n.Login.Label.title)
                         .foregroundColor(.black.opacity(0.7))
                 }
-                
                 Spacer()
-                Spacer()
-                
                 Button {
                     viewModel.loginAuthentication(email: viewModel.loginModel.email, password: viewModel.loginModel.password)
                 } label: {
                     Text(L10n.Login.Button.title)
                         .foregroundColor(.white)
                         .bold()
-                    
                         .frame(maxWidth: .infinity)
                         .padding()
-                    
                         .background(
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color.black)
@@ -82,11 +61,11 @@ public struct LoginView<ViewModel: LoginModelling>: View {
                         .padding(.horizontal)
                         .padding(.bottom, 30)
                 }
+                Spacer()
                 .alert(isPresented: $viewModel.formInvalid) {
                     Alert(title: Text(viewModel.alertText), dismissButton: .default(Text("OK")))
                 }
             }
-            .padding()
         }.navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
     }

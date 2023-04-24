@@ -44,6 +44,10 @@ class DomainAssembly: Assembly {
         let loginRepository = container.resolveSafe(Domain.LoginRepository.self)
         container.register(type: Domain.LoginUseCaseProtocol.self, component:  Domain.LoginUseCase(loginRepository: loginRepository))
         
+        // MARK: - CreateAccount
+        let createAccountRepository = container.resolveSafe(Domain.CreateAccountRepository.self)
+        container.register(type: Domain.CreateAccountUseCaseProtocol.self, component:  Domain.CreateAccountUseCase(createAccountRepository: createAccountRepository))
+        
         // MARK: - Image
         let fetchImageRepository = container.resolveSafe(Domain.FetchImageRepository.self)
         container.register(type: Domain.FetchImageUseCaseProtocol.self, component: Domain.FetchImageUseCase(fetchImageRepository: fetchImageRepository))
