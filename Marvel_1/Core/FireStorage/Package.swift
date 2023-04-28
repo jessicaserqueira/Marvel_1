@@ -60,6 +60,7 @@ let package = Package(
             ]),
         .testTarget(
             name: "FireStorageTests",
-            dependencies: ["FireStorage"]),
+            dependencies: ["FireStorage"]
+        ),
     ]
 )

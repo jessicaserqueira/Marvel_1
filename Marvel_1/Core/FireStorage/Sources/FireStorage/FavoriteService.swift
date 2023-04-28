@@ -20,7 +20,7 @@ public class FavoriteService {
             self.userId = "default value"
         }
     }
-
+    
     
     func markAsFavorite<T: Encodable>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void) {
         let uuid = UUID().uuidString
@@ -85,7 +85,7 @@ public class FavoriteService {
                 completion(.failure(error))
                 return
             }
-
+            
             DispatchQueue.main.async {
                 let characters = snapshot?.documents.compactMap { doc -> T? in
                     do {
@@ -97,7 +97,7 @@ public class FavoriteService {
                         return nil
                     }
                 } ?? []
-
+                
                 completion(.success(characters))
             }
         }
