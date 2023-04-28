@@ -15,14 +15,13 @@ class LoginServiceTests: XCTestCase {
     }
 
     func testLoginAuthenticationFailure() {
-        // Arrange
+
         let email = "test@example.com"
         let password = "invalidpassword"
         
-        // Act
         let expectation = self.expectation(description: "Login failure")
         loginService.loginAuthentication(email: email, password: password) { result in
-            // Assert
+
             switch result {
             case .success(_):
                 XCTFail("Login should fail")
