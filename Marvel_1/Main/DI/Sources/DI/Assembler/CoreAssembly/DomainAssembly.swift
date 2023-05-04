@@ -41,7 +41,7 @@ class DomainAssembly: Assembly {
         container.register(type: Domain.LoginPersistenceUseCaseProtocol.self, component:  Domain.LoginPersistenceUseCase(loginPersistenceRepository: loginPersistenceRepository))
         
         // MARK: - Login
-        let loginRepository = container.resolveSafe(Domain.LoginRepository.self)
+        let loginRepository = container.resolveSafe(Domain.LoginUseCaseProtocol.self)
         container.register(type: Domain.LoginUseCaseProtocol.self, component:  Domain.LoginUseCase(loginRepository: loginRepository))
         
         // MARK: - CreateAccount

@@ -17,7 +17,7 @@ public struct LoginRepository {
     }
 }
 
-extension LoginRepository: Domain.LoginRepository {
+extension LoginRepository: Domain.LoginUseCaseProtocol {
     public func loginAuthentication(email: String, password: String, completion: @escaping (Result<Void, Error>) -> Void) {
         remote.loginAuthentication(email: email, password: password) { result in
             switch result {

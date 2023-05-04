@@ -29,7 +29,24 @@
 		A4D0C7D7298D7E510068D53B /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */; };
 		A4D0C7D8298D7E510068D53B /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */; };
 		A4D0C7D9298D7E510068D53B /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */; };
+		A4E351B82A02D4E400A29A65 /* Marvel_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E351B72A02D4E400A29A65 /* Marvel_1Tests.swift */; };
+		A4E351BF2A02D50600A29A65 /* Comics in Frameworks */ = {isa = PBXBuildFile; productRef = A4E351BE2A02D50600A29A65 /* Comics */; };
+		A4E351C12A02D50D00A29A65 /* FireStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A4E351C02A02D50D00A29A65 /* FireStorage */; };
+		A4E351C32A02D51E00A29A65 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A4E351C22A02D51E00A29A65 /* FirebaseAuth */; };
+		A4E351C62A02D59E00A29A65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4C94FB529FAEF0800051D0B /* GoogleService-Info.plist */; };
+		A4E351C82A02D5CC00A29A65 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = A4E351C72A02D5CC00A29A65 /* FirebaseAppCheck */; };
+		A4E351CA2A02D5FE00A29A65 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A4E351C92A02D5FE00A29A65 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A4E351B92A02D4E400A29A65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A49F8013298BF2E00023D885 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A49F801A298BF2E00023D885;
+			remoteInfo = Marvel_1;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		743AF86A299CFB5D00F82417 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
@@ -53,6 +70,8 @@
 		A4D0C7D4298D7E510068D53B /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		A4D0C7D5298D7E510068D53B /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		A4D0C7D6298D7E510068D53B /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
+		A4E351B52A02D4E400A29A65 /* Marvel_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Marvel_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4E351B72A02D4E400A29A65 /* Marvel_1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_1Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +95,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A4E351B22A02D4E400A29A65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4E351C82A02D5CC00A29A65 /* FirebaseAppCheck in Frameworks */,
+				A4E351C12A02D50D00A29A65 /* FireStorage in Frameworks */,
+				A4E351C32A02D51E00A29A65 /* FirebaseAuth in Frameworks */,
+				A4E351CA2A02D5FE00A29A65 /* FirebaseStorage in Frameworks */,
+				A4E351BF2A02D50600A29A65 /* Comics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -94,6 +125,7 @@
 				A49F8033298BF3200023D885 /* Features */,
 				A49F8032298BF3100023D885 /* Main */,
 				A49F801D298BF2E00023D885 /* Marvel_1 */,
+				A4E351B62A02D4E400A29A65 /* Marvel_1Tests */,
 				A49F801C298BF2E00023D885 /* Products */,
 				A45E0D2A298BF7550001DC6C /* Frameworks */,
 			);
@@ -103,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				A49F801B298BF2E00023D885 /* Marvel_1.app */,
+				A4E351B52A02D4E400A29A65 /* Marvel_1Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +195,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		A4E351B62A02D4E400A29A65 /* Marvel_1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A4E351B72A02D4E400A29A65 /* Marvel_1Tests.swift */,
+			);
+			path = Marvel_1Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,6 +238,32 @@
 			productReference = A49F801B298BF2E00023D885 /* Marvel_1.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A4E351B42A02D4E400A29A65 /* Marvel_1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4E351BD2A02D4E400A29A65 /* Build configuration list for PBXNativeTarget "Marvel_1Tests" */;
+			buildPhases = (
+				A4E351B12A02D4E400A29A65 /* Sources */,
+				A4E351B22A02D4E400A29A65 /* Frameworks */,
+				A4E351B32A02D4E400A29A65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A4E351C52A02D55000A29A65 /* PBXTargetDependency */,
+				A4E351BA2A02D4E400A29A65 /* PBXTargetDependency */,
+			);
+			name = Marvel_1Tests;
+			packageProductDependencies = (
+				A4E351BE2A02D50600A29A65 /* Comics */,
+				A4E351C02A02D50D00A29A65 /* FireStorage */,
+				A4E351C22A02D51E00A29A65 /* FirebaseAuth */,
+				A4E351C72A02D5CC00A29A65 /* FirebaseAppCheck */,
+				A4E351C92A02D5FE00A29A65 /* FirebaseStorage */,
+			);
+			productName = Marvel_1Tests;
+			productReference = A4E351B52A02D4E400A29A65 /* Marvel_1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -209,6 +276,10 @@
 				TargetAttributes = {
 					A49F801A298BF2E00023D885 = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					A4E351B42A02D4E400A29A65 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = A49F801A298BF2E00023D885;
 					};
 				};
 			};
@@ -229,6 +300,7 @@
 			projectRoot = "";
 			targets = (
 				A49F801A298BF2E00023D885 /* Marvel_1 */,
+				A4E351B42A02D4E400A29A65 /* Marvel_1Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,6 +319,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A4E351B32A02D4E400A29A65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4E351C62A02D59E00A29A65 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -260,7 +340,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A4E351B12A02D4E400A29A65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4E351B82A02D4E400A29A65 /* Marvel_1Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A4E351BA2A02D4E400A29A65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A49F801A298BF2E00023D885 /* Marvel_1 */;
+			targetProxy = A4E351B92A02D4E400A29A65 /* PBXContainerItemProxy */;
+		};
+		A4E351C52A02D55000A29A65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = A4E351C42A02D55000A29A65 /* FireStorage */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A49F802D298BF2E10023D885 /* Debug */ = {
@@ -431,6 +531,40 @@
 			};
 			name = Release;
 		};
+		A4E351BB2A02D4E400A29A65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jessica.com.Marvel-1Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marvel_1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Marvel_1";
+			};
+			name = Debug;
+		};
+		A4E351BC2A02D4E400A29A65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jessica.com.Marvel-1Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marvel_1.app/Marvel_1";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,6 +582,15 @@
 			buildConfigurations = (
 				A49F8030298BF2E10023D885 /* Debug */,
 				A49F8031298BF2E10023D885 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4E351BD2A02D4E400A29A65 /* Build configuration list for PBXNativeTarget "Marvel_1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4E351BB2A02D4E400A29A65 /* Debug */,
+				A4E351BC2A02D4E400A29A65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -517,6 +660,33 @@
 			productName = FirebaseFirestoreSwift;
 		};
 		A4C0F4A929DB7B3F00682923 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4C0F4A229DB7B3F00682923 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		A4E351BE2A02D50600A29A65 /* Comics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Comics;
+		};
+		A4E351C02A02D50D00A29A65 /* FireStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FireStorage;
+		};
+		A4E351C22A02D51E00A29A65 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4C0F4A229DB7B3F00682923 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		A4E351C42A02D55000A29A65 /* FireStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FireStorage;
+		};
+		A4E351C72A02D5CC00A29A65 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4C0F4A229DB7B3F00682923 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		A4E351C92A02D5FE00A29A65 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A4C0F4A229DB7B3F00682923 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;

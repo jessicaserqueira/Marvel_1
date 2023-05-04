@@ -23,40 +23,13 @@ let package = Package(
         .package(
             url: "https://github.com/onevcat/Kingfisher",
             from: "7.3.2"
-        ),
-        .package(url: "https://github.com/firebase/firebase-ios-sdk",
-                 from: "9.6.0")
+        )
     ],
     targets: [
         
         .target(
             name: "Comics",
-            dependencies: ["Common", "Domain", "Kingfisher",
-                           .product(
-                            name: "FirebaseAnalytics",
-                            package: "firebase-ios-sdk"
-                           ),
-                           .product(
-                            name: "FirebaseRemoteConfig",
-                            package: "firebase-ios-sdk"
-                           ),
-                           .product(
-                            name: "FirebasePerformance",
-                            package: "firebase-ios-sdk"
-                           ),
-                           .product(
-                            name: "FirebaseFirestore",
-                            package: "firebase-ios-sdk"
-                           ),
-                           .product(
-                            name: "FirebaseFirestoreSwift",
-                            package: "firebase-ios-sdk"
-                           ),
-                           .product(
-                            name: "FirebaseAuth",
-                            package: "firebase-ios-sdk"
-                           )
-            ],
+            dependencies: ["Common", "Domain", "Kingfisher"],
             resources: [
                 .process("Resources")
             ]),
