@@ -6,53 +6,39 @@
 //
 
 import Common
-import Domain
-import Storage
-import SDK
 import AppData
-import Networking
-import FireStorage
+import Domain
+import Swinject
 
 class DataAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
-        
-        let characterRemoteDataSource = container.resolveSafe(Networking.CharacterRemoteDataSource.self)
-        let comicsRemoteDataSource = container.resolveSafe(Networking.ComicsRemoteDataSource.self)
-        let detailsCharacterRemoteDataSource = container.resolveSafe(Networking.DetailsCharacterRemoteDataSource.self)
-        let detailsComicsRemoteDataSource = container.resolveSafe(Networking.DetailsComicsRemoteDataSource.self)
-        let favoritesCharacterRemoteDataSource = container.resolveSafe(FireStorage.FavoritesCharacterRemoteDataSource.self)
-        let loginPersistenceDataSource = container.resolveSafe(FireStorage.LoginPersistenceDataSource.self)
-        let loginDataSource = container.resolveSafe(FireStorage.LoginDataSource.self)
-        let createAccountRemoteDataSource = container.resolveSafe(FireStorage.CreateAccountRemoteDataSource.self)
-        let kingfisherDataSource = container.resolveSafe(AppData.FetchImageDataSource.self)
-        
+    func assemble(container: Container) {
         
         // MARK: - Character
-        container.register(type: Domain.CharacterRepository.self, component: AppData.CharaterRepository(remote: characterRemoteDataSource))
+        container.autoregister(Domain.CharacterRepository.self, initializer: AppData.CharaterRepository.init)
         
         // MARK: - Comics
-        container.register(type: Domain.ComicsRepository.self, component: AppData.ComicsRepository(remote: comicsRemoteDataSource))
+        container.autoregister(Domain.ComicsRepository.self, initializer: AppData.ComicsRepository.init)
         
         // MARK: - DetailsCharacter
-        container.register(type: Domain.DetailsCharacterRepository.self, component: AppData.DetailsCharaterRepository(remote: detailsCharacterRemoteDataSource))
+        container.autoregister(Domain.DetailsCharacterRepository.self, initializer: AppData.DetailsCharaterRepository.init)
         
         // MARK: - DetailsComics
-        container.register(type: Domain.DetailsComicsRepository.self, component: AppData.DetailsComicsRepository(remote: detailsComicsRemoteDataSource))
+        container.autoregister(Domain.DetailsComicsRepository.self, initializer: AppData.DetailsComicsRepository.init)
         
         // MARK: - FavoritesCharacter
-        container.register(type: Domain.FavoritesCharacterRepository.self, component: AppData.FavoritesCharacterRepository(remote: favoritesCharacterRemoteDataSource))
+        container.autoregister(Domain.FavoritesCharacterRepository.self, initializer: AppData.FavoritesCharacterRepository.init)
         
         // MARK: - LoginPersistence
-        container.register(type: Domain.LoginPersistenceRepository.self, component: AppData.LoginPersistenceRepository(remote: loginPersistenceDataSource))
+        container.autoregister(Domain.LoginPersistenceRepository.self, initializer: AppData.LoginPersistenceRepository.init)
         
         // MARK: - Login
-        container.register(type: Domain.LoginRepository.self, component: AppData.LoginRepository(remote: loginDataSource))
+        container.autoregister(Domain.LoginRepository.self, initializer: AppData.LoginRepository.init)
         
         // MARK: - CreateAccount
-        container.register(type: Domain.CreateAccountRepository.self, component: AppData.CreateAccountRepository(remote: createAccountRemoteDataSource))
+        container.autoregister(Domain.CreateAccountRepository.self, initializer: AppData.CreateAccountRepository.init)
         
         // MARK: - Image
-        container.register(type: Domain.FetchImageRepository.self, component: AppData.FetchImageRepository(remote: kingfisherDataSource))
+        container.autoregister(Domain.FetchImageRepository.self, initializer: AppData.FetchImageRepository.init)
     }
 }

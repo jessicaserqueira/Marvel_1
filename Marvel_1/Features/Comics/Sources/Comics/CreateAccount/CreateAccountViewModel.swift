@@ -18,7 +18,7 @@ public class CreateAccountViewModel: ObservableObject {
     @Published public var formInvalid = false
     public var alertText = ""
     
-    private lazy var createAccountUseCase = DIContainer.shared.resolveSafe(Domain.CreateAccountUseCaseProtocol.self)
+    private var createAccountUseCase: CreateAccountUseCaseProtocol?
     
     public init(coordinator: CreateAccountCoordinating) {
         self.coordinator = coordinator
@@ -51,7 +51,7 @@ extension CreateAccountViewModel: CreateAccountModelling {
         
         isLoading = true
         
-        createAccountUseCase.signUp(withEmail: createAccount.email, password: createAccount.password, image: image, name: createAccount.name) { err in
+        createAccountUseCase?.signUp(withEmail: createAccount.email, password: createAccount.password, image: image, name: createAccount.name) { err in
             if let err = err {
                 self.formInvalid = true
                 self.alertText = err

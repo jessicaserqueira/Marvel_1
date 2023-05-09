@@ -13,11 +13,10 @@ public class DetailsCharacterViewModel: ObservableObject {
     @Published public var data: [CharacterModel] = []
     
     private var coordinator: DetailsCharacterCoordinating?
-    private lazy var detailsCharacterUseCase = DIContainer.shared.resolveSafe(Domain.DetailsCharacterUseCaseProtocol.self)
+    private var detailsCharacterUseCase: DetailsCharacterUseCaseProtocol?
     
     public init(coordinator: DetailsCharacterCoordinating) {
         self.coordinator = coordinator
-        self.detailsCharacterUseCase = detailsCharacterUseCase
     }
 }
 
@@ -25,7 +24,7 @@ public class DetailsCharacterViewModel: ObservableObject {
 extension DetailsCharacterViewModel: DetailsCharacterModelling {
     public func fetchCharacterDetails(with id: Int) {
         
-        detailsCharacterUseCase.getDetailsCharater(with: id) { result in
+        detailsCharacterUseCase?.getDetailsCharater(with: id) { result in
             switch result {
             case .success(let character):
                 if let result = character.results {

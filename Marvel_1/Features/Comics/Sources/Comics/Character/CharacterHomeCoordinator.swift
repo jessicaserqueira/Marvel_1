@@ -17,10 +17,12 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
     public var navigationController = UINavigationController()
     public var tabBarController: UITabBarController
     
-    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
+    private var coordinatorFactory: CoordinatorFactory
+    private var loginPersistenceUseCase: LoginPersistenceUseCaseProtocol?
     
-    public init(tabBarController: UITabBarController) {
+    public init(tabBarController: UITabBarController, coordinatorFactory: CoordinatorFactory) {
         self.tabBarController = tabBarController
+        self.coordinatorFactory = coordinatorFactory
         
     }
     
@@ -28,11 +30,6 @@ public class CharacterHomeCoordinator: Coordinator, CharacterHomeCoordinating {
         let viewModel = CharacterHomeViewModel(coordinator: self)
         let characterHomeView = CharacterHomeView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: characterHomeView)
-        hostingController.tabBarItem.title = L10n.Characters.Title.title
-        hostingController.tabBarItem.image = UIImage(named: "shield-Color")
-        hostingController.tabBarItem.selectedImage = UIImage(named: "shield")
-        
-        tabBarController.tabBar.isHidden = false
         navigationController.pushViewController(hostingController, animated: true)
     }
 }
@@ -50,11 +47,11 @@ extension CharacterHomeCoordinator: DetailsCharacterCoordinating {
     
     @MainActor
     public func signOut() {
-        loginPersistenceUseCase.logout()
+        loginPersistenceUseCase?.logout()
         tabBarController.viewControllers?.removeAll()
         navigationController.viewControllers.removeAll()
         
-        let coordinator = DIContainer.shared.resolveSafe(LoginCoordinator.self)
+        let coordinator = coordinatorFactory.makeLoginCoordinator()
         coordinator.start()
     }
 }

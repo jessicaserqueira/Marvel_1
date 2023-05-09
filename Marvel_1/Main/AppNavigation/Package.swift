@@ -20,11 +20,19 @@ let package = Package(
             name: "Comics",
             path: "../../Comics"
         ),
+        .package(
+            url: "https://github.com/Swinject/Swinject.git",
+            from: "2.8.0"
+        ),
+        .package(
+            url: "https://github.com/Swinject/SwinjectAutoregistration.git",
+            from: "2.8.3"
+        )
     ],
     targets: [
         .target(
             name: "AppNavigation",
-            dependencies: ["Common", "Comics"]),
+            dependencies: ["Common", "Comics", "Swinject", "SwinjectAutoregistration"]),
         .testTarget(
             name: "AppNavigationTests",
             dependencies: ["AppNavigation"]),

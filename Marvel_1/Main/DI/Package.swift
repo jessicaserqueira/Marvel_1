@@ -39,12 +39,20 @@ let package = Package(
         .package(
             name: "FireStorage",
             path: "../Core/FireStorage"
+        ),
+        .package(
+            url: "https://github.com/Swinject/Swinject.git",
+            from: "2.8.0"
+        ),
+        .package(
+            url: "https://github.com/Swinject/SwinjectAutoregistration.git",
+            from: "2.8.3"
         )
     ],
     targets: [
         .target(
             name: "DI",
-            dependencies: ["Common", "Storage", "Networking", "Domain","AppNavigation", "SDK", "FireStorage"]),
+            dependencies: ["Common", "Storage", "Networking", "Domain","AppNavigation", "SDK", "FireStorage", "Swinject", "SwinjectAutoregistration"]),
         .testTarget(
             name: "DITests",
             dependencies: ["DI"]),

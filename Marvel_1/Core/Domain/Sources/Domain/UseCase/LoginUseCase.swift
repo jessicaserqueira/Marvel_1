@@ -8,7 +8,7 @@
 import Foundation
 
 public class LoginUseCase {
-    private let loginRepository: LoginRepository
+    private let loginRepository: LoginRepository!
     
     public init(loginRepository: LoginRepository) {
         self.loginRepository = loginRepository

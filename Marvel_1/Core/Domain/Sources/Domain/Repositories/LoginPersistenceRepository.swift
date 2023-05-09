@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol LoginPersistenceRepository {
+public protocol LoginPersistenceRepository: AnyObject {
     
     var userID: String? { get }
     var isLogged: Bool { get }

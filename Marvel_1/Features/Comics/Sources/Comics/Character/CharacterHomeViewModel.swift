@@ -20,7 +20,7 @@ public class CharacterHomeViewModel: ObservableObject {
     @Published public var totalPages: Int = 0
     
     private var coordinator: CharacterHomeCoordinating?
-    private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
+    private var characterUseCase: CharacterUseCaseProtocol?
     
     public init(coordinator: CharacterHomeCoordinating) {
         self.coordinator = coordinator
@@ -40,7 +40,7 @@ extension CharacterHomeViewModel: CharacterHomeModelling {
     
     public func fetchCharacter() {
         isLoading = true
-        characterUseCase.getCharater(offset: offset) { [weak self] result in
+        characterUseCase?.getCharater(offset: offset) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):

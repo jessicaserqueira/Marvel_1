@@ -23,12 +23,8 @@ public class FavoritesCoordinator: Coordinator{
     @MainActor public func start() {
         let viewModel = FavoritesViewModel(coordinator: self)
         let favoritesView = FavoritesView(viewModel: viewModel)
-        
         let hostingController = UIHostingController(rootView: favoritesView)
-        hostingController.tabBarItem.title = L10n.Favorites.title
-        hostingController.tabBarItem.image = UIImage(named: "heart")
-        hostingController.tabBarItem.selectedImage = UIImage(named: "heart-Color")
-        
+
         navigationController.pushViewController(hostingController, animated: true)
     }
 }

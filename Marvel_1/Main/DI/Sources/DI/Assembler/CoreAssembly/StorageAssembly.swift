@@ -8,11 +8,11 @@
 import Common
 import Storage
 import AppData
+import Swinject
 
 class StorageAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
-        
-        container.register(type: AppData.ComicsLocalDataSource.self, component: Storage.ComicsLocalDataSource.init())
+    func assemble(container: Container) {
+    
     }
 }

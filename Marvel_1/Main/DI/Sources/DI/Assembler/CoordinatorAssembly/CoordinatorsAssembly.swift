@@ -7,54 +7,100 @@
 
 import AppNavigation
 import Common
-import Domain
 import Comics
 import UIKit
+import Swinject
 
 class CoordinatorsAssembly: Assembly {
     
-    private weak var appCoordinator: AppCoordinator?
     public var window: UIWindow
     
     public init(window: UIWindow) {
         self.window = window
     }
     
-    
-    func assemble(container: DIContainer) {
+    func assemble(container: Container) {
         
-        let coordinatorFactory = container.resolveSafe(CoordinatorFactory.self)
-        container.register(type: AppCoordinator.self, component: AppCoordinator(window: window, factory: coordinatorFactory, container: container))
+        let coordinatorFactory = container.resolve(Comics.CoordinatorFactory.self)
         
-        let appCoordinator = container.resolveSafe(AppCoordinator.self)
-        self.appCoordinator = appCoordinator
+        container.register(AppCoordinator.self) { _ in AppCoordinator(window: self.window, coordinatorFactory: coordinatorFactory!) }
+        let appCoordinator = container.resolve(AppCoordinator.self)
         
         // MARK: - SplashCoordinator
-        container.register(type: SplashScreenCoordinator.self, component: SplashScreenCoordinator(navigationController: appCoordinator.navigationController))
-
+        container.register(SplashScreenCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return SplashScreenCoordinator(navigationController: navigationController)
+        }
+        
         // MARK: - LoginCoordinator
-        container.register(type: LoginCoordinator.self, component: LoginCoordinator(navigationController: appCoordinator.navigationController, tabBarController: appCoordinator.tabBarController))
+        container.register(LoginCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController,
+                  let tabBarController = appCoordinator?.tabBarController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return LoginCoordinator(navigationController: navigationController, tabBarController: tabBarController, coordinatorFactory: coordinatorFactory!)
+        }
         
         // MARK: - CreateAccountCoordinator
-        container.register(type: CreateAccountCoordinator.self, component: CreateAccountCoordinator(navigationController: appCoordinator.navigationController))
+        container.register(CreateAccountCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return CreateAccountCoordinator(navigationController: navigationController, coordinatorFactory: coordinatorFactory!)
+        }
         
         // MARK: - TabBarCoordinator
-        container.register(type: TabBarCoordinator.self, component: TabBarCoordinator(navigationController: appCoordinator.navigationController, tabBarViewController: appCoordinator.tabBarController, container: container))
+        container.register(TabBarCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController,
+                  let tabBarController = appCoordinator?.tabBarController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return TabBarCoordinator(navigationController: navigationController, tabBarViewController: tabBarController, coordinatorfactory:  coordinatorFactory!)
+        }
         
-        // MARK: - CharacterHomeCoordinator 
-        container.register(type: CharacterHomeCoordinator.self, component: CharacterHomeCoordinator(tabBarController: appCoordinator.tabBarController))
-
+        // MARK: - CharacterHomeCoordinator
+        container.register(CharacterHomeCoordinator.self) { _ in
+            guard let tabBarController = appCoordinator?.tabBarController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return CharacterHomeCoordinator(tabBarController: tabBarController, coordinatorFactory: coordinatorFactory!)
+        }
+        
         // MARK: - DetailsCharacterCoordinator
-        container.register(type: DetailsCharacterCoordinator.self, component: DetailsCharacterCoordinator(navigationController: appCoordinator.navigationController))
+        container.register(DetailsCharacterCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return DetailsCharacterCoordinator(navigationController: navigationController)
+        }
         
         // MARK: - DetailsComicsCoordinator
-        container.register(type: DetailsComicsCoordinator.self, component: DetailsComicsCoordinator(navigationController: appCoordinator.navigationController))
+        container.register(DetailsComicsCoordinator.self) { _ in
+            guard let navigationController = appCoordinator?.navigationController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return DetailsComicsCoordinator(navigationController: navigationController)
+        }
         
         // MARK: - ComicsCoordinator
-        container.register(type: ComicsCoordinator.self, component: ComicsCoordinator (tabBarController: appCoordinator.tabBarController))
+        container.register(ComicsCoordinator.self) { _ in
+            guard let tabBarController = appCoordinator?.tabBarController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return ComicsCoordinator(tabBarController: tabBarController)
+            
+        }
         
         // MARK: - FavoritesCoordinator
-        container.register(type: FavoritesCoordinator.self, component: FavoritesCoordinator (tabBarController: appCoordinator.tabBarController))
+        container.register(FavoritesCoordinator.self) { _ in
+            guard let tabBarController = appCoordinator?.tabBarController else {
+                fatalError("AppCoordinator não foi inicializado corretamente")
+            }
+            return FavoritesCoordinator(tabBarController: tabBarController)
+            
+        }
     }
 }
 

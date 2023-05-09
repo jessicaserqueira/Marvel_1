@@ -8,24 +8,47 @@
 import Common
 import Networking
 import AppData
+import Swinject
 
 class NetworkingAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
+    func assemble(container: Container) {
         
         // MARK: - Character
-        container.register(type: AppData.CharacterRemoteDataSource.self,
-                           component: Networking.CharacterRemoteDataSource.init(serviceManager: ServiceManager()))
+        container.autoregister(ServiceManager.self) { _ in
+            ServiceManager()
+        }
+        
+        container.autoregister(AppData.CharacterRemoteDataSource.self) { _ in
+            guard let serviceManager = container.resolve(ServiceManager.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return Networking.CharacterRemoteDataSource(serviceManager: serviceManager)
+        }
         
         // MARK: - Comics
-        container.register(type: AppData.ComicsRemoteDataSource.self, component:  Networking.ComicsRemoteDataSource.init(serviceManager: ServiceManager()))
+        container.autoregister(AppData.ComicsRemoteDataSource.self) { _ in
+            guard let serviceManager = container.resolve(ServiceManager.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return Networking.ComicsRemoteDataSource(serviceManager: serviceManager)
+        }
         
         // MARK: - DetailsCharacter
-        container.register(type: AppData.DetailsCharacterRemoteDataSource.self,
-                           component: Networking.DetailsCharacterRemoteDataSource.init(serviceManager: ServiceManager()))
+        container.autoregister(AppData.DetailsCharacterRemoteDataSource.self)  { _ in
+            guard let serviceManager = container.resolve(ServiceManager.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return Networking.DetailsCharacterRemoteDataSource(serviceManager: serviceManager)
+        }
         
         // MARK: - DetailsComics
-        container.register(type: AppData.DetailsComicsRemoteDataSource.self,
-                           component: Networking.DetailsComicsRemoteDataSource.init(serviceManager: ServiceManager()))
+        container.autoregister(AppData.DetailsComicsRemoteDataSource.self)  { _ in
+            guard let serviceManager = container.resolve(ServiceManager.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return Networking.DetailsComicsRemoteDataSource(serviceManager: serviceManager)
+            
+        }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public class ComicsUseCase {
     
-    private let comicsRepository: ComicsRepository
+    private let comicsRepository: ComicsRepository!
     
     public init(comicsRepository: ComicsRepository) {
         self.comicsRepository = comicsRepository

@@ -14,11 +14,10 @@ public class DetailsComicsViewModel: ObservableObject {
     @Published public var data: [ComicsModel] = []
     
     private var coordinator: DetailsComicsCoordinating?
-    private lazy var detailsComicsUseCase = DIContainer.shared.resolveSafe(Domain.DetailsComicsUseCaseProtocol.self)
+    private var detailsComicsUseCase: DetailsComicsUseCaseProtocol?
     
     public init(coordinator: DetailsComicsCoordinating) {
         self.coordinator = coordinator
-        self.detailsComicsUseCase = detailsComicsUseCase
     }
 }
 
@@ -27,7 +26,7 @@ public class DetailsComicsViewModel: ObservableObject {
 extension DetailsComicsViewModel: DetailsComicsModelling {
     public func fetchComicsDetails(with id: Int) {
         
-        detailsComicsUseCase.getDetailsComics(with: id) { result in
+        detailsComicsUseCase?.getDetailsComics(with: id) { result in
             switch result {
             case .success(let character):
                 if let result = character.results {

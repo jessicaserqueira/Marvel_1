@@ -9,13 +9,12 @@ import Foundation
 
 public class FavoritesCharacterUseCase {
     
-    private let favoritesCharacterRepository: FavoritesCharacterRepository
+    private let favoritesCharacterRepository: FavoritesCharacterRepository!
     
     public init(favoritesCharacterRepository: FavoritesCharacterRepository) {
         self.favoritesCharacterRepository = favoritesCharacterRepository
     }
 }
-
 extension FavoritesCharacterUseCase: FavoritesCharacterUseCaseProtocol {    
     public func markAsFavorite<T>(characterID: Int, isFavorite: Bool, characterModel: T, completion: @escaping (Result<Void, Error>) -> Void) where T : Encodable {
         favoritesCharacterRepository.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel, completion: completion)

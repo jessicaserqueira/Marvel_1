@@ -16,9 +16,7 @@ public class LoginViewModel: ObservableObject {
     @Published public var formInvalid = false
     public var alertText = ""
     
-    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
-    
-    private lazy var loginUseCase = DIContainer.shared.resolveSafe(Domain.LoginUseCaseProtocol.self)
+    private var loginUseCase: LoginUseCaseProtocol?
     
     deinit{
         debugPrint("\(self) deinit")
@@ -33,7 +31,7 @@ extension LoginViewModel: LoginModelling {
 
     
     public func loginAuthentication(email: String, password: String) {
-        loginUseCase.loginAuthentication(email: loginModel.email, password: loginModel.password) { [weak self]
+        loginUseCase?.loginAuthentication(email: loginModel.email, password: loginModel.password) { [weak self]
             result in
             switch result {
             case .success(()):

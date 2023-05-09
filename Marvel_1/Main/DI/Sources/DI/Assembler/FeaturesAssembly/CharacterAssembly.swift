@@ -6,17 +6,17 @@
 //
 //
 import Foundation
-import Common
 import Comics
-import Domain
 import SwiftUI
+import Swinject
 
 class CharacterAssembly: Assembly {
     
-    func assemble(container: Common.DIContainer) {
-        
+    func assemble(container: Container) {
+    
         let characterCoordinator = container.resolveSafe(CharacterHomeCoordinator.self)
+        container.register(CharacterHomeCoordinating.self) { _ in characterCoordinator }
         
-        container.register(type: CharacterHomeCoordinating.self, component: characterCoordinator)
+        container.autoregister((any CharacterHomeModelling).self, initializer: CharacterHomeViewModel.init)
     }
 }

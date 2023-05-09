@@ -10,16 +10,15 @@ import Common
 import Comics
 import Domain
 import SwiftUI
+import Swinject
 
 class FavoritesAssembly: Assembly {
     
-    func assemble(container: Common.DIContainer) {
+    func assemble(container: Container) {
         
         let favoritesCoordinator = container.resolveSafe(FavoritesCoordinator.self)
-        
-        container.register(type: FavoritesCoordinating.self, component: favoritesCoordinator)
-        container.register(type: (any FavoritesModelling).self,
-                           component: FavoritesViewModel.init(coordinator: favoritesCoordinator))
+        container.register(FavoritesCoordinating.self) {_ in favoritesCoordinator}
+        container.autoregister((any FavoritesModelling).self, initializer: FavoritesViewModel.init)
         
     }
 }

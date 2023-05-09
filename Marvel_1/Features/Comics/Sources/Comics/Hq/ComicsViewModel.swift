@@ -18,10 +18,9 @@ public class ComicsViewModel: ObservableObject {
     @Published public var totalPages: Int = 0
     
     private var coordinator: ComicsCoordinating?
-    private lazy var comicsUseCase = DIContainer.shared.resolveSafe(Domain.ComicsUseCaseProtocol.self)
+    private var comicsUseCase: ComicsUseCaseProtocol?
     
     public init(coordinator: ComicsCoordinating) {
-        self.comicsUseCase = comicsUseCase
         self.coordinator = coordinator
     }
 }
@@ -35,7 +34,7 @@ extension ComicsViewModel: ComicsModelling {
     
     public func fetchComics() {
         isLoading = true
-        comicsUseCase.getComics(offset: offset) { [weak self] result in
+        comicsUseCase?.getComics(offset: offset) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let response):

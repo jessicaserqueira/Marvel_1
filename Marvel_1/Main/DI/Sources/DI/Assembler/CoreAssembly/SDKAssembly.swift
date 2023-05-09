@@ -8,11 +8,12 @@
 import Common
 import AppData
 import SDK
+import Swinject
 
 class SDKAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
+    func assemble(container: Container) {
         
-        container.register(type: AppData.FetchImageDataSource.self, component: SDK.FetchImageSDKDataSource.init())
+        container.autoregister(AppData.FetchImageDataSource.self, initializer: SDK.FetchImageSDKDataSource.init)
     }
 }

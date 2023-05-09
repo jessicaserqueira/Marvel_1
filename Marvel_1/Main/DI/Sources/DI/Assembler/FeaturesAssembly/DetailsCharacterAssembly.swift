@@ -10,16 +10,15 @@ import Common
 import Comics
 import Domain
 import SwiftUI
+import Swinject
 
 class DetailsCharacterAssembly: Assembly {
     
-    func assemble(container: Common.DIContainer) {
+    func assemble(container: Container) {
         
         let detailsCharacterCoordinator = container.resolveSafe(DetailsCharacterCoordinator.self)
-        
-        container.register(type: DetailsCharacterCoordinating.self, component: detailsCharacterCoordinator)
-        container.register(type: (any DetailsCharacterModelling).self,
-                           component: DetailsCharacterViewModel.init(coordinator: detailsCharacterCoordinator))
+        container.register(DetailsCharacterCoordinating.self) {_ in detailsCharacterCoordinator }
+        container.autoregister((any DetailsCharacterModelling).self, initializer: DetailsCharacterViewModel.init)
         
     }
 }

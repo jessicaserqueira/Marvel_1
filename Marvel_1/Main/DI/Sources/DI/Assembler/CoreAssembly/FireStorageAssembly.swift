@@ -8,25 +8,58 @@
 import Common
 import FireStorage
 import AppData
+import Swinject
 
 class FireStorageAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
+    func assemble(container: Container) {
         
         // MARK: - FavoritesCharacter
-        container.register(type: AppData.FavoritesCharacterRemoteDataSource.self,
-                           component: FireStorage.FavoritesCharacterRemoteDataSource.init(favoriteService: FavoriteService()))
+        container.autoregister(FavoriteService.self) { _ in
+            FavoriteService()
+        }
+        
+        container.autoregister(AppData.FavoritesCharacterRemoteDataSource.self) { _ in
+            guard let favoriteService = container.resolve(FavoriteService.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return FireStorage.FavoritesCharacterRemoteDataSource(favoriteService: favoriteService)
+        }
         
         // MARK: - LoginPersistence
-        container.register(type: AppData.LoginPersistenceDataSource.self,
-                           component: FireStorage.LoginPersistenceDataSource.init(loginPresistenceService: LoginPersistenceService()))
+        container.autoregister(LoginPersistenceService.self) { _ in
+            LoginPersistenceService()
+        }
+        
+        container.autoregister(AppData.LoginPersistenceDataSource.self) { _ in
+            guard let loginPresistenceService = container.resolve(LoginPersistenceService.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return FireStorage.LoginPersistenceDataSource(loginPresistenceService: loginPresistenceService)
+        }
         
         // MARK: - Login
-        container.register(type: AppData.LoginDataSource.self,
-                           component: FireStorage.LoginDataSource.init(loginService: LoginService()))
+        container.autoregister(LoginService.self) { _ in
+            LoginService()
+        }
+        
+        container.autoregister(AppData.LoginDataSource.self) { _ in
+            guard let loginService = container.resolve(LoginService.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return FireStorage.LoginDataSource(loginService: loginService)
+        }
         
         // MARK: - CreateAccount
-        container.register(type: AppData.CreateAccountRemoteDataSource.self,
-                           component: FireStorage.CreateAccountRemoteDataSource.init(createAccountService: CreateAccountService()))
+        container.autoregister(CreateAccountService.self) { _ in
+            CreateAccountService()
+        }
+        
+        container.autoregister(AppData.CreateAccountRemoteDataSource.self) { _ in
+            guard let createAccountService = container.resolve(CreateAccountService.self) else {
+                fatalError("ServiceManager not found")
+            }
+            return FireStorage.CreateAccountRemoteDataSource(createAccountService: createAccountService)
+        }
     }
 }

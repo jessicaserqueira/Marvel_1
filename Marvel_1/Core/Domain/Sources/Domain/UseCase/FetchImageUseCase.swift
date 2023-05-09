@@ -9,7 +9,7 @@ import Foundation
 
 public class FetchImageUseCase {
     
-    private let fetchImageRepository: FetchImageRepository
+    private let fetchImageRepository: FetchImageRepository!
     
     public init(fetchImageRepository: FetchImageRepository) {
         self.fetchImageRepository = fetchImageRepository

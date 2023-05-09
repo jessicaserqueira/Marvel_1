@@ -9,6 +9,7 @@ import UIKit
 import Common
 import Domain
 import Comics
+import Swinject
 
 public class AppCoordinator: Common.Coordinator {
     
@@ -16,18 +17,17 @@ public class AppCoordinator: Common.Coordinator {
     public var navigationController: UINavigationController
     public var tabBarController: UITabBarController
     public var childCoordinators: [Coordinator] = []
-    public let coordinatorFactory: CoordinatorFactory
-    private var container: DIContainer
+    public var coordinatorFactory: CoordinatorFactory?
+
     
-    private lazy var loginPersistenceUseCase = DIContainer.shared.resolveSafe(Domain.LoginPersistenceUseCaseProtocol.self)
-    private lazy var characterUseCase = DIContainer.shared.resolveSafe(Domain.CharacterUseCaseProtocol.self)
+    private var loginPersistenceUseCase: LoginPersistenceUseCaseProtocol?
+    private var characterUseCase: CharacterUseCaseProtocol?
     
-    public init(window: UIWindow, factory: CoordinatorFactory, container: DIContainer) {
+    public init(window: UIWindow, coordinatorFactory: CoordinatorFactory?) {
         self.window = window
-        self.coordinatorFactory = factory
+        self.coordinatorFactory = coordinatorFactory
         self.navigationController = UINavigationController()
         self.tabBarController = UITabBarController()
-        self.container = container
     }
     
     @MainActor public func start() {
@@ -41,27 +41,25 @@ public class AppCoordinator: Common.Coordinator {
 extension AppCoordinator {
     
     func showSplashCoordinator() {
-        let coordinator = coordinatorFactory.makeSplashCoordinator()
+        guard let coordinator = coordinatorFactory?.makeSplashCoordinator() else { return }
         coordinator.start()
         loginPersistence()
     }
     
     func loginPersistence() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.loginPersistenceUseCase.loginValidation()
+            self.loginPersistenceUseCase?.loginValidation()
                 self.loginPersistenceValidation()
         }
     }
     
     @MainActor func loginPersistenceValidation() {
+        guard let coordinator = self.coordinatorFactory else { return }
         
-        if loginPersistenceUseCase.isLogged {
-            let coordinator = self.coordinatorFactory.makeTabBarCoordinator()
-            coordinator.start()
-            
+        if loginPersistenceUseCase?.isLogged == true {
+            coordinator.makeTabBarCoordinator().start()
         } else {
-            let coordinator = self.coordinatorFactory.makeLoginCoordinator()
-            coordinator.start()
+            coordinator.makeLoginCoordinator().start()
         }
     }
 }

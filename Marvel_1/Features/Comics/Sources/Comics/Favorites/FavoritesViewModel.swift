@@ -19,7 +19,7 @@ public class FavoritesViewModel: ObservableObject {
     @Published public var isLoading: Bool = false
     
     private var coordinator: FavoritesCoordinating?
-    private lazy var favoritesUseCase = DIContainer.shared.resolveSafe(Domain.FavoritesCharacterUseCaseProtocol.self)
+    private var favoritesUseCase: FavoritesCharacterUseCaseProtocol?
     
     public init(coordinator: FavoritesCoordinating) {
         self.coordinator = coordinator
@@ -33,7 +33,7 @@ extension FavoritesViewModel: FavoritesModelling {
     }
     
     public func markAsFavorite(characterID: Int, isFavorite: Bool, characterModel: CharacterModel) {
-        favoritesUseCase.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel) { result in
+        favoritesUseCase?.markAsFavorite(characterID: characterID, isFavorite: isFavorite, characterModel: characterModel) { result in
             switch result {
             case .success(let response):
                 response
@@ -44,7 +44,7 @@ extension FavoritesViewModel: FavoritesModelling {
     }
     
     public func unmarkAsFavorite(characterID: Int, isFavorite: Bool) {
-        favoritesUseCase.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite) { result in
+        favoritesUseCase?.unmarkAsFavorite(characterID: characterID, isFavorite: isFavorite) { result in
             switch result {
             case .success(let response):
                 response
@@ -56,7 +56,7 @@ extension FavoritesViewModel: FavoritesModelling {
     
     public func getFavorites() {
         self.isLoading = true
-        favoritesUseCase.getFavorites { result in
+        favoritesUseCase?.getFavorites { result in
             self.isLoading = false
             switch result {
             case .success(let favorite):

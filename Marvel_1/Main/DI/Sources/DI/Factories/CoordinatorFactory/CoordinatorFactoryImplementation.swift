@@ -8,41 +8,84 @@
 import Common
 import Comics
 import AppNavigation
+import Swinject
 
 class CoordinatorFactoryImplementation: CoordinatorFactory {
-    private let container: DIContainer
     
-    required init(container: DIContainer) {
+    private let container: Resolver
+    
+    required init(container: Resolver) {
         self.container = container
     }
     
     // MARK: - SplashCoordinator
     func makeSplashCoordinator() -> Comics.SplashScreenCoordinator {
-        container.resolveSafe(SplashScreenCoordinator.self)
+        guard let coordinator =  container.resolve(SplashScreenCoordinator.self) else {
+            preconditionFailure("WalletCoordinator is nil")
+        }
+        return coordinator
     }
     
     // MARK: - LoginCoordinator
     func makeLoginCoordinator() -> Comics.LoginCoordinator {
-        container.resolveSafe(LoginCoordinator.self)
+       guard let coordinator =  container.resolve(LoginCoordinator.self)  else {
+            preconditionFailure("WalletCoordinator is nil")
+        }
+        return coordinator
     }
     
-    // MARK: CreateAccountCoordinator
+    // MARK: - CreateAccountCoordinator
     func makeCreateAccountCoordinator() -> Comics.CreateAccountCoordinator {
-        container.resolveSafe(CreateAccountCoordinator.self)
+        guard let coordinator =  container.resolve(CreateAccountCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
     }
     
     // MARK: - TabBarCoordinator
-    
     func makeTabBarCoordinator() -> Comics.TabBarCoordinator {
-        container.resolveSafe(TabBarCoordinator.self)
+        guard let coordinator =  container.resolve(TabBarCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
     }
     
     // MARK: - CharacterCoordinator
     func makeCharacterCoordinator() -> Comics.CharacterHomeCoordinator {
-        container.resolveSafe(CharacterHomeCoordinator.self)
+        guard let coordinator =  container.resolve(CharacterHomeCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
     }
+    
     // MARK: - ScreenDetailsCoordinator
     func makeScreenDetailsCoordinator() -> Comics.DetailsCharacterCoordinator {
-        container.resolveSafe(DetailsCharacterCoordinator.self)
+        guard let coordinator =  container.resolve(DetailsCharacterCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
+    }
+    // MARK: - ScreenDetailsComicsCoordinator
+    func makeScreenDetailsComicsCoordinator() -> Comics.DetailsComicsCoordinator {
+        guard let coordinator =  container.resolve(DetailsComicsCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
+    }
+    
+    // MARK: - ComicsCoordinator
+    func makeComicsCoordinator() -> Comics.ComicsCoordinator {
+        guard let coordinator =  container.resolve(ComicsCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
+    }
+    
+    // MARK: - FavoritesCoordinator
+    func makeFavoritesCoordinator() -> Comics.FavoritesCoordinator {
+        guard let coordinator =  container.resolve(FavoritesCoordinator.self)  else {
+             preconditionFailure("WalletCoordinator is nil")
+         }
+         return coordinator
     }
 }

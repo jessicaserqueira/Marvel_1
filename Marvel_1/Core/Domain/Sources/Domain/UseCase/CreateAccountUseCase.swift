@@ -11,7 +11,7 @@ import UIKit
 
 public class CreateAccountUseCase {
     
-    private let createAccountRepository: CreateAccountRepository
+    private let createAccountRepository: CreateAccountRepository!
     
     public init(createAccountRepository: CreateAccountRepository) {
         self.createAccountRepository = createAccountRepository

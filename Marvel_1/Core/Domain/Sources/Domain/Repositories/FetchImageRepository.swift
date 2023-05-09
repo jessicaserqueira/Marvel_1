@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol FetchImageRepository {
+public protocol FetchImageRepository: AnyObject {
     func request(_ url: URL) async throws -> Data
     
 }

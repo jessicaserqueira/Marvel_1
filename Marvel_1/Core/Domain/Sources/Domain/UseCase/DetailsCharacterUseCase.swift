@@ -10,7 +10,7 @@ import Foundation
 
 public class DetailsCharacterUseCase {
     
-    private let detailsCharacterRepository: DetailsCharacterRepository
+    private let detailsCharacterRepository: DetailsCharacterRepository!
     
     public init(detailsCharacterRepository: DetailsCharacterRepository) {
         self.detailsCharacterRepository = detailsCharacterRepository

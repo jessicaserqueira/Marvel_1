@@ -8,18 +8,21 @@
 import Common
 import UIKit
 import SwiftUI
+import Swinject
 
 public class TabBarCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     var tabBarViewController: UITabBarController
-    public var childCoordinators: [Coordinator] = []
-    var container: DIContainer
+    public var childCoordinators: [Coordinator]
+    var coordinatorfactory: CoordinatorFactory
     
-    public init(navigationController: UINavigationController, tabBarViewController: UITabBarController, container: DIContainer) {
+    public init(navigationController: UINavigationController, tabBarViewController: UITabBarController, coordinatorfactory: CoordinatorFactory) {
         self.navigationController = navigationController
         self.tabBarViewController = tabBarViewController
-        self.container = container
+        self.coordinatorfactory = coordinatorfactory
+        self.childCoordinators = []
+        
     }
     
     @MainActor public func start() {
@@ -43,24 +46,35 @@ public class TabBarCoordinator: Coordinator {
         )
         
         tabBarViewController.tabBar.tintColor = .black
-        navigationController.setViewControllers([tabBarViewController], animated: true)
+        UIApplication.shared.windows.first?.rootViewController = tabBarViewController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
     @MainActor private func makeCharacterHomeCoordinator() -> CharacterHomeCoordinator {
-        let coordinator = container.resolveSafe(CharacterHomeCoordinator.self)
+        let coordinator = coordinatorfactory.makeCharacterCoordinator()
         coordinator.start()
+        coordinator.navigationController.tabBarItem = UITabBarItem(title:  L10n.Characters.Title.title,
+                                                                   image: UIImage(named: "shield-Color"),
+                                                                   selectedImage: UIImage(named: "shield"))
+        
         return coordinator
     }
     
     @MainActor private func makeComicsCoordinator() -> ComicsCoordinator {
-        let coordinator = container.resolveSafe(ComicsCoordinator.self)
+        let coordinator = coordinatorfactory.makeComicsCoordinator()
         coordinator.start()
+        coordinator.navigationController.tabBarItem = UITabBarItem(title:  L10n.Hq.title,
+                                                                   image: UIImage(named: "hq"),
+                                                                   selectedImage: UIImage(named: "hq-Color"))
         return coordinator
     }
     
-   @MainActor private func makeFavoritesCoordinator() -> FavoritesCoordinator {
-       let coordinator = container.resolveSafe(FavoritesCoordinator.self)
+    @MainActor private func makeFavoritesCoordinator() -> FavoritesCoordinator {
+        let coordinator = coordinatorfactory.makeFavoritesCoordinator()
         coordinator.start()
+        coordinator.navigationController.tabBarItem = UITabBarItem(title:  L10n.Characters.Title.title,
+                                                                   image: UIImage(named:  "heart"),
+                                                                   selectedImage: UIImage(named: "heart-Color"))
         return coordinator
     }
 }

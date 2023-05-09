@@ -6,13 +6,16 @@
 //
 
 import Comics
-import Common
 import AppNavigation
+import Swinject
 
 class CoordinatorsFactoryAssembly: Assembly {
-
-    func assemble(container: DIContainer) {
-        container.register(type: CoordinatorFactory.self, component: CoordinatorFactoryImplementation(container: container))
+    
+    func assemble(container: Container) {
+        container.register(CoordinatorFactory.self) { resolver in
+            return CoordinatorFactoryImplementation(container: resolver)
+            
+        }
     }
     
 }

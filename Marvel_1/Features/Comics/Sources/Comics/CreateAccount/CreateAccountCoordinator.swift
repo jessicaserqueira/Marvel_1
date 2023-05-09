@@ -15,9 +15,11 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public var childCoordinators: [Coordinator] = []
     public var navigationController = UINavigationController()
+    private var coordinatorFactory: CoordinatorFactory
     
-    public init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController, coordinatorFactory: CoordinatorFactory) {
         self.navigationController = navigationController
+        self.coordinatorFactory = coordinatorFactory
     }
     
     
@@ -29,14 +31,14 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     }
     
     public func returnLoginView() {
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController())
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), coordinatorFactory: coordinatorFactory)
         let viewModel = LoginViewModel(coordinator: coordinator)
         _ = LoginView(viewModel: viewModel)
         navigationController.popViewController(animated: true)
     }
     
     public func buttonCreateAccount() {
-        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController())
+        let coordinator = LoginCoordinator(navigationController: navigationController, tabBarController: UITabBarController(), coordinatorFactory: coordinatorFactory)
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             let viewModel = LoginViewModel(coordinator: coordinator)
             _ = LoginView(viewModel: viewModel)
@@ -46,7 +48,7 @@ public class CreateAccountCoordinator: Coordinator, CreateAccountCoordinating {
     
     public func dismissModal() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            let coordinator = LoginCoordinator(navigationController: self.navigationController, tabBarController: UITabBarController())
+            let coordinator = LoginCoordinator(navigationController: self.navigationController, tabBarController: UITabBarController(), coordinatorFactory: self.coordinatorFactory)
             let viewModel = LoginViewModel(coordinator: coordinator)
             _ = LoginView(viewModel: viewModel)
             self.navigationController.popViewController(animated: true)

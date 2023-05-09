@@ -8,7 +8,7 @@
 import Common
 import Foundation
 
-public protocol CharacterRepository {
+public protocol CharacterRepository  {
     
     func getCharater(offset: Int, completion: @escaping ResultCompletion<DataCharacter>)
 }

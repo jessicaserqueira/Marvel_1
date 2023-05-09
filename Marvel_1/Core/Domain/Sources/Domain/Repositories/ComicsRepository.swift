@@ -7,7 +7,7 @@
 import Common
 import Foundation
 
-public protocol ComicsRepository {
+public protocol ComicsRepository: AnyObject{
     
     func getComics(offset: Int, completion: @escaping ResultCompletion<DataComics>)
     

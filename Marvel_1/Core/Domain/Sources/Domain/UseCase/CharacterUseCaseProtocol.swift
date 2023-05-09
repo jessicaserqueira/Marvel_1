@@ -8,6 +8,6 @@
 import Common
 import Foundation
 
-public protocol CharacterUseCaseProtocol {
+public protocol CharacterUseCaseProtocol: AnyObject {
     func getCharater(offset: Int, completion: @escaping Common.ResultCompletion<DataCharacter>)
 }

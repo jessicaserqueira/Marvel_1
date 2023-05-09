@@ -8,10 +8,12 @@
 import AppNavigation
 import Common
 import Comics
-import SwiftUI
+import Swinject
+import SwinjectAutoregistration
+import UIKit
 
 public class DependencyInjector {
-       
+
     private var window: UIWindow
     
     public init(window: UIWindow) {
@@ -31,11 +33,15 @@ public class DependencyInjector {
             DomainAssembly(),
             
             CoordinatorsAssembly(window: window),
-            CharacterAssembly()
+            LoginAssembly(),
+            CharacterAssembly(),
+            FavoritesAssembly(),
+            ComicsAssembly(),
+            DetailsCharacterAssembly(),
+            DetailsComicsAssembly(),
         ])
         
         let appCoordinator = assembler.resolver.resolveSafe(AppCoordinator.self)
         completion(appCoordinator)
     }
 }
-

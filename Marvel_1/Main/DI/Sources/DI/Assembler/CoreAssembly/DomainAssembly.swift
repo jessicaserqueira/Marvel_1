@@ -7,49 +7,50 @@
 
 import Common
 import Domain
+import Swinject
 
 class DomainAssembly: Assembly {
     
-    func assemble(container: DIContainer) {
+    func assemble(container: Container) {
         assembleComics(container)
     }
     
-    private func assembleComics(_ container: DIContainer) {
+    private func assembleComics(_ container: Container) {
         
         // MARK: - Character
         let characterRepository = container.resolveSafe(Domain.CharacterRepository.self)
-        container.register(type: Domain.CharacterUseCaseProtocol.self, component:  Domain.CharacterUseCase(characterRepository: characterRepository))
+        container.register(Domain.CharacterUseCaseProtocol.self) {_ in CharacterUseCase.init(characterRepository: characterRepository) }
         
         // MARK: - Comics
         let comicsRepository = container.resolveSafe(Domain.ComicsRepository.self)
-        container.register(type: Domain.ComicsUseCaseProtocol.self, component:  Domain.ComicsUseCase(comicsRepository: comicsRepository))
+        container.register(Domain.ComicsUseCaseProtocol.self){ _ in ComicsUseCase.init(comicsRepository: comicsRepository) }
         
-        // MARK: - DetaislCharacter
+        // MARK: - DetaislCharacte
         let detailsCharacterRepository = container.resolveSafe(Domain.DetailsCharacterRepository.self)
-        container.register(type: Domain.DetailsCharacterUseCaseProtocol.self, component:  Domain.DetailsCharacterUseCase(detailsCharacterRepository: detailsCharacterRepository))
+        container.register(Domain.DetailsCharacterUseCaseProtocol.self) { _ in DetailsCharacterUseCase.init(detailsCharacterRepository: detailsCharacterRepository) }
         
         // MARK: - DetaislComics
         let detailsComicsRepository = container.resolveSafe(Domain.DetailsComicsRepository.self)
-        container.register(type: Domain.DetailsComicsUseCaseProtocol.self, component:  Domain.DetailsComicsUseCase(detailsComicsRepository: detailsComicsRepository))
+        container.register(Domain.DetailsComicsUseCaseProtocol.self) { _ in DetailsComicsUseCase.init(detailsComicsRepository: detailsComicsRepository) }
         
         // MARK: - FavoritesCharacter
         let favoritesCharacterRepository = container.resolveSafe(Domain.FavoritesCharacterRepository.self)
-        container.register(type: Domain.FavoritesCharacterUseCaseProtocol.self, component:  Domain.FavoritesCharacterUseCase(favoritesCharacterRepository: favoritesCharacterRepository))
+        container.register(Domain.FavoritesCharacterUseCaseProtocol.self){ _ in FavoritesCharacterUseCase.init(favoritesCharacterRepository: favoritesCharacterRepository)}
         
         // MARK: - LoginPersistence
         let loginPersistenceRepository = container.resolveSafe(Domain.LoginPersistenceRepository.self)
-        container.register(type: Domain.LoginPersistenceUseCaseProtocol.self, component:  Domain.LoginPersistenceUseCase(loginPersistenceRepository: loginPersistenceRepository))
+        container.register(Domain.LoginPersistenceUseCaseProtocol.self) { _ in LoginPersistenceUseCase.init(loginPersistenceRepository: loginPersistenceRepository) }
         
         // MARK: - Login
         let loginRepository = container.resolveSafe(Domain.LoginRepository.self)
-        container.register(type: Domain.LoginUseCaseProtocol.self, component:  Domain.LoginUseCase(loginRepository: loginRepository))
+        container.register(Domain.LoginUseCaseProtocol.self) { _ in LoginUseCase.init(loginRepository: loginRepository) }
         
         // MARK: - CreateAccount
         let createAccountRepository = container.resolveSafe(Domain.CreateAccountRepository.self)
-        container.register(type: Domain.CreateAccountUseCaseProtocol.self, component:  Domain.CreateAccountUseCase(createAccountRepository: createAccountRepository))
+        container.register(Domain.CreateAccountUseCaseProtocol.self) { _ in CreateAccountUseCase.init(createAccountRepository: createAccountRepository) }
         
         // MARK: - Image
         let fetchImageRepository = container.resolveSafe(Domain.FetchImageRepository.self)
-        container.register(type: Domain.FetchImageUseCaseProtocol.self, component: Domain.FetchImageUseCase(fetchImageRepository: fetchImageRepository))
+        container.register(Domain.FetchImageUseCaseProtocol.self) { _ in FetchImageUseCase.init(fetchImageRepository: fetchImageRepository) }
     }
 }
