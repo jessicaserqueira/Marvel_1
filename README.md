@@ -1,6 +1,6 @@
 # App SwiftUI com Injeção de Dependência e Coordinators
 
-Este é um aplicativo iOS desenvolvido em Swift com o SwiftUI, que permite visualizar informações sobre personagens e quadrinhos da Marvel. Ele usa a API pública da Marvel para obter informações sobre personagens e quadrinhos, e o Firebase como plataforma de armazenamento em nuvem para persistência dos dados.
+Este é um aplicativo iOS desenvolvido em SwiftUI, que permite visualizar informações sobre personagens e quadrinhos da Marvel. Ele usa a API pública da Marvel para obter informações sobre personagens e quadrinhos, e o Firebase como plataforma de armazenamento em nuvem para persistência dos dados.
 
 ## Recursos
 O aplicativo oferece os seguintes recursos:
